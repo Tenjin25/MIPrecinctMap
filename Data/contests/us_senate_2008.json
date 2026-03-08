@@ -2,7 +2,7 @@
   "meta": {
     "year": 2008,
     "contest_type": "us_senate",
-    "rows": 5688,
+    "rows": 5684,
     "level": "precinct"
   },
   "rows": [
@@ -17063,19 +17063,6 @@
       "color": ""
     },
     {
-      "county": "Iosco - 9999",
-      "dem_votes": 1,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 1,
-      "dem_candidate": "Carl Levin",
-      "rep_candidate": "Jack Hoogendyk, Jr.",
-      "margin": 1,
-      "margin_pct": -100,
-      "winner": "DEM",
-      "color": ""
-    },
-    {
       "county": "Iosco - Alabaster Township 1",
       "dem_votes": 182,
       "rep_votes": 116,
@@ -20635,19 +20622,6 @@
       "margin": 60,
       "margin_pct": 9.302326,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Kalkaska - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Carl Levin",
-      "rep_candidate": "",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -37057,19 +37031,6 @@
       "color": ""
     },
     {
-      "county": "Montcalm - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Carl Levin",
-      "rep_candidate": "Jack Hoogendyk, Jr.",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
-      "color": ""
-    },
-    {
       "county": "Montcalm - Belvidere Township 1",
       "dem_votes": 573,
       "rep_votes": 363,
@@ -39030,19 +38991,6 @@
       "margin": 42,
       "margin_pct": -9.52381,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 1,
-      "other_votes": 0,
-      "total_votes": 1,
-      "dem_candidate": "Carl Levin",
-      "rep_candidate": "Jack Hoogendyk, Jr.",
-      "margin": 1,
-      "margin_pct": 100,
-      "winner": "REP",
       "color": ""
     },
     {

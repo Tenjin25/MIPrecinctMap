@@ -2,7 +2,7 @@
   "meta": {
     "year": 2018,
     "contest_type": "us_senate",
-    "rows": 5087,
+    "rows": 5078,
     "level": "precinct"
   },
   "rows": [
@@ -160,19 +160,6 @@
       "margin": 93,
       "margin_pct": 44.711538,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Alger - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -2786,19 +2773,6 @@
       "margin": 46,
       "margin_pct": 15.282392,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Berrien - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -8119,19 +8093,6 @@
       "color": ""
     },
     {
-      "county": "Genesee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 18,
-      "total_votes": 18,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Genesee - Argentine Township 1",
       "dem_votes": 535,
       "rep_votes": 876,
@@ -13306,19 +13267,6 @@
       "color": ""
     },
     {
-      "county": "Ingham - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Ingham - Alaiedon Township 1",
       "dem_votes": 288,
       "rep_votes": 297,
@@ -15720,19 +15668,6 @@
       "rep_candidate": "John James",
       "margin": 112,
       "margin_pct": 17.021277,
-      "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Isabella - 9999",
-      "dem_votes": 0,
-      "rep_votes": 1,
-      "other_votes": 0,
-      "total_votes": 1,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 1,
-      "margin_pct": 100,
       "winner": "REP",
       "color": ""
     },
@@ -24629,19 +24564,6 @@
       "color": ""
     },
     {
-      "county": "Macomb - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 4,
-      "total_votes": 4,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Macomb - Armada Township 1",
       "dem_votes": 584,
       "rep_votes": 962,
@@ -29124,19 +29046,6 @@
       "margin": 276,
       "margin_pct": 37.246964,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Manistee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -34142,19 +34051,6 @@
       "margin": 145,
       "margin_pct": 36.895674,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 4,
-      "total_votes": 4,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -50483,19 +50379,6 @@
       "margin": 642,
       "margin_pct": -42.376238,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "John James",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {

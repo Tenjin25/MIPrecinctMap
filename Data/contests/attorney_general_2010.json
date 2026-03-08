@@ -2,7 +2,7 @@
   "meta": {
     "year": 2010,
     "contest_type": "attorney_general",
-    "rows": 5419,
+    "rows": 5418,
     "level": "precinct"
   },
   "rows": [
@@ -49000,19 +49000,6 @@
       "rep_candidate": "Bill Schuette",
       "margin": 360,
       "margin_pct": 23.84106,
-      "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "St. Clair - 9999",
-      "dem_votes": 0,
-      "rep_votes": 1,
-      "other_votes": 0,
-      "total_votes": 1,
-      "dem_candidate": "David Leyton",
-      "rep_candidate": "Bill Schuette",
-      "margin": 1,
-      "margin_pct": 100,
       "winner": "REP",
       "color": ""
     },

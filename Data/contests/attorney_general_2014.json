@@ -2,7 +2,7 @@
   "meta": {
     "year": 2014,
     "contest_type": "attorney_general",
-    "rows": 5042,
+    "rows": 5041,
     "level": "precinct"
   },
   "rows": [
@@ -4658,19 +4658,6 @@
       "margin": 138,
       "margin_pct": 28.278689,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Cass - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Mark Totten",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {

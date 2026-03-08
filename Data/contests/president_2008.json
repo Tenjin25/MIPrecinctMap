@@ -2,7 +2,7 @@
   "meta": {
     "year": 2008,
     "contest_type": "president",
-    "rows": 5707,
+    "rows": 5684,
     "level": "precinct"
   },
   "rows": [
@@ -6832,19 +6832,6 @@
       "color": ""
     },
     {
-      "county": "Clare - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Clare - Arthur Township 1",
       "dem_votes": 96,
       "rep_votes": 249,
@@ -7739,19 +7726,6 @@
       "margin": 60,
       "margin_pct": -5.976096,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Delta - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 38,
-      "total_votes": 38,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -9289,19 +9263,6 @@
       "color": ""
     },
     {
-      "county": "Emmet - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Emmet - Bear Creek Township 1",
       "dem_votes": 132,
       "rep_votes": 125,
@@ -9611,19 +9572,6 @@
       "margin": 229,
       "margin_pct": 20.229682,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Genesee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -13527,19 +13475,6 @@
       "color": ""
     },
     {
-      "county": "Gratiot - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Gratiot - Alma City 1",
       "dem_votes": 693,
       "rep_votes": 484,
@@ -14993,19 +14928,6 @@
       "margin": 211,
       "margin_pct": 21.887967,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Ingham - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -16738,19 +16660,6 @@
       "color": ""
     },
     {
-      "county": "Ionia - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
-      "color": ""
-    },
-    {
       "county": "Ionia - Belding City 1",
       "dem_votes": 498,
       "rep_votes": 385,
@@ -17151,19 +17060,6 @@
       "margin": 111,
       "margin_pct": 19.072165,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Iosco - 9999",
-      "dem_votes": 1,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 1,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 1,
-      "margin_pct": -100,
-      "winner": "DEM",
       "color": ""
     },
     {
@@ -17593,19 +17489,6 @@
       "margin": 35,
       "margin_pct": 5.109489,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Isabella - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -19114,19 +18997,6 @@
       "margin": 137,
       "margin_pct": -9.383562,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Kalamazoo - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -20755,19 +20625,6 @@
       "color": ""
     },
     {
-      "county": "Kalkaska - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
-      "color": ""
-    },
-    {
       "county": "Kalkaska - Bear Lake Township 1",
       "dem_votes": 185,
       "rep_votes": 222,
@@ -20934,19 +20791,6 @@
       "margin": 2,
       "margin_pct": 0.300752,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Kent - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 10,
-      "total_votes": 10,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -25682,19 +25526,6 @@
       "color": ""
     },
     {
-      "county": "Lenawee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Lenawee - Adrian City 1",
       "dem_votes": 671,
       "rep_votes": 256,
@@ -27798,19 +27629,6 @@
       "margin": 41,
       "margin_pct": -9.490741,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Macomb - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 10,
-      "total_votes": 10,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -34834,19 +34652,6 @@
       "color": ""
     },
     {
-      "county": "Mecosta - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 10,
-      "total_votes": 10,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Mecosta - Aetna Township 1",
       "dem_votes": 410,
       "rep_votes": 431,
@@ -35143,19 +34948,6 @@
       "margin": 7,
       "margin_pct": -1.059002,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Menominee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 38,
-      "total_votes": 38,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -36286,19 +36078,6 @@
       "rep_candidate": "John Mccain",
       "margin": 7,
       "margin_pct": 2.880658,
-      "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Monroe - 9999",
-      "dem_votes": 0,
-      "rep_votes": 6,
-      "other_votes": 1,
-      "total_votes": 7,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 6,
-      "margin_pct": 85.714286,
       "winner": "REP",
       "color": ""
     },
@@ -39211,19 +38990,6 @@
       "rep_candidate": "John Mccain",
       "margin": 26,
       "margin_pct": 5.603448,
-      "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 2,
-      "other_votes": 0,
-      "total_votes": 2,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 2,
-      "margin_pct": 100,
       "winner": "REP",
       "color": ""
     },
@@ -50850,19 +50616,6 @@
       "color": ""
     },
     {
-      "county": "Saginaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Saginaw - Albee Township 1",
       "dem_votes": 645,
       "rep_votes": 417,
@@ -52527,19 +52280,6 @@
       "color": ""
     },
     {
-      "county": "Schoolcraft - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Schoolcraft - Doyle Township 1",
       "dem_votes": 179,
       "rep_votes": 166,
@@ -53160,19 +52900,6 @@
       "rep_candidate": "John Mccain",
       "margin": 56,
       "margin_pct": 2.569986,
-      "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "St. Clair - 9999",
-      "dem_votes": 0,
-      "rep_votes": 1,
-      "other_votes": 0,
-      "total_votes": 1,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 1,
-      "margin_pct": 100,
       "winner": "REP",
       "color": ""
     },
@@ -55423,19 +55150,6 @@
       "margin": 79,
       "margin_pct": -6.7753,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Washtenaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 11,
-      "total_votes": 11,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -73908,19 +73622,6 @@
       "rep_candidate": "John Mccain",
       "margin": 762,
       "margin_pct": -20.352564,
-      "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wexford - 9999",
-      "dem_votes": 20,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 20,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "John Mccain",
-      "margin": 20,
-      "margin_pct": -100,
       "winner": "DEM",
       "color": ""
     },

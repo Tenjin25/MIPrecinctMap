@@ -2,23 +2,10 @@
   "meta": {
     "year": 2016,
     "contest_type": "president",
-    "rows": 5077,
+    "rows": 5021,
     "level": "precinct"
   },
   "rows": [
-    {
-      "county": "Alcona - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 19,
-      "total_votes": 19,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
     {
       "county": "Alcona - Alcona Township 1",
       "dem_votes": 199,
@@ -173,19 +160,6 @@
       "margin": 137,
       "margin_pct": 59.825328,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Alger - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 5,
-      "total_votes": 5,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -917,19 +891,6 @@
       "color": ""
     },
     {
-      "county": "Alpena - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 20,
-      "total_votes": 20,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Alpena - Alpena City 1",
       "dem_votes": 488,
       "rep_votes": 676,
@@ -1151,19 +1112,6 @@
       "color": ""
     },
     {
-      "county": "Antrim - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 13,
-      "total_votes": 13,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Antrim - Banks Township 1",
       "dem_votes": 269,
       "rep_votes": 681,
@@ -1369,19 +1317,6 @@
       "margin": 99,
       "margin_pct": 55,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Arenac - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 6,
-      "total_votes": 6,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -1606,19 +1541,6 @@
       "color": ""
     },
     {
-      "county": "Baraga - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 6,
-      "total_votes": 6,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Baraga - Arvon Township 1",
       "dem_votes": 77,
       "rep_votes": 203,
@@ -1720,19 +1642,6 @@
       "margin": 8,
       "margin_pct": 4.210526,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Barry - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 62,
-      "total_votes": 62,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -2084,19 +1993,6 @@
       "margin": 449,
       "margin_pct": 38.507719,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Bay - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 66,
-      "total_votes": 66,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -2698,19 +2594,6 @@
       "color": ""
     },
     {
-      "county": "Benzie - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 7,
-      "total_votes": 7,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Benzie - Almira Township 1",
       "dem_votes": 751,
       "rep_votes": 1214,
@@ -2877,19 +2760,6 @@
       "margin": 94,
       "margin_pct": 29.192547,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Berrien - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -4791,19 +4661,6 @@
       "color": ""
     },
     {
-      "county": "Cass - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 21,
-      "total_votes": 21,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Cass - Calvin Township 1",
       "dem_votes": 345,
       "rep_votes": 437,
@@ -5116,19 +4973,6 @@
       "color": ""
     },
     {
-      "county": "Charlevoix - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 22,
-      "total_votes": 22,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Charlevoix - Bay Township 1",
       "dem_votes": 283,
       "rep_votes": 441,
@@ -5386,19 +5230,6 @@
       "margin": 309,
       "margin_pct": 29.826255,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Cheboygan - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 22,
-      "total_votes": 22,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -5685,19 +5516,6 @@
       "margin": 128,
       "margin_pct": 36.676218,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Chippewa - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 19,
-      "total_votes": 19,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -6195,19 +6013,6 @@
       "color": ""
     },
     {
-      "county": "Clinton - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 87,
-      "total_votes": 87,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Clinton - Bath Township 1",
       "dem_votes": 389,
       "rep_votes": 532,
@@ -6660,19 +6465,6 @@
       "margin": 864,
       "margin_pct": 65.853659,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Crawford - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 13,
-      "total_votes": 13,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -7310,19 +7102,6 @@
       "margin": 7,
       "margin_pct": 22.580645,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Eaton - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 129,
-      "total_votes": 129,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -8002,19 +7781,6 @@
       "color": ""
     },
     {
-      "county": "Emmet - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 28,
-      "total_votes": 28,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Emmet - Bear Creek Township 1",
       "dem_votes": 165,
       "rep_votes": 181,
@@ -8311,19 +8077,6 @@
       "margin": 281,
       "margin_pct": 22.753036,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Genesee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 153,
-      "total_votes": 153,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -12058,19 +11811,6 @@
       "color": ""
     },
     {
-      "county": "Gratiot - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 20,
-      "total_votes": 20,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Gratiot - Alma City 1",
       "dem_votes": 567,
       "rep_votes": 501,
@@ -12341,19 +12081,6 @@
       "margin": 467,
       "margin_pct": 39.54276,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Hillsdale - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -12692,19 +12419,6 @@
       "margin": 363,
       "margin_pct": 53.147877,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Houghton - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -13095,19 +12809,6 @@
       "margin": 174,
       "margin_pct": 34.8,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Huron - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 7,
-      "total_votes": 7,
-      "dem_candidate": "",
-      "rep_candidate": "",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -13511,19 +13212,6 @@
       "margin": 382,
       "margin_pct": 41.840088,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Ingham - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 403,
-      "total_votes": 403,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -15061,19 +14749,6 @@
       "color": ""
     },
     {
-      "county": "Ionia - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 63,
-      "total_votes": 63,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Ionia - Belding City 1",
       "dem_votes": 246,
       "rep_votes": 509,
@@ -15474,19 +15149,6 @@
       "margin": 290,
       "margin_pct": 49.74271,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Iosco - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 10,
-      "total_votes": 10,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -15929,19 +15591,6 @@
       "margin": 212,
       "margin_pct": 28.765265,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Isabella - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 48,
-      "total_votes": 48,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -17125,19 +16774,6 @@
       "margin": 287,
       "margin_pct": 19.644079,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Kalamazoo - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 323,
-      "total_votes": 323,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -18545,19 +18181,6 @@
       "color": ""
     },
     {
-      "county": "Kalkaska - 9999",
-      "dem_votes": 1,
-      "rep_votes": 2,
-      "other_votes": 9,
-      "total_votes": 12,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 1,
-      "margin_pct": 8.333333,
-      "winner": "REP",
-      "color": ""
-    },
-    {
       "county": "Kalkaska - Bear Lake Township 1",
       "dem_votes": 142,
       "rep_votes": 269,
@@ -18724,19 +18347,6 @@
       "margin": 275,
       "margin_pct": 43.789809,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Kent - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1563,
-      "total_votes": 1563,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -22900,19 +22510,6 @@
       "color": ""
     },
     {
-      "county": "Lenawee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Lenawee - Adrian City 1",
       "dem_votes": 727,
       "rep_votes": 374,
@@ -24577,19 +24174,6 @@
       "color": ""
     },
     {
-      "county": "Mackinac - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 5,
-      "total_votes": 5,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Mackinac - Bois Blanc Township 1",
       "dem_votes": 36,
       "rep_votes": 46,
@@ -24769,19 +24353,6 @@
       "margin": 60,
       "margin_pct": 14.925373,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Macomb - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 381,
-      "total_votes": 381,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -29166,19 +28737,6 @@
       "color": ""
     },
     {
-      "county": "Manistee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Manistee - Arcadia Township 1",
       "dem_votes": 217,
       "rep_votes": 220,
@@ -29384,19 +28942,6 @@
       "margin": 93,
       "margin_pct": 20.217391,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Marquette - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 79,
-      "total_votes": 79,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -29865,19 +29410,6 @@
       "margin": 125,
       "margin_pct": 17.265193,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Mason - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 27,
-      "total_votes": 27,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -30479,19 +30011,6 @@
       "color": ""
     },
     {
-      "county": "Menominee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 5,
-      "total_votes": 5,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Menominee - Cedarville Township 1",
       "dem_votes": 51,
       "rep_votes": 95,
@@ -30749,19 +30268,6 @@
       "margin": 138,
       "margin_pct": 45.695364,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Midland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 187,
-      "total_votes": 187,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -31402,19 +30908,6 @@
       "color": ""
     },
     {
-      "county": "Missaukee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 16,
-      "total_votes": 16,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Missaukee - Aetna Township 1",
       "dem_votes": 25,
       "rep_votes": 197,
@@ -31633,19 +31126,6 @@
       "margin": 93,
       "margin_pct": 42.66055,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Monroe - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 107,
-      "total_votes": 107,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -32478,19 +31958,6 @@
       "margin": 494,
       "margin_pct": 45.529954,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Montcalm - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 53,
-      "total_votes": 53,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -33872,19 +33339,6 @@
       "color": ""
     },
     {
-      "county": "Newaygo - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 36,
-      "total_votes": 36,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Newaygo - Ashland Township 1",
       "dem_votes": 304,
       "rep_votes": 837,
@@ -34272,19 +33726,6 @@
       "margin": 209,
       "margin_pct": 45.434783,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1179,
-      "total_votes": 1179,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -41282,19 +40723,6 @@
       "color": ""
     },
     {
-      "county": "Ogemaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Ogemaw - Churchill Township 1",
       "dem_votes": 257,
       "rep_votes": 600,
@@ -41698,19 +41126,6 @@
       "color": ""
     },
     {
-      "county": "Osceola - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 12,
-      "total_votes": 12,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Osceola - Burdell Township 1",
       "dem_votes": 158,
       "rep_votes": 453,
@@ -41942,19 +41357,6 @@
       "margin": 182,
       "margin_pct": 43.75,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Oscoda - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 11,
-      "total_votes": 11,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -43817,19 +43219,6 @@
       "color": ""
     },
     {
-      "county": "Roscommon - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 5,
-      "total_votes": 5,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Roscommon - Au Sable Township 1",
       "dem_votes": 44,
       "rep_votes": 74,
@@ -44009,19 +43398,6 @@
       "margin": 441,
       "margin_pct": 32.618343,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Saginaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 121,
-      "total_votes": 121,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -45143,19 +44519,6 @@
       "color": ""
     },
     {
-      "county": "Sanilac - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 6,
-      "total_votes": 6,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Sanilac - Argyle Township 1",
       "dem_votes": 55,
       "rep_votes": 251,
@@ -45559,19 +44922,6 @@
       "color": ""
     },
     {
-      "county": "Schoolcraft - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Schoolcraft - Doyle Township 1",
       "dem_votes": 107,
       "rep_votes": 218,
@@ -45712,19 +45062,6 @@
       "margin": 124,
       "margin_pct": 27.678571,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Shiawassee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 70,
-      "total_votes": 70,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -47795,19 +47132,6 @@
       "color": ""
     },
     {
-      "county": "Tuscola - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 34,
-      "total_votes": 34,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Tuscola - Akron Township 1",
       "dem_votes": 174,
       "rep_votes": 482,
@@ -48208,19 +47532,6 @@
       "margin": 125,
       "margin_pct": 38.109756,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Van Buren - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 61,
-      "total_votes": 61,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -48650,19 +47961,6 @@
       "margin": 230,
       "margin_pct": 19.65812,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Washtenaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 584,
-      "total_votes": 584,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -50496,19 +49794,6 @@
       "margin": 539,
       "margin_pct": -33.292156,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 93,
-      "total_votes": 93,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -65732,19 +65017,6 @@
       "margin": 10,
       "margin_pct": -0.581734,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wexford - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 19,
-      "total_votes": 19,
-      "dem_candidate": "Hillary Clinton",
-      "rep_candidate": "Donald J. Trump",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {

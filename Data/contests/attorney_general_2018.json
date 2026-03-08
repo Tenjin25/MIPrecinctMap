@@ -2,7 +2,7 @@
   "meta": {
     "year": 2018,
     "contest_type": "attorney_general",
-    "rows": 5082,
+    "rows": 5078,
     "level": "precinct"
   },
   "rows": [
@@ -160,19 +160,6 @@
       "margin": 95,
       "margin_pct": 46.568627,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Alger - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Dana Nessel",
-      "rep_candidate": "Tom Leonard",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -15685,19 +15672,6 @@
       "color": ""
     },
     {
-      "county": "Isabella - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Dana Nessel",
-      "rep_candidate": "Tom Leonard",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Isabella - Broomfield Township 1",
       "dem_votes": 266,
       "rep_votes": 444,
@@ -29072,19 +29046,6 @@
       "margin": 315,
       "margin_pct": 44.055944,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Manistee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Dana Nessel",
-      "rep_candidate": "Tom Leonard",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -50418,19 +50379,6 @@
       "margin": 601,
       "margin_pct": -40.690589,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Dana Nessel",
-      "rep_candidate": "Tom Leonard",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {

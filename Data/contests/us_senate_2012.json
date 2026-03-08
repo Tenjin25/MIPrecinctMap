@@ -2,7 +2,7 @@
   "meta": {
     "year": 2012,
     "contest_type": "us_senate",
-    "rows": 5221,
+    "rows": 5218,
     "level": "precinct"
   },
   "rows": [
@@ -19494,19 +19494,6 @@
       "color": ""
     },
     {
-      "county": "Kent - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 8,
-      "total_votes": 8,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "Pete Hoekstra",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Kent - Ada Township 1",
       "dem_votes": 324,
       "rep_votes": 485,
@@ -35351,19 +35338,6 @@
       "margin": 30,
       "margin_pct": -6.960557,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 1,
-      "other_votes": 12,
-      "total_votes": 13,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "Pete Hoekstra",
-      "margin": 1,
-      "margin_pct": 7.692308,
-      "winner": "REP",
       "color": ""
     },
     {
@@ -51627,19 +51601,6 @@
       "margin": 1610,
       "margin_pct": -48.71407,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 198,
-      "other_votes": 32,
-      "total_votes": 230,
-      "dem_candidate": "Debbie Stabenow",
-      "rep_candidate": "Pete Hoekstra",
-      "margin": 198,
-      "margin_pct": 86.086957,
-      "winner": "REP",
       "color": ""
     },
     {

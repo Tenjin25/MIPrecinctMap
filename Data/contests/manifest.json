@@ -4,21 +4,21 @@
       "year": 2010,
       "contest_type": "attorney_general",
       "file": "attorney_general_2010.json",
-      "rows": 5419,
+      "rows": 5418,
       "level": "precinct"
     },
     {
       "year": 2014,
       "contest_type": "attorney_general",
       "file": "attorney_general_2014.json",
-      "rows": 5042,
+      "rows": 5041,
       "level": "precinct"
     },
     {
       "year": 2018,
       "contest_type": "attorney_general",
       "file": "attorney_general_2018.json",
-      "rows": 5082,
+      "rows": 5078,
       "level": "precinct"
     },
     {
@@ -32,21 +32,21 @@
       "year": 2010,
       "contest_type": "governor",
       "file": "governor_2010.json",
-      "rows": 5430,
+      "rows": 5416,
       "level": "precinct"
     },
     {
       "year": 2014,
       "contest_type": "governor",
       "file": "governor_2014.json",
-      "rows": 5060,
+      "rows": 5041,
       "level": "precinct"
     },
     {
       "year": 2018,
       "contest_type": "governor",
       "file": "governor_2018.json",
-      "rows": 5093,
+      "rows": 5080,
       "level": "precinct"
     },
     {
@@ -60,21 +60,21 @@
       "year": 2008,
       "contest_type": "president",
       "file": "president_2008.json",
-      "rows": 5707,
+      "rows": 5684,
       "level": "precinct"
     },
     {
       "year": 2012,
       "contest_type": "president",
       "file": "president_2012.json",
-      "rows": 5238,
+      "rows": 5221,
       "level": "precinct"
     },
     {
       "year": 2016,
       "contest_type": "president",
       "file": "president_2016.json",
-      "rows": 5077,
+      "rows": 5021,
       "level": "precinct"
     },
     {
@@ -95,7 +95,7 @@
       "year": 2010,
       "contest_type": "secretary_of_state",
       "file": "secretary_of_state_2010.json",
-      "rows": 5420,
+      "rows": 5419,
       "level": "precinct"
     },
     {
@@ -109,7 +109,7 @@
       "year": 2018,
       "contest_type": "secretary_of_state",
       "file": "secretary_of_state_2018.json",
-      "rows": 5083,
+      "rows": 5078,
       "level": "precinct"
     },
     {
@@ -123,28 +123,28 @@
       "year": 2008,
       "contest_type": "us_senate",
       "file": "us_senate_2008.json",
-      "rows": 5688,
+      "rows": 5684,
       "level": "precinct"
     },
     {
       "year": 2012,
       "contest_type": "us_senate",
       "file": "us_senate_2012.json",
-      "rows": 5221,
+      "rows": 5218,
       "level": "precinct"
     },
     {
       "year": 2014,
       "contest_type": "us_senate",
       "file": "us_senate_2014.json",
-      "rows": 5055,
+      "rows": 5041,
       "level": "precinct"
     },
     {
       "year": 2018,
       "contest_type": "us_senate",
       "file": "us_senate_2018.json",
-      "rows": 5087,
+      "rows": 5078,
       "level": "precinct"
     },
     {

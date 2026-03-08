@@ -2,7 +2,7 @@
   "meta": {
     "year": 2018,
     "contest_type": "governor",
-    "rows": 5093,
+    "rows": 5080,
     "level": "precinct"
   },
   "rows": [
@@ -160,19 +160,6 @@
       "margin": 80,
       "margin_pct": 38.834951,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Alger - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -2006,19 +1993,6 @@
       "margin": 324,
       "margin_pct": 29.401089,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Bay - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -5805,19 +5779,6 @@
       "color": ""
     },
     {
-      "county": "Clare - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 8,
-      "total_votes": 8,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Clare - Arthur Township 1",
       "dem_votes": 57,
       "rep_votes": 233,
@@ -7830,19 +7791,6 @@
       "margin": 181,
       "margin_pct": -14.97105,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Emmet - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -11015,19 +10963,6 @@
       "margin": 13,
       "margin_pct": 1.433297,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Gladwin - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -16933,19 +16868,6 @@
       "color": ""
     },
     {
-      "county": "Kalamazoo - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Kalamazoo - Alamo Township 1",
       "dem_votes": 287,
       "rep_votes": 428,
@@ -18529,19 +18451,6 @@
       "margin": 149,
       "margin_pct": 25,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Kent - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -23391,19 +23300,6 @@
       "margin": 127,
       "margin_pct": 26.239669,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Livingston - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -29179,19 +29075,6 @@
       "color": ""
     },
     {
-      "county": "Manistee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
-      "color": ""
-    },
-    {
       "county": "Manistee - Arcadia Township 1",
       "dem_votes": 233,
       "rep_votes": 226,
@@ -32936,19 +32819,6 @@
       "color": ""
     },
     {
-      "county": "Muskegon - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 4630,
-      "total_votes": 4630,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Muskegon - Blue Lake Township 1",
       "dem_votes": 463,
       "rep_votes": 543,
@@ -34207,19 +34077,6 @@
       "margin": 117,
       "margin_pct": 29.471033,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -48588,19 +48445,6 @@
       "color": ""
     },
     {
-      "county": "Washtenaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Washtenaw - Ann Arbor City 1 Ward 1",
       "dem_votes": 535,
       "rep_votes": 56,
@@ -50561,19 +50405,6 @@
       "margin": 687,
       "margin_pct": -45.346535,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 5,
-      "total_votes": 5,
-      "dem_candidate": "Gretchen Whitmer",
-      "rep_candidate": "Bill Schuette",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {

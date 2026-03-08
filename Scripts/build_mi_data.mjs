@@ -83,6 +83,7 @@ function isNonGeographicPrecinctName(rawPrecinct) {
   const value = String(rawPrecinct || '').trim();
   if (!value) return true;
   const upper = value.toUpperCase().replace(/\s+/g, ' ').trim();
+  if (upper === '9999') return true;
 
   if (
     upper.includes('EARLY VOT') ||
@@ -195,6 +196,7 @@ function normalizePrecinctAlias(rawValue, county = '') {
     .replace(/\bPCT\b/g, 'PRECINCT')
     .replace(/\bTWP\b/g, 'TOWNSHIP')
     .replace(/\bCHARTER TOWNSHIP\b/g, 'TOWNSHIP')
+    .replace(/\bGUNPLAIN\b/g, 'GUN PLAIN')
     .replace(/\bDISTRICT\b/g, ' ')
     .replace(/\bDIST\b/g, ' ')
     .replace(/\bTHE\s+(CITY|VILLAGE|TOWNSHIP)\s+OF\b/g, '$1 OF')
@@ -254,6 +256,21 @@ function buildPrecinctAliases(rawValue, county = '') {
   if (suffixTypeMatch) {
     push(`${suffixTypeMatch[2]} OF ${suffixTypeMatch[1]} PRECINCT ${suffixTypeMatch[3]}`);
     push(`${suffixTypeMatch[1]} PRECINCT ${suffixTypeMatch[3]}`);
+  }
+
+  const numberedTypeMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) (\d+)$/);
+  if (numberedTypeMatch) {
+    push(`${numberedTypeMatch[1]} ${numberedTypeMatch[2]} PRECINCT ${numberedTypeMatch[3]}`);
+    push(`${numberedTypeMatch[2]} OF ${numberedTypeMatch[1]} PRECINCT ${numberedTypeMatch[3]}`);
+    push(`${numberedTypeMatch[1]} PRECINCT ${numberedTypeMatch[3]}`);
+  }
+
+  const numberedTypeWardMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) (\d+) WARD (\d+)$/);
+  if (numberedTypeWardMatch) {
+    push(`${numberedTypeWardMatch[1]} ${numberedTypeWardMatch[2]} PRECINCT ${numberedTypeWardMatch[3]} WARD ${numberedTypeWardMatch[4]}`);
+    push(`${numberedTypeWardMatch[2]} OF ${numberedTypeWardMatch[1]} PRECINCT ${numberedTypeWardMatch[3]} WARD ${numberedTypeWardMatch[4]}`);
+    push(`WARD ${numberedTypeWardMatch[4]} PRECINCT ${numberedTypeWardMatch[3]}`);
+    push(`PRECINCT ${numberedTypeWardMatch[3]} WARD ${numberedTypeWardMatch[4]}`);
   }
 
   const townshipOfMatch = base.match(/^TOWNSHIP OF (.+)$/);

@@ -2,7 +2,7 @@
   "meta": {
     "year": 2012,
     "contest_type": "president",
-    "rows": 5238,
+    "rows": 5221,
     "level": "precinct"
   },
   "rows": [
@@ -2607,19 +2607,6 @@
       "color": ""
     },
     {
-      "county": "Benzie - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 39,
-      "total_votes": 39,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Benzie - Almira Township 1",
       "dem_votes": 850,
       "rep_votes": 1153,
@@ -2786,19 +2773,6 @@
       "margin": 15,
       "margin_pct": 5.703422,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Berrien - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -6767,19 +6741,6 @@
       "color": ""
     },
     {
-      "county": "Delta - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 6,
-      "total_votes": 6,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Delta - Baldwin Township 1",
       "dem_votes": 171,
       "rep_votes": 224,
@@ -7963,19 +7924,6 @@
       "color": ""
     },
     {
-      "county": "Emmet - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 37,
-      "total_votes": 37,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Emmet - Bear Creek Township 1",
       "dem_votes": 164,
       "rep_votes": 184,
@@ -8272,19 +8220,6 @@
       "margin": 372,
       "margin_pct": 31.659574,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Genesee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 223,
-      "total_votes": 223,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -13394,19 +13329,6 @@
       "margin": 307,
       "margin_pct": 34.767837,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Ingham - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 447,
-      "total_votes": 447,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -19598,19 +19520,6 @@
       "color": ""
     },
     {
-      "county": "Kent - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 626,
-      "total_votes": 626,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Kent - Ada Township 1",
       "dem_votes": 313,
       "rep_votes": 511,
@@ -23599,19 +23508,6 @@
       "margin": 147,
       "margin_pct": 20.192308,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Leelanau - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 12,
-      "total_votes": 12,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -31597,19 +31493,6 @@
       "color": ""
     },
     {
-      "county": "Menominee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 4,
-      "total_votes": 4,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Menominee - Cedarville Township 1",
       "dem_votes": 62,
       "rep_votes": 87,
@@ -32725,19 +32608,6 @@
       "margin": 50,
       "margin_pct": 23.923445,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Monroe - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 171,
-      "total_votes": 171,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -35506,19 +35376,6 @@
       "rep_candidate": "Mitt Romney",
       "margin": 43,
       "margin_pct": 9.953704,
-      "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 2,
-      "other_votes": 0,
-      "total_votes": 2,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 2,
-      "margin_pct": 100,
       "winner": "REP",
       "color": ""
     },
@@ -42959,19 +42816,6 @@
       "color": ""
     },
     {
-      "county": "Osceola - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 12,
-      "total_votes": 12,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Osceola - Burdell Township 1",
       "dem_votes": 251,
       "rep_votes": 389,
@@ -43294,19 +43138,6 @@
       "margin": 25,
       "margin_pct": 4.496403,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Otsego - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -45247,19 +45078,6 @@
       "color": ""
     },
     {
-      "county": "Saginaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 7,
-      "total_votes": 7,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Saginaw - Albee Township 1",
       "dem_votes": 566,
       "rep_votes": 423,
@@ -46999,19 +46817,6 @@
       "margin": 51,
       "margin_pct": 11.943794,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Shiawassee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 89,
-      "total_votes": 89,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -51835,19 +51640,6 @@
       "margin": 1297,
       "margin_pct": -39.219837,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 891,
-      "total_votes": 891,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -67825,19 +67617,6 @@
       "margin": 225,
       "margin_pct": -12.201735,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wexford - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 21,
-      "total_votes": 21,
-      "dem_candidate": "Barack Obama",
-      "rep_candidate": "Mitt Romney",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {

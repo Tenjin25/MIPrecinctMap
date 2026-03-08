@@ -2,7 +2,7 @@
   "meta": {
     "year": 2014,
     "contest_type": "us_senate",
-    "rows": 5055,
+    "rows": 5041,
     "level": "precinct"
   },
   "rows": [
@@ -4661,19 +4661,6 @@
       "color": ""
     },
     {
-      "county": "Cass - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
-      "color": ""
-    },
-    {
       "county": "Cass - Calvin Township 1",
       "dem_votes": 223,
       "rep_votes": 258,
@@ -8311,19 +8298,6 @@
       "margin": 247,
       "margin_pct": 27.659574,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Genesee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -12708,19 +12682,6 @@
       "color": ""
     },
     {
-      "county": "Hillsdale - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Hillsdale - Adams Township 1",
       "dem_votes": 267,
       "rep_votes": 508,
@@ -13927,19 +13888,6 @@
       "margin": 166,
       "margin_pct": 25.9375,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Ingham - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 5,
-      "total_votes": 5,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -15851,19 +15799,6 @@
       "margin": 85,
       "margin_pct": 20.383693,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Iosco - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -18909,19 +18844,6 @@
       "color": ""
     },
     {
-      "county": "Kalkaska - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 4,
-      "total_votes": 4,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Kalkaska - Bear Lake Township 1",
       "dem_votes": 156,
       "rep_votes": 161,
@@ -19088,19 +19010,6 @@
       "margin": 25,
       "margin_pct": -6.265664,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Kent - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -22627,19 +22536,6 @@
       "color": ""
     },
     {
-      "county": "Lapeer - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Lapeer - Almont Township 1",
       "dem_votes": 370,
       "rep_votes": 503,
@@ -23355,19 +23251,6 @@
       "color": ""
     },
     {
-      "county": "Lenawee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Lenawee - Adrian City 1",
       "dem_votes": 491,
       "rep_votes": 199,
@@ -23924,19 +23807,6 @@
       "margin": 7,
       "margin_pct": 1.983003,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Livingston - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -30648,19 +30518,6 @@
       "color": ""
     },
     {
-      "county": "Mecosta - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
-      "color": ""
-    },
-    {
       "county": "Mecosta - Aetna Township 1",
       "dem_votes": 222,
       "rep_votes": 270,
@@ -34662,19 +34519,6 @@
       "margin": 41,
       "margin_pct": 15.891473,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 7,
-      "total_votes": 7,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -49030,19 +48874,6 @@
       "color": ""
     },
     {
-      "county": "Washtenaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Washtenaw - Ann Arbor City 1 Ward 1",
       "dem_votes": 97,
       "rep_votes": 10,
@@ -50847,19 +50678,6 @@
       "margin": 374,
       "margin_pct": -34.311927,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 47,
-      "total_votes": 47,
-      "dem_candidate": "Gary Peters",
-      "rep_candidate": "Terri Lynn Land",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {

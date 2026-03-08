@@ -2,7 +2,7 @@
   "meta": {
     "year": 2010,
     "contest_type": "governor",
-    "rows": 5430,
+    "rows": 5416,
     "level": "precinct"
   },
   "rows": [
@@ -316,19 +316,6 @@
       "margin": 4,
       "margin_pct": 0.757576,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Allegan - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -1772,19 +1759,6 @@
       "margin": 7,
       "margin_pct": 5.426357,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Barry - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -6660,19 +6634,6 @@
       "margin": 64,
       "margin_pct": 37.869822,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Clinton - 9999",
-      "dem_votes": 2,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 2,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 2,
-      "margin_pct": -100,
-      "winner": "DEM",
       "color": ""
     },
     {
@@ -16491,19 +16452,6 @@
       "color": ""
     },
     {
-      "county": "Iosco - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Iosco - Alabaster Township 1",
       "dem_votes": 92,
       "rep_votes": 162,
@@ -20154,19 +20102,6 @@
       "margin": 154,
       "margin_pct": 38.024691,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Kent - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -24668,19 +24603,6 @@
       "color": ""
     },
     {
-      "county": "Lenawee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Lenawee - Adrian City 1",
       "dem_votes": 295,
       "rep_votes": 237,
@@ -26550,19 +26472,6 @@
       "margin": 59,
       "margin_pct": 20.557491,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Macomb - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -32962,19 +32871,6 @@
       "color": ""
     },
     {
-      "county": "Midland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Midland - Coleman City 1",
       "dem_votes": 91,
       "rep_votes": 213,
@@ -34792,19 +34688,6 @@
       "margin": 82,
       "margin_pct": 28.082192,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Montcalm - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 3,
-      "total_votes": 3,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -44948,19 +44831,6 @@
       "color": ""
     },
     {
-      "county": "Ottawa - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Ottawa - Allendale Township 1",
       "dem_votes": 130,
       "rep_votes": 867,
@@ -49095,19 +48965,6 @@
       "color": ""
     },
     {
-      "county": "St. Clair - 9999",
-      "dem_votes": 0,
-      "rep_votes": 1,
-      "other_votes": 0,
-      "total_votes": 1,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 1,
-      "margin_pct": 100,
-      "winner": "REP",
-      "color": ""
-    },
-    {
       "county": "St. Clair - Algonac City 1",
       "dem_votes": 198,
       "rep_votes": 415,
@@ -50486,19 +50343,6 @@
       "color": ""
     },
     {
-      "county": "Tuscola - 9999",
-      "dem_votes": 1,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 2,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 1,
-      "margin_pct": -50,
-      "winner": "DEM",
-      "color": ""
-    },
-    {
       "county": "Tuscola - Akron Township 1",
       "dem_votes": 156,
       "rep_votes": 376,
@@ -50912,19 +50756,6 @@
       "margin": 84,
       "margin_pct": 30.545455,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Van Buren - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -53616,19 +53447,6 @@
       "margin": 46,
       "margin_pct": -5.75,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 10,
-      "total_votes": 10,
-      "dem_candidate": "Virg Bernero",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {

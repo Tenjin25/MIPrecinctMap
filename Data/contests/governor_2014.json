@@ -2,7 +2,7 @@
   "meta": {
     "year": 2014,
     "contest_type": "governor",
-    "rows": 5060,
+    "rows": 5041,
     "level": "precinct"
   },
   "rows": [
@@ -1980,19 +1980,6 @@
       "margin": 301,
       "margin_pct": 36.977887,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Bay - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -4674,19 +4661,6 @@
       "color": ""
     },
     {
-      "county": "Cass - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Cass - Calvin Township 1",
       "dem_votes": 242,
       "rep_votes": 252,
@@ -6143,19 +6117,6 @@
       "color": ""
     },
     {
-      "county": "Clinton - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Clinton - Bath Township 1",
       "dem_votes": 349,
       "rep_votes": 350,
@@ -7362,19 +7323,6 @@
       "margin": 3,
       "margin_pct": 8.333333,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Eaton - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -15451,19 +15399,6 @@
       "color": ""
     },
     {
-      "county": "Ionia - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Ionia - Belding City 1",
       "dem_votes": 205,
       "rep_votes": 270,
@@ -16306,19 +16241,6 @@
       "margin": 129,
       "margin_pct": 24.202627,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Isabella - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 5,
-      "total_votes": 5,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -17502,19 +17424,6 @@
       "margin": 64,
       "margin_pct": 6.237817,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Kalamazoo - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -18935,19 +18844,6 @@
       "color": ""
     },
     {
-      "county": "Kalkaska - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Kalkaska - Bear Lake Township 1",
       "dem_votes": 141,
       "rep_votes": 189,
@@ -19114,19 +19010,6 @@
       "margin": 42,
       "margin_pct": 10.552764,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Kent - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -22653,19 +22536,6 @@
       "color": ""
     },
     {
-      "county": "Lapeer - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 2,
-      "total_votes": 2,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Lapeer - Almont Township 1",
       "dem_votes": 311,
       "rep_votes": 587,
@@ -23378,19 +23248,6 @@
       "margin": 15,
       "margin_pct": 14.563107,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Lenawee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -30661,19 +30518,6 @@
       "color": ""
     },
     {
-      "county": "Mecosta - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
-      "color": ""
-    },
-    {
       "county": "Mecosta - Aetna Township 1",
       "dem_votes": 211,
       "rep_votes": 308,
@@ -31204,19 +31048,6 @@
       "margin": 63,
       "margin_pct": 32.307692,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Midland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 0,
-      "total_votes": 0,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "TIE",
       "color": ""
     },
     {
@@ -32920,19 +32751,6 @@
       "margin": 247,
       "margin_pct": 40.162602,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Montcalm - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 7,
-      "total_votes": 7,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -34701,19 +34519,6 @@
       "margin": 58,
       "margin_pct": 21.641791,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Oakland - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -42608,19 +42413,6 @@
       "color": ""
     },
     {
-      "county": "Ottawa - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Ottawa - Allendale Township 1",
       "dem_votes": 233,
       "rep_votes": 809,
@@ -44402,19 +44194,6 @@
       "color": ""
     },
     {
-      "county": "Saginaw - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
-      "color": ""
-    },
-    {
       "county": "Saginaw - Albee Township 1",
       "dem_votes": 334,
       "rep_votes": 298,
@@ -46141,19 +45920,6 @@
       "margin": 49,
       "margin_pct": 14.939024,
       "winner": "REP",
-      "color": ""
-    },
-    {
-      "county": "Shiawassee - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
@@ -50912,19 +50678,6 @@
       "margin": 214,
       "margin_pct": -19.279279,
       "winner": "DEM",
-      "color": ""
-    },
-    {
-      "county": "Wayne - 9999",
-      "dem_votes": 0,
-      "rep_votes": 0,
-      "other_votes": 1,
-      "total_votes": 1,
-      "dem_candidate": "Mark Schauer",
-      "rep_candidate": "Rick Snyder",
-      "margin": 0,
-      "margin_pct": 0,
-      "winner": "OTHER",
       "color": ""
     },
     {
