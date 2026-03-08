@@ -390,6 +390,7 @@ async function buildVtdDistrictShareMaps() {
   if (!fileExists(vtdAssignmentPath)) return { congressional: new Map(), state_house: new Map(), state_senate: new Map() };
 
   const blockToVtd = new Map();
+  const blockToCountyFips = new Map();
   const vtdRl = readline.createInterface({
     input: fs.createReadStream(vtdAssignmentPath, { encoding: 'utf8' }),
     crlfDelay: Infinity
@@ -403,16 +404,19 @@ async function buildVtdDistrictShareMaps() {
       vtdHeaderSeen = true;
       continue;
     }
-    const [blockId, , vtd] = line.split('|');
+    const [blockId, countyFp, vtd] = line.split('|');
     if (!blockId || !vtd) continue;
-    blockToVtd.set(blockId.trim(), vtd.trim());
+    const blockKey = blockId.trim();
+    blockToVtd.set(blockKey, vtd.trim());
+    if (countyFp) blockToCountyFips.set(blockKey, countyFp.trim());
   }
 
   const out = {};
   for (const [scope, filePath] of Object.entries(scopeFiles)) {
     const countsByVtd = new Map();
+    const countsByCounty = new Map();
     if (!fileExists(filePath)) {
-      out[scope] = new Map();
+      out[scope] = { vtd: new Map(), county: new Map() };
       continue;
     }
 
@@ -433,24 +437,43 @@ async function buildVtdDistrictShareMaps() {
       const blockKey = String(blockId || '').trim();
       const district = normalizeDistrictId(districtRaw);
       const vtd = blockToVtd.get(blockKey);
+      const countyFips = blockToCountyFips.get(blockKey);
       if (!vtd || !district) continue;
 
       if (!countsByVtd.has(vtd)) countsByVtd.set(vtd, { total: 0, districts: new Map() });
       const node = countsByVtd.get(vtd);
       node.total += 1;
       node.districts.set(district, (node.districts.get(district) || 0) + 1);
+
+      if (countyFips) {
+        if (!countsByCounty.has(countyFips)) countsByCounty.set(countyFips, { total: 0, districts: new Map() });
+        const countyNode = countsByCounty.get(countyFips);
+        countyNode.total += 1;
+        countyNode.districts.set(district, (countyNode.districts.get(district) || 0) + 1);
+      }
     }
 
-    const shareMap = new Map();
+    const vtdShareMap = new Map();
     for (const [vtd, node] of countsByVtd.entries()) {
       const parts = [];
       for (const [district, count] of node.districts.entries()) {
         parts.push({ district, share: count / node.total });
       }
       parts.sort((a, b) => b.share - a.share || a.district.localeCompare(b.district));
-      shareMap.set(vtd, parts);
+      vtdShareMap.set(vtd, parts);
     }
-    out[scope] = shareMap;
+
+    const countyShareMap = new Map();
+    for (const [countyFips, node] of countsByCounty.entries()) {
+      const parts = [];
+      for (const [district, count] of node.districts.entries()) {
+        parts.push({ district, share: count / node.total });
+      }
+      parts.sort((a, b) => b.share - a.share || a.district.localeCompare(b.district));
+      countyShareMap.set(countyFips, parts);
+    }
+
+    out[scope] = { vtd: vtdShareMap, county: countyShareMap };
   }
 
   return out;
@@ -489,6 +512,7 @@ const districtFeaturesByScope = {
 
 const vtdDistrictSharesByScope = await buildVtdDistrictShareMaps();
 const precinctAssignmentLookup = new Map();
+const countyNameToFips = new Map();
 const centroidGeojsonPath = path.join(dataDir, 'precinct_centroids.geojson');
 if (fileExists(centroidGeojsonPath)) {
   const centroidGeojson = readJson(centroidGeojsonPath);
@@ -497,7 +521,9 @@ if (fileExists(centroidGeojsonPath)) {
     if (!Array.isArray(point) || point.length < 2) continue;
     const props = feature.properties || {};
     const countyKey = normalizeCountyLookup(props.county_nam || props.County_Name || props.Jurisdiction_Name || props.jurisdiction_name || '');
+    const countyFips = String(props.county_fips || props.COUNTYFIPS || props.CountyFIPS || '').trim();
     if (!countyKey) continue;
+    if (countyFips && !countyNameToFips.has(countyKey)) countyNameToFips.set(countyKey, countyFips);
 
     const districts = {
       congressional: assignPointToDistrict(point, districtFeaturesByScope.congressional),
@@ -614,7 +640,7 @@ for (const fileName of csvFiles) {
           let allocated = false;
 
           const vtd = String(precinctAssignment?.vtd || '').trim();
-          const vtdShares = vtd ? (vtdDistrictSharesByScope?.[scope]?.get(vtd) || null) : null;
+          const vtdShares = vtd ? (vtdDistrictSharesByScope?.[scope]?.vtd?.get(vtd) || null) : null;
           if (Array.isArray(vtdShares) && vtdShares.length) {
             for (const part of vtdShares) {
               const share = Number(part.share || 0);
@@ -631,6 +657,19 @@ for (const fileName of csvFiles) {
               const districtNode = ensureAgg(districtContestAgg, districtAggKey);
               addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes);
               allocated = true;
+            } else {
+              const countyFips = countyNameToFips.get(normalizeCountyLookup(county)) || '';
+              const countyShares = countyFips ? (vtdDistrictSharesByScope?.[scope]?.county?.get(countyFips) || null) : null;
+              if (Array.isArray(countyShares) && countyShares.length) {
+                for (const part of countyShares) {
+                  const share = Number(part.share || 0);
+                  if (!(share > 0)) continue;
+                  const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${part.district}`;
+                  const districtNode = ensureAgg(districtContestAgg, districtAggKey);
+                  addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes * share);
+                  allocated = true;
+                }
+              }
             }
           }
 
