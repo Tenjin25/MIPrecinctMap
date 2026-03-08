@@ -379,6 +379,83 @@ function assignPointToDistrict(point, districtFeatures) {
   return '';
 }
 
+async function buildVtdDistrictShareMaps() {
+  const vtdAssignmentPath = path.join(dataDir, '.blockassign_tmp', 'BlockAssign_ST26_MI_VTD.txt');
+  const scopeFiles = {
+    congressional: path.join(dataDir, '.blockassign_tmp', 'BlockAssign_ST26_MI_CD.txt'),
+    state_house: path.join(dataDir, '.blockassign_tmp', 'BlockAssign_ST26_MI_SLDL.txt'),
+    state_senate: path.join(dataDir, '.blockassign_tmp', 'BlockAssign_ST26_MI_SLDU.txt')
+  };
+
+  if (!fileExists(vtdAssignmentPath)) return { congressional: new Map(), state_house: new Map(), state_senate: new Map() };
+
+  const blockToVtd = new Map();
+  const vtdRl = readline.createInterface({
+    input: fs.createReadStream(vtdAssignmentPath, { encoding: 'utf8' }),
+    crlfDelay: Infinity
+  });
+
+  let vtdHeaderSeen = false;
+  for await (const rawLine of vtdRl) {
+    const line = rawLine.replace(/\r$/, '').trim();
+    if (!line) continue;
+    if (!vtdHeaderSeen) {
+      vtdHeaderSeen = true;
+      continue;
+    }
+    const [blockId, , vtd] = line.split('|');
+    if (!blockId || !vtd) continue;
+    blockToVtd.set(blockId.trim(), vtd.trim());
+  }
+
+  const out = {};
+  for (const [scope, filePath] of Object.entries(scopeFiles)) {
+    const countsByVtd = new Map();
+    if (!fileExists(filePath)) {
+      out[scope] = new Map();
+      continue;
+    }
+
+    const rl = readline.createInterface({
+      input: fs.createReadStream(filePath, { encoding: 'utf8' }),
+      crlfDelay: Infinity
+    });
+
+    let headerSeen = false;
+    for await (const rawLine of rl) {
+      const line = rawLine.replace(/\r$/, '').trim();
+      if (!line) continue;
+      if (!headerSeen) {
+        headerSeen = true;
+        continue;
+      }
+      const [blockId, districtRaw] = line.split('|');
+      const blockKey = String(blockId || '').trim();
+      const district = normalizeDistrictId(districtRaw);
+      const vtd = blockToVtd.get(blockKey);
+      if (!vtd || !district) continue;
+
+      if (!countsByVtd.has(vtd)) countsByVtd.set(vtd, { total: 0, districts: new Map() });
+      const node = countsByVtd.get(vtd);
+      node.total += 1;
+      node.districts.set(district, (node.districts.get(district) || 0) + 1);
+    }
+
+    const shareMap = new Map();
+    for (const [vtd, node] of countsByVtd.entries()) {
+      const parts = [];
+      for (const [district, count] of node.districts.entries()) {
+        parts.push({ district, share: count / node.total });
+      }
+      parts.sort((a, b) => b.share - a.share || a.district.localeCompare(b.district));
+      shareMap.set(vtd, parts);
+    }
+    out[scope] = shareMap;
+  }
+
+  return out;
+}
+
 function runMapshaper(inputZip, outputGeojson) {
   if (fileExists(outputGeojson)) return;
   const result = spawnSync(
@@ -410,7 +487,8 @@ const districtFeaturesByScope = {
   state_senate: loadDistrictFeatures(path.join(tilesetDir, 'mi_state_senate_2022_lines_tileset.geojson'), 'SLDUST')
 };
 
-const precinctDistrictLookup = new Map();
+const vtdDistrictSharesByScope = await buildVtdDistrictShareMaps();
+const precinctAssignmentLookup = new Map();
 const centroidGeojsonPath = path.join(dataDir, 'precinct_centroids.geojson');
 if (fileExists(centroidGeojsonPath)) {
   const centroidGeojson = readJson(centroidGeojsonPath);
@@ -426,6 +504,7 @@ if (fileExists(centroidGeojsonPath)) {
       state_house: assignPointToDistrict(point, districtFeaturesByScope.state_house),
       state_senate: assignPointToDistrict(point, districtFeaturesByScope.state_senate)
     };
+    const vtd = String(props.vtdst || props.VTDST || '').trim();
 
     const rawNames = [
       props.prec_id,
@@ -442,14 +521,16 @@ if (fileExists(centroidGeojsonPath)) {
 
     for (const alias of aliases) {
       const lookupKey = `${countyKey}|${alias}`;
-      if (!precinctDistrictLookup.has(lookupKey)) precinctDistrictLookup.set(lookupKey, districts);
+      if (!precinctAssignmentLookup.has(lookupKey)) {
+        precinctAssignmentLookup.set(lookupKey, { vtd, districts });
+      }
     }
   }
 }
 
 const precinctDistrictCache = new Map();
 
-function lookupPrecinctDistricts(county, precinct) {
+function lookupPrecinctAssignment(county, precinct) {
   const countyKey = normalizeCountyLookup(county);
   const cacheKey = `${countyKey}|${precinct}`;
   if (precinctDistrictCache.has(cacheKey)) return precinctDistrictCache.get(cacheKey);
@@ -457,8 +538,8 @@ function lookupPrecinctDistricts(county, precinct) {
   let match = null;
   for (const alias of buildPrecinctAliases(precinct, countyKey)) {
     const lookupKey = `${countyKey}|${alias}`;
-    if (precinctDistrictLookup.has(lookupKey)) {
-      match = precinctDistrictLookup.get(lookupKey);
+    if (precinctAssignmentLookup.has(lookupKey)) {
+      match = precinctAssignmentLookup.get(lookupKey);
       break;
     }
   }
@@ -522,7 +603,7 @@ for (const fileName of csvFiles) {
         const precinctNode = ensureAgg(precinctContestAgg, precinctAggKey);
         addVotes(precinctNode, row.party, String(row.candidate || '').trim(), votes);
 
-        const matchedDistricts = lookupPrecinctDistricts(county, precinct);
+        const precinctAssignment = lookupPrecinctAssignment(county, precinct);
         for (const scope of Object.keys(districtFeaturesByScope)) {
           const coverageKey = `${year}|${scope}|${officeMeta.contestType}`;
           if (!districtCoverageAgg.has(coverageKey)) {
@@ -530,14 +611,30 @@ for (const fileName of csvFiles) {
           }
           const coverage = districtCoverageAgg.get(coverageKey);
           coverage.total_votes += votes;
+          let allocated = false;
 
-          const district = matchedDistricts?.[scope] || '';
-          if (!district) continue;
+          const vtd = String(precinctAssignment?.vtd || '').trim();
+          const vtdShares = vtd ? (vtdDistrictSharesByScope?.[scope]?.get(vtd) || null) : null;
+          if (Array.isArray(vtdShares) && vtdShares.length) {
+            for (const part of vtdShares) {
+              const share = Number(part.share || 0);
+              if (!(share > 0)) continue;
+              const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${part.district}`;
+              const districtNode = ensureAgg(districtContestAgg, districtAggKey);
+              addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes * share);
+              allocated = true;
+            }
+          } else {
+            const fallbackDistrict = precinctAssignment?.districts?.[scope] || '';
+            if (fallbackDistrict) {
+              const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${fallbackDistrict}`;
+              const districtNode = ensureAgg(districtContestAgg, districtAggKey);
+              addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes);
+              allocated = true;
+            }
+          }
 
-          coverage.matched_votes += votes;
-          const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${district}`;
-          const districtNode = ensureAgg(districtContestAgg, districtAggKey);
-          addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes);
+          if (allocated) coverage.matched_votes += votes;
         }
       }
 

@@ -2796,17 +2796,50 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
+    const jsonFetchCache = new Map();
+    const textFetchCache = new Map();
+    let latestContestApplyRequestId = 0;
+    let contestApplyTimer = null;
+
+    function loadCachedResource(cache, path, parser) {
+      const url = toAbsoluteUrl(path);
+      if (cache.has(url)) return cache.get(url);
+      const promise = fetch(url)
+        .then(r => {
+          if (!r.ok) throw new Error(`${path} fetch failed: ${r.status}`);
+          return parser(r);
+        })
+        .catch(err => {
+          cache.delete(url);
+          throw err;
+        });
+      cache.set(url, promise);
+      return promise;
+    }
+
     async function loadJSON(path) {
-      const r = await fetch(path);
-      if (!r.ok) throw new Error(`${path} fetch failed: ${r.status}`);
-      return r.json();
+      return loadCachedResource(jsonFetchCache, path, r => r.json());
     }
 
 	    async function loadCSV(path) {
-	      const r = await fetch(path);
-	      if (!r.ok) throw new Error(`${path} fetch failed: ${r.status}`);
-	      return r.text();
+	      return loadCachedResource(textFetchCache, path, r => r.text());
 	    }
+
+    function isContestApplyStale(requestId) {
+      return Number.isFinite(Number(requestId)) && Number(requestId) !== latestContestApplyRequestId;
+    }
+
+    function runMapMutationFrame(mutator) {
+      return new Promise(resolve => {
+        requestAnimationFrame(() => {
+          try {
+            mutator();
+          } finally {
+            resolve();
+          }
+        });
+      });
+    }
 
 	    const PRESIDENT_OPEN_ELECTIONS_CSV = {
       2008: withBase('./Data/20081104__mi__general__precinct.csv'),
@@ -7479,7 +7512,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return cached;
     }
 
-    async function applyContest(contestKey) {
+    async function runContestApply(contestKey, requestId) {
       if (!contestKey) return setStatus('Select a contest');
       
       // Split contest key properly - year is always the last part after final underscore
@@ -7488,20 +7521,37 @@ document.addEventListener('DOMContentLoaded', function() {
       const year = contestKey.substring(lastUnderscoreIndex + 1);
       
       if (currentView === 'counties') {
-        await applyCountyContest(contestType, year);
+        await applyCountyContest(contestType, year, requestId);
       } else if (currentView === 'districts' && contestType === 'us_house') {
         // US House races use district-specific data
-        await applyDistrictContest(contestType, year);
+        await applyDistrictContest(contestType, year, requestId);
       } else {
         // All other contests (statewide) aggregate county data by district
-        await applyStatewideContestToDistricts(contestType, year);
+        await applyStatewideContestToDistricts(contestType, year, requestId);
       }
+      if (isContestApplyStale(requestId)) return;
       await refreshHoverAtPointer();
     }
 
-    async function applyCountyContest(contestType, year) {
+    async function applyContest(contestKey, options = {}) {
+      const requestId = ++latestContestApplyRequestId;
+      if (contestApplyTimer) {
+        clearTimeout(contestApplyTimer);
+        contestApplyTimer = null;
+      }
+      const delay = options && options.immediate ? 0 : 90;
+      return new Promise(resolve => {
+        contestApplyTimer = setTimeout(async () => {
+          contestApplyTimer = null;
+          resolve(await runContestApply(contestKey, requestId));
+        }, delay);
+      });
+    }
+
+    async function applyCountyContest(contestType, year, requestId) {
       // Filter data for this contest and year
       const contestData = await loadContestSlice(contestType, year);
+      if (isContestApplyStale(requestId)) return;
       
       debugLog(`Applying ${contestType} for ${year}:`, contestData.length, 'counties found');
       
@@ -7998,113 +8048,114 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Paint counties by default; when precinct overlay is enabled, reduce county opacity
       // so precinct fills/dots remain visually primary.
-      if (map.getLayer('county-fill')) {
-        map.setPaintProperty('county-fill', 'fill-color', expr);
-        map.setPaintProperty('county-fill', 'fill-opacity', precinctsEnabled ? 0.10 : 0.82);
-      }
+      if (isContestApplyStale(requestId)) return;
+      await runMapMutationFrame(() => {
+        if (map.getLayer('county-fill')) {
+          map.setPaintProperty('county-fill', 'fill-color', expr);
+          map.setPaintProperty('county-fill', 'fill-opacity', precinctsEnabled ? 0.10 : 0.82);
+        }
 
-      // Flip mode: outline flipped counties in red/blue (to-winner), leave others subtle.
-      if (mode === 'flips' && vizPrevCache?.prevYear && map.getLayer('county-stroke')) {
-        const flipColorExpr = ['case'];
-        const flipWidthExpr = ['case'];
-        Object.keys(countyAgg).forEach(countyNorm => {
-          const row = countyAgg[countyNorm];
-          const demVotes = Number(row[`${contestType}_dem`] || 0);
-          const repVotes = Number(row[`${contestType}_rep`] || 0);
-          const totalVotes = Number(row[`${contestType}_total`] || 0);
-          if (totalVotes <= 0) return;
-          const curSigned = signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
-          const prev = vizPrevCache.prevCountyTotals?.[countyNorm] || null;
-          const prevSigned = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : 0;
-          const f = flipInfo(prevSigned, curSigned);
-          if (!f.flipped) return;
-          const toColor = colorForFlipMode(f.to);
-          flipColorExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
-          flipColorExpr.push(toColor);
-          flipWidthExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
-          flipWidthExpr.push(3);
-        });
-        flipColorExpr.push('rgba(15,23,42,0.35)');
-        flipWidthExpr.push(1);
-        try {
-          map.setPaintProperty('county-stroke', 'line-color', flipColorExpr);
-          map.setPaintProperty('county-stroke', 'line-width', flipWidthExpr);
-        } catch (_) {}
-      } else if (map.getLayer('county-stroke')) {
-        try {
-          map.setPaintProperty('county-stroke', 'line-color', '#333');
-          map.setPaintProperty('county-stroke', 'line-width', 1);
-        } catch (_) {}
-      }
-      // Optional precinct expression (detail overlay)
-      if (needsPrecinctDetail) {
-        const exprPrecinct = ['case'];
-        contestData.forEach(row => {
-          const precinctNames = precinctNormVariants(row.county);
-          const demVotes = Number(row[`${contestType}_dem`] || 0);
-          const repVotes = Number(row[`${contestType}_rep`] || 0);
-          const totalVotes = Number(row[`${contestType}_total`] || 0);
-          if (totalVotes === 0) return;
-          const signedMarginPct = Number(row[`${contestType}_margin_pct`]);
-          const winnerRaw = (row[`${contestType}_winner`] || '').toString().toUpperCase();
-          const winner = winnerRaw.startsWith('REP') ? 'R' : (winnerRaw.startsWith('DEM') ? 'D' : (repVotes === demVotes ? 'T' : (repVotes > demVotes ? 'R' : 'D')));
-          let color = '#d1d5db';
-
-          if (mode === 'flips') {
-            const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
-            let prevSigned = 0;
-            // Use first matching norm (variants exist for precinct naming quirks).
-            for (const n of precinctNames) {
-              if (vizPrevCache?.prevPrecinctMarginByNorm?.has(n)) { prevSigned = vizPrevCache.prevPrecinctMarginByNorm.get(n); break; }
-            }
+        // Flip mode: outline flipped counties in red/blue (to-winner), leave others subtle.
+        if (mode === 'flips' && vizPrevCache?.prevYear && map.getLayer('county-stroke')) {
+          const flipColorExpr = ['case'];
+          const flipWidthExpr = ['case'];
+          Object.keys(countyAgg).forEach(countyNorm => {
+            const row = countyAgg[countyNorm];
+            const demVotes = Number(row[`${contestType}_dem`] || 0);
+            const repVotes = Number(row[`${contestType}_rep`] || 0);
+            const totalVotes = Number(row[`${contestType}_total`] || 0);
+            if (totalVotes <= 0) return;
+            const curSigned = signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
+            const prev = vizPrevCache.prevCountyTotals?.[countyNorm] || null;
+            const prevSigned = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : 0;
             const f = flipInfo(prevSigned, curSigned);
-            color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
-          } else if (mode === 'winners') {
-            color = colorForWinnerMode(winner);
-          } else if (mode === 'shift' && prevPrecinctMarginByNorm) {
-            // Signed margin pct: positive => R, negative => D.
-            const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
-            let prevSigned = 0;
-            // Use first matching norm (variants exist for precinct naming quirks).
-            for (const n of precinctNames) {
-              if (prevPrecinctMarginByNorm.has(n)) { prevSigned = prevPrecinctMarginByNorm.get(n); break; }
-            }
-            color = colorForShiftMode(curSigned - prevSigned);
-          } else {
-            const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
-            color = colorForMarginMode(Math.abs(curSigned), winner === 'T' ? 'R' : winner);
-          }
-          precinctNames.forEach(precinctName => {
-            exprPrecinct.push(['==', ['get', 'precinct_norm'], precinctName]);
-            exprPrecinct.push(color);
-            exprPrecinct.push(['==', ['get', 'precinct_alt_norm'], precinctName]);
-            exprPrecinct.push(color);
+            if (!f.flipped) return;
+            const toColor = colorForFlipMode(f.to);
+            flipColorExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
+            flipColorExpr.push(toColor);
+            flipWidthExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
+            flipWidthExpr.push(3);
           });
-        });
-        exprPrecinct.push('#d1d5db');
-        // Cache for later, in case precinct overlay loads after the contest is applied.
-        lastPrecinctFillExpr = exprPrecinct;
-        lastPrecinctDotExpr = exprPrecinct;
-        if (map.getLayer('precinct-fill')) {
-          map.setPaintProperty('precinct-fill', 'fill-color', exprPrecinct);
+          flipColorExpr.push('rgba(15,23,42,0.35)');
+          flipWidthExpr.push(1);
+          try {
+            map.setPaintProperty('county-stroke', 'line-color', flipColorExpr);
+            map.setPaintProperty('county-stroke', 'line-width', flipWidthExpr);
+          } catch (_) {}
+        } else if (map.getLayer('county-stroke')) {
+          try {
+            map.setPaintProperty('county-stroke', 'line-color', '#333');
+            map.setPaintProperty('county-stroke', 'line-width', 1);
+          } catch (_) {}
         }
-        if (map.getLayer('precinct-dot')) {
-          map.setPaintProperty('precinct-dot', 'circle-color', exprPrecinct);
+        // Optional precinct expression (detail overlay)
+        if (needsPrecinctDetail) {
+          const exprPrecinct = ['case'];
+          contestData.forEach(row => {
+            const precinctNames = precinctNormVariants(row.county);
+            const demVotes = Number(row[`${contestType}_dem`] || 0);
+            const repVotes = Number(row[`${contestType}_rep`] || 0);
+            const totalVotes = Number(row[`${contestType}_total`] || 0);
+            if (totalVotes === 0) return;
+            const signedMarginPct = Number(row[`${contestType}_margin_pct`]);
+            const winnerRaw = (row[`${contestType}_winner`] || '').toString().toUpperCase();
+            const winner = winnerRaw.startsWith('REP') ? 'R' : (winnerRaw.startsWith('DEM') ? 'D' : (repVotes === demVotes ? 'T' : (repVotes > demVotes ? 'R' : 'D')));
+            let color = '#d1d5db';
+
+            if (mode === 'flips') {
+              const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
+              let prevSigned = 0;
+              for (const n of precinctNames) {
+                if (vizPrevCache?.prevPrecinctMarginByNorm?.has(n)) { prevSigned = vizPrevCache.prevPrecinctMarginByNorm.get(n); break; }
+              }
+              const f = flipInfo(prevSigned, curSigned);
+              color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
+            } else if (mode === 'winners') {
+              color = colorForWinnerMode(winner);
+            } else if (mode === 'shift' && prevPrecinctMarginByNorm) {
+              const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
+              let prevSigned = 0;
+              for (const n of precinctNames) {
+                if (prevPrecinctMarginByNorm.has(n)) { prevSigned = prevPrecinctMarginByNorm.get(n); break; }
+              }
+              color = colorForShiftMode(curSigned - prevSigned);
+            } else {
+              const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
+              color = colorForMarginMode(Math.abs(curSigned), winner === 'T' ? 'R' : winner);
+            }
+            precinctNames.forEach(precinctName => {
+              exprPrecinct.push(['==', ['get', 'precinct_norm'], precinctName]);
+              exprPrecinct.push(color);
+              exprPrecinct.push(['==', ['get', 'precinct_alt_norm'], precinctName]);
+              exprPrecinct.push(color);
+            });
+          });
+          exprPrecinct.push('#d1d5db');
+          lastPrecinctFillExpr = exprPrecinct;
+          lastPrecinctDotExpr = exprPrecinct;
+          if (map.getLayer('precinct-fill')) {
+            map.setPaintProperty('precinct-fill', 'fill-color', exprPrecinct);
+          }
+          if (map.getLayer('precinct-dot')) {
+            map.setPaintProperty('precinct-dot', 'circle-color', exprPrecinct);
+          }
         }
-      }
+      });
+      if (isContestApplyStale(requestId)) return;
   document.getElementById('contest-name').textContent = `${formatContestName(contestType, year)} (${year})`;
       setStatus(`Applied contest: ${formatContestName(contestType, year)} ${year}`);
     }
 
-    async function applyDistrictContest(contestType, year) {
+    async function applyDistrictContest(contestType, year, requestId) {
       if (contestType !== 'us_house') {
         return setStatus('Only US House races available for congressional districts');
       }
 
       // Preferred path: use precomputed district results aligned to active lines.
       const hasSlice = await loadDistrictSlice('congressional', contestType, year);
+      if (isContestApplyStale(requestId)) return;
       if (hasSlice) {
-        return applyStatewideContestToDistricts(contestType, year);
+        return applyStatewideContestToDistricts(contestType, year, requestId);
       }
       
       // Filter congressional data for this year
@@ -8139,18 +8190,23 @@ document.addEventListener('DOMContentLoaded', function() {
       
       expr.push('#e0e0e0'); // default color
       
-      map.setPaintProperty('district-fill', 'fill-color', expr);
+      if (isContestApplyStale(requestId)) return;
+      await runMapMutationFrame(() => {
+        map.setPaintProperty('district-fill', 'fill-color', expr);
+      });
+      if (isContestApplyStale(requestId)) return;
   document.getElementById('contest-name').textContent = `US House (${year})`;
       setStatus(`Applied contest: MI US House ${year}`);
     }
 
-    async function applyStatewideContestToDistricts(contestType, year) {
+    async function applyStatewideContestToDistricts(contestType, year, requestId) {
       // Prefer district-level results reallocated to 2024 lines when available.
       if (currentView === 'districts' || currentView === 'state_house' || currentView === 'state_senate') {
         const districtScope = currentView === 'districts'
           ? 'congressional'
           : (currentView === 'state_house' ? 'state_house' : 'state_senate');
         const districtNode = await loadDistrictSlice(districtScope, contestType, year);
+        if (isContestApplyStale(requestId)) return;
         const districtResults = districtNode?.general?.results || null;
         const coveragePct = districtNode?.meta?.match_coverage_pct;
 
@@ -8225,27 +8281,31 @@ document.addEventListener('DOMContentLoaded', function() {
           const layerName = currentView === 'districts'
             ? 'district-fill'
             : (currentView === 'state_house' ? 'state-house-fill' : 'state-senate-fill');
-          if (map.getLayer(layerName)) {
-            map.setPaintProperty(layerName, 'fill-color', expr);
-          }
-          // Keep stroke styling consistent across modes (no flip outlines outside flip mode).
-          const strokeLayerName = currentView === 'districts'
-            ? 'district-stroke'
-            : (currentView === 'state_house' ? 'state-house-stroke' : 'state-senate-stroke');
-          if (map.getLayer(strokeLayerName)) {
-            try {
-              if (strokeLayerName === 'district-stroke') {
-                map.setPaintProperty(strokeLayerName, 'line-color', '#1f2937');
-                map.setPaintProperty(strokeLayerName, 'line-width', 2);
-              } else if (strokeLayerName === 'state-house-stroke') {
-                map.setPaintProperty(strokeLayerName, 'line-color', '#374151');
-                map.setPaintProperty(strokeLayerName, 'line-width', 1);
-              } else {
-                map.setPaintProperty(strokeLayerName, 'line-color', '#4b5563');
-                map.setPaintProperty(strokeLayerName, 'line-width', 1);
-              }
-            } catch (_) {}
-          }
+          if (isContestApplyStale(requestId)) return;
+          await runMapMutationFrame(() => {
+            if (map.getLayer(layerName)) {
+              map.setPaintProperty(layerName, 'fill-color', expr);
+            }
+            // Keep stroke styling consistent across modes (no flip outlines outside flip mode).
+            const strokeLayerName = currentView === 'districts'
+              ? 'district-stroke'
+              : (currentView === 'state_house' ? 'state-house-stroke' : 'state-senate-stroke');
+            if (map.getLayer(strokeLayerName)) {
+              try {
+                if (strokeLayerName === 'district-stroke') {
+                  map.setPaintProperty(strokeLayerName, 'line-color', '#1f2937');
+                  map.setPaintProperty(strokeLayerName, 'line-width', 2);
+                } else if (strokeLayerName === 'state-house-stroke') {
+                  map.setPaintProperty(strokeLayerName, 'line-color', '#374151');
+                  map.setPaintProperty(strokeLayerName, 'line-width', 1);
+                } else {
+                  map.setPaintProperty(strokeLayerName, 'line-color', '#4b5563');
+                  map.setPaintProperty(strokeLayerName, 'line-width', 1);
+                }
+              } catch (_) {}
+            }
+          });
+          if (isContestApplyStale(requestId)) return;
 
           const demPct = totalVotes ? (totalDem / totalVotes) * 100 : 0;
           const repPct = totalVotes ? (totalRep / totalVotes) * 100 : 0;
@@ -8302,9 +8362,14 @@ document.addEventListener('DOMContentLoaded', function() {
       const layerName = currentView === 'districts' ? 'district-fill' : 
                        currentView === 'state_house' ? 'state-house-fill' : 'state-senate-fill';
 
-      if (map.getLayer(layerName)) {
-        map.setPaintProperty(layerName, 'fill-color', color);
-      } else {
+      if (isContestApplyStale(requestId)) return;
+      await runMapMutationFrame(() => {
+        if (map.getLayer(layerName)) {
+          map.setPaintProperty(layerName, 'fill-color', color);
+        }
+      });
+      if (isContestApplyStale(requestId)) return;
+      if (!map.getLayer(layerName)) {
         setStatus('District layer not found!', 5000, true);
       }
 
