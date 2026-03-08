@@ -325,6 +325,12 @@ const MANUAL_PRECINCT_ALIAS_OVERRIDES = new Map([
   ['KENT|WYOMING CITY 11 WARD 2', ['City of Wyoming, Ward 1, Precinct 11']],
   ['KENT|WYOMING CITY 21 WARD 3', ['City of Wyoming, Ward 2, Precinct 21']],
   ['KENT|WYOMING CITY 22 WARD 3', ['City of Wyoming, Ward 2, Precinct 22']],
+  ['KENT|ADA TOWNSHIP 7', ['Ada Township, Precinct 6']],
+  ['KENT|ADA TOWNSHIP 8', ['Ada Township, Precinct 6']],
+  ['KENT|NELSON TOWNSHIP 3', ['Nelson Township, Precinct 2']],
+  ['KENT|PLAINFIELD TOWNSHIP 5', ['Plainfield Charter Township, Precinct 6']],
+  ['KENT|SPARTA TOWNSHIP 3', ['Sparta Township, Precinct 2']],
+  ['KENT|TYRONE TOWNSHIP 2', ['Tyrone Township, Precinct 1']],
   ['MUSKEGON|MUSKEGON CITY 3 WARD 1', ['City of Muskegon, Ward 2, Precinct 3']],
   ['MUSKEGON|MUSKEGON CITY 4 WARD 1', ['City of Muskegon, Ward 2, Precinct 4']],
   ['MUSKEGON|MUSKEGON CITY 5 WARD 2', ['City of Muskegon, Ward 3, Precinct 5']],
@@ -348,7 +354,9 @@ const MANUAL_PRECINCT_ALIAS_OVERRIDES = new Map([
   ['MUSKEGON|NORTON SHORES CITY 8 WARD 2', ['City of Norton Shores, Precinct 7']],
   ['MUSKEGON|NORTON SHORES CITY 9 WARD 2', ['City of Norton Shores, Precinct 7']],
   ['MUSKEGON|NORTON SHORES CITY 10 WARD 2', ['City of Norton Shores, Precinct 7']],
-  ['MUSKEGON|ROOSEVELT PARK CITY 2', ['City of Roosevelt Park, Precinct 1']]
+  ['MUSKEGON|ROOSEVELT PARK CITY 2', ['City of Roosevelt Park, Precinct 1']],
+  ['MUSKEGON|DALTON TOWNSHIP 4', ['Dalton Township, Precinct 3']],
+  ['MUSKEGON|LAKETON TOWNSHIP 3', ['Laketon Township, Precinct 2']]
 ]);
 
 function computeRingBounds(ring) {
