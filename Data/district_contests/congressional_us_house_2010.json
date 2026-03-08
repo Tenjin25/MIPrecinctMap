@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "match_coverage_pct": 100
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 94824,
+        "rep_votes": 120523,
+        "other_votes": 16690,
+        "total_votes": 232037,
+        "dem_candidate": "Gary Mcdowell",
+        "rep_candidate": "Dan Benishek",
+        "margin": 25699,
+        "margin_pct": 11.075389,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 72118,
+        "rep_votes": 148864,
+        "other_votes": 7096,
+        "total_votes": 228078,
+        "dem_candidate": "Fred Johnson",
+        "rep_candidate": "Bill Huizenga",
+        "margin": 76746,
+        "margin_pct": 33.649015,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 83953,
+        "rep_votes": 133714,
+        "other_votes": 6396,
+        "total_votes": 224063,
+        "dem_candidate": "Pat Miles",
+        "rep_candidate": "Justin Amash",
+        "margin": 49761,
+        "margin_pct": 22.208486,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 68458,
+        "rep_votes": 148531,
+        "other_votes": 7365,
+        "total_votes": 224354,
+        "dem_candidate": "Jerry M. Campbell",
+        "rep_candidate": "Dave Camp",
+        "margin": 80073,
+        "margin_pct": 35.690471,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 107286,
+        "rep_votes": 89680,
+        "other_votes": 5297,
+        "total_votes": 202263,
+        "dem_candidate": "Dale E. Kildee",
+        "rep_candidate": "John Kupiec",
+        "margin": 17606,
+        "margin_pct": -8.704508,
+        "winner": "DEM",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 66729,
+        "rep_votes": 123142,
+        "other_votes": 8825,
+        "total_votes": 198696,
+        "dem_candidate": "Don Cooney",
+        "rep_candidate": "Fred Upton",
+        "margin": 56413,
+        "margin_pct": 28.391613,
+        "winner": "REP",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 102402,
+        "rep_votes": 113185,
+        "other_votes": 10082,
+        "total_votes": 225669,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Tim Walberg",
+        "margin": 10783,
+        "margin_pct": 4.778237,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 84069,
+        "rep_votes": 156931,
+        "other_votes": 3894,
+        "total_votes": 244894,
+        "dem_candidate": "Lance Enderle",
+        "rep_candidate": "Mike Rogers",
+        "margin": 72862,
+        "margin_pct": 29.752464,
+        "winner": "REP",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 125730,
+        "rep_votes": 119325,
+        "other_votes": 7595,
+        "total_votes": 252650,
+        "dem_candidate": "Gary Peters",
+        "rep_candidate": "Rocky Raczkowski",
+        "margin": 6405,
+        "margin_pct": -2.535128,
+        "winner": "DEM",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 58530,
+        "rep_votes": 168364,
+        "other_votes": 7036,
+        "total_votes": 233930,
+        "dem_candidate": "Henry Yanez",
+        "rep_candidate": "Candice S. Miller",
+        "margin": 109834,
+        "margin_pct": 46.951652,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 91710,
+        "rep_votes": 141224,
+        "other_votes": 5353,
+        "total_votes": 238287,
+        "dem_candidate": "Natalie Mosher",
+        "rep_candidate": "Thaddeus G. Mccotter",
+        "margin": 49514,
+        "margin_pct": 20.779144,
+        "winner": "REP",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 124671,
+        "rep_votes": 71372,
+        "other_votes": 8074,
+        "total_votes": 204117,
+        "dem_candidate": "Sander Levin",
+        "rep_candidate": "Don Volaric",
+        "margin": 53299,
+        "margin_pct": -26.111985,
+        "winner": "DEM",
+        "color": ""
+      },
+      "13": {
+        "dem_votes": 100885,
+        "rep_votes": 23462,
+        "other_votes": 2729,
+        "total_votes": 127076,
+        "dem_candidate": "Hansen Clarke",
+        "rep_candidate": "John Hauler",
+        "margin": 77423,
+        "margin_pct": -60.926532,
+        "winner": "DEM",
+        "color": ""
+      },
+      "14": {
+        "dem_votes": 115511,
+        "rep_votes": 29902,
+        "other_votes": 5065,
+        "total_votes": 150478,
+        "dem_candidate": "John Conyers Jr.",
+        "rep_candidate": "Don Ukrainec",
+        "margin": 85609,
+        "margin_pct": -56.891373,
+        "winner": "DEM",
+        "color": ""
+      },
+      "15": {
+        "dem_votes": 118336,
+        "rep_votes": 83488,
+        "other_votes": 6485,
+        "total_votes": 208309,
+        "dem_candidate": "John D. Dingell",
+        "rep_candidate": "Rob Steele",
+        "margin": 34848,
+        "margin_pct": -16.728994,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

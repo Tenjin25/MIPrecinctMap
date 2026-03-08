@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "match_coverage_pct": 100
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 145089,
+        "rep_votes": 233905,
+        "other_votes": 10562,
+        "total_votes": 389556,
+        "dem_candidate": "Bob Lorinser",
+        "rep_candidate": "Jack Bergman",
+        "margin": 88816,
+        "margin_pct": 22.799289,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 116452,
+        "rep_votes": 210104,
+        "other_votes": 40817,
+        "total_votes": 367373,
+        "dem_candidate": "Jerry Hilliard",
+        "rep_candidate": "John Moolenaar",
+        "margin": 93652,
+        "margin_pct": 25.492347,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 185989,
+        "rep_votes": 142229,
+        "other_votes": 105726,
+        "total_votes": 433944,
+        "dem_candidate": "Hillary Scholten",
+        "rep_candidate": "John Gibbs",
+        "margin": 43760,
+        "margin_pct": -10.084251,
+        "winner": "DEM",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 143690,
+        "rep_votes": 183936,
+        "other_votes": 104191,
+        "total_votes": 431817,
+        "dem_candidate": "Joseph Alfonso",
+        "rep_candidate": "Bill Huizenga",
+        "margin": 40246,
+        "margin_pct": 9.320152,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 110946,
+        "rep_votes": 194119,
+        "other_votes": 8684,
+        "total_votes": 313749,
+        "dem_candidate": "Bart Goldberg",
+        "rep_candidate": "Tim Walberg",
+        "margin": 83173,
+        "margin_pct": 26.509407,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 241759,
+        "rep_votes": 125167,
+        "other_votes": 486,
+        "total_votes": 367412,
+        "dem_candidate": "Debbie Dingell",
+        "rep_candidate": "Whittney Williams",
+        "margin": 116592,
+        "margin_pct": -31.733313,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 192809,
+        "rep_votes": 169416,
+        "other_votes": 7336,
+        "total_votes": 369561,
+        "dem_candidate": "Elissa Slotkin",
+        "rep_candidate": "Tom Barrett",
+        "margin": 23393,
+        "margin_pct": -6.329943,
+        "winner": "DEM",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 160695,
+        "rep_votes": 124536,
+        "other_votes": 12356,
+        "total_votes": 297587,
+        "dem_candidate": "Daniel T. Kildee",
+        "rep_candidate": "Paul Junge",
+        "margin": 36159,
+        "margin_pct": -12.150732,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 123702,
+        "rep_votes": 238300,
+        "other_votes": 109845,
+        "total_votes": 471847,
+        "dem_candidate": "Brian Jaye",
+        "rep_candidate": "Lisa McClain",
+        "margin": 114598,
+        "margin_pct": 24.28711,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 157602,
+        "rep_votes": 159202,
+        "other_votes": 298954,
+        "total_votes": 615758,
+        "dem_candidate": "Marlinga",
+        "rep_candidate": "James",
+        "margin": 1600,
+        "margin_pct": 0.259842,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 224537,
+        "rep_votes": 141642,
+        "other_votes": 533,
+        "total_votes": 366712,
+        "dem_candidate": "Haley Stevens",
+        "rep_candidate": "Mark Ambrose",
+        "margin": 82895,
+        "margin_pct": -22.604932,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 196643,
+        "rep_votes": 72888,
+        "other_votes": 8584,
+        "total_votes": 278115,
+        "dem_candidate": "Rashida Tlaib",
+        "rep_candidate": "Steven Elliott",
+        "margin": 123755,
+        "margin_pct": -44.49778,
+        "winner": "DEM",
+        "color": ""
+      },
+      "13": {
+        "dem_votes": 166650,
+        "rep_votes": 56187,
+        "other_votes": 12329,
+        "total_votes": 235166,
+        "dem_candidate": "Shri Thanedar",
+        "rep_candidate": "Martell D. Bivings",
+        "margin": 110463,
+        "margin_pct": -46.972351,
+        "winner": "DEM",
+        "color": ""
+      },
+      "28": {
+        "dem_votes": 18136,
+        "rep_votes": 19845,
+        "other_votes": 857,
+        "total_votes": 38838,
+        "dem_candidate": "Sam Singh",
+        "rep_candidate": "Daylen W. Howard",
+        "margin": 1709,
+        "margin_pct": 4.40033,
+        "winner": "REP",
+        "color": ""
+      },
+      "34": {
+        "dem_votes": 329,
+        "rep_votes": 859,
+        "other_votes": 31,
+        "total_votes": 1219,
+        "dem_candidate": "Christine Gerace",
+        "rep_candidate": "Roger Hauck",
+        "margin": 530,
+        "margin_pct": 43.478261,
+        "winner": "REP",
+        "color": ""
+      }
+    }
+  }
+}

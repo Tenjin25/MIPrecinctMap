@@ -1,0 +1,189 @@
+{
+  "meta": {
+    "match_coverage_pct": 100
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 117700,
+        "rep_votes": 214209,
+        "other_votes": 37510,
+        "total_votes": 369419,
+        "dem_candidate": "Dana Ferguson",
+        "rep_candidate": "Jack Bergman",
+        "margin": 96509,
+        "margin_pct": 26.124536,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 147369,
+        "rep_votes": 219628,
+        "other_votes": 10170,
+        "total_votes": 377167,
+        "dem_candidate": "Bryan Berghoef",
+        "rep_candidate": "Bill Huizenga",
+        "margin": 72259,
+        "margin_pct": 19.158357,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 177711,
+        "rep_votes": 190566,
+        "other_votes": 1748,
+        "total_votes": 370025,
+        "dem_candidate": "Hillary Scholten",
+        "rep_candidate": "Peter Meijer",
+        "margin": 12855,
+        "margin_pct": 3.47409,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 86692,
+        "rep_votes": 181948,
+        "other_votes": 9917,
+        "total_votes": 278557,
+        "dem_candidate": "Jerry Hillard",
+        "rep_candidate": "John Moolenaar",
+        "margin": 95256,
+        "margin_pct": 34.196233,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 155341,
+        "rep_votes": 118970,
+        "other_votes": 15803,
+        "total_votes": 290114,
+        "dem_candidate": "Dan Kildee",
+        "rep_candidate": "Tim Kelly",
+        "margin": 36371,
+        "margin_pct": -12.536796,
+        "winner": "DEM",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 119803,
+        "rep_votes": 166130,
+        "other_votes": 13061,
+        "total_votes": 298994,
+        "dem_candidate": "Jon Hoadley",
+        "rep_candidate": "Fred Upton",
+        "margin": 46327,
+        "margin_pct": 15.494291,
+        "winner": "REP",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 97281,
+        "rep_votes": 140544,
+        "other_votes": 349,
+        "total_votes": 238174,
+        "dem_candidate": "Gretchen D. Driskell",
+        "rep_candidate": "Tim Walberg",
+        "margin": 43263,
+        "margin_pct": 18.164451,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 146462,
+        "rep_votes": 116614,
+        "other_votes": 549497.7202000002,
+        "total_votes": 812573.7202000001,
+        "dem_candidate": "Elissa Slotkin",
+        "rep_candidate": "Paul Junge",
+        "margin": 29848,
+        "margin_pct": -3.673267,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 144980,
+        "rep_votes": 108719,
+        "other_votes": 11441,
+        "total_votes": 265140,
+        "dem_candidate": "Andy Levin",
+        "rep_candidate": "Charles J. Langworthy",
+        "margin": 36261,
+        "margin_pct": -13.676171,
+        "winner": "DEM",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 81277,
+        "rep_votes": 148636,
+        "other_votes": 6,
+        "total_votes": 229919,
+        "dem_candidate": "Kimberly Bizon",
+        "rep_candidate": "Lisa McClain",
+        "margin": 67359,
+        "margin_pct": 29.296839,
+        "winner": "REP",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 118481,
+        "rep_votes": 25962,
+        "other_votes": 3010,
+        "total_votes": 147453,
+        "dem_candidate": "Debbie Dingell",
+        "rep_candidate": "Jeff Jones",
+        "margin": 92519,
+        "margin_pct": -62.744739,
+        "winner": "DEM",
+        "color": ""
+      },
+      "02": {
+        "dem_votes": 6753,
+        "rep_votes": 19083,
+        "other_votes": 901,
+        "total_votes": 26737,
+        "dem_candidate": "Bryan Berghoef",
+        "rep_candidate": "Bill Huizenga",
+        "margin": 12330,
+        "margin_pct": 46.115869,
+        "winner": "REP",
+        "color": ""
+      },
+      "07": {
+        "dem_votes": 32539,
+        "rep_votes": 51619,
+        "other_votes": 243,
+        "total_votes": 84401,
+        "dem_candidate": "Gretchen D. Driskell",
+        "rep_candidate": "Tim Walberg",
+        "margin": 19080,
+        "margin_pct": 22.606367,
+        "winner": "REP",
+        "color": ""
+      },
+      "01": {
+        "dem_votes": 27125,
+        "rep_votes": 25927,
+        "other_votes": 780,
+        "total_votes": 53832,
+        "dem_candidate": "Dana Ferguson",
+        "rep_candidate": "Jack Bergman",
+        "margin": 1198,
+        "margin_pct": -2.225442,
+        "winner": "DEM",
+        "color": ""
+      },
+      "06": {
+        "dem_votes": 32279,
+        "rep_votes": 45366,
+        "other_votes": 3599,
+        "total_votes": 81244,
+        "dem_candidate": "Jon Hoadley",
+        "rep_candidate": "Fred Upton",
+        "margin": 13087,
+        "margin_pct": 16.108266,
+        "winner": "REP",
+        "color": ""
+      }
+    }
+  }
+}

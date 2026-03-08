@@ -1,0 +1,158 @@
+{
+  "files": [
+    {
+      "year": 2008,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2008.json",
+      "districts": 15
+    },
+    {
+      "year": 2010,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2010.json",
+      "districts": 15
+    },
+    {
+      "year": 2012,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2012.json",
+      "districts": 14
+    },
+    {
+      "year": 2014,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2014.json",
+      "districts": 14
+    },
+    {
+      "year": 2016,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2016.json",
+      "districts": 14
+    },
+    {
+      "year": 2018,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2018.json",
+      "districts": 14
+    },
+    {
+      "year": 2020,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2020.json",
+      "districts": 15
+    },
+    {
+      "year": 2022,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2022.json",
+      "districts": 15
+    },
+    {
+      "year": 2024,
+      "scope": "congressional",
+      "contest_type": "us_house",
+      "file": "congressional_us_house_2024.json",
+      "districts": 13
+    },
+    {
+      "year": 2008,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2008.json",
+      "districts": 110
+    },
+    {
+      "year": 2010,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2010.json",
+      "districts": 110
+    },
+    {
+      "year": 2012,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2012.json",
+      "districts": 110
+    },
+    {
+      "year": 2014,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2014.json",
+      "districts": 110
+    },
+    {
+      "year": 2016,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2016.json",
+      "districts": 110
+    },
+    {
+      "year": 2018,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2018.json",
+      "districts": 110
+    },
+    {
+      "year": 2020,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2020.json",
+      "districts": 69
+    },
+    {
+      "year": 2022,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2022.json",
+      "districts": 109
+    },
+    {
+      "year": 2024,
+      "scope": "state_house",
+      "contest_type": "state_house",
+      "file": "state_house_state_house_2024.json",
+      "districts": 110
+    },
+    {
+      "year": 2010,
+      "scope": "state_senate",
+      "contest_type": "state_senate",
+      "file": "state_senate_state_senate_2010.json",
+      "districts": 38
+    },
+    {
+      "year": 2014,
+      "scope": "state_senate",
+      "contest_type": "state_senate",
+      "file": "state_senate_state_senate_2014.json",
+      "districts": 38
+    },
+    {
+      "year": 2018,
+      "scope": "state_senate",
+      "contest_type": "state_senate",
+      "file": "state_senate_state_senate_2018.json",
+      "districts": 38
+    },
+    {
+      "year": 2022,
+      "scope": "state_senate",
+      "contest_type": "state_senate",
+      "file": "state_senate_state_senate_2022.json",
+      "districts": 38
+    }
+  ]
+}

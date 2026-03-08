@@ -1,0 +1,5 @@
+.venv/
+Data/Voting_Precincts.geojson
+Data/tl_2020_26_tabblock10.zip
+Data/tl_2020_26_tabblock20.zip
+Data/tiger2008_vtd/tmp/

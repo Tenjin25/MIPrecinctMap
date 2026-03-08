@@ -1,0 +1,177 @@
+{
+  "meta": {
+    "match_coverage_pct": 100
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 113263,
+        "rep_votes": 130414,
+        "other_votes": 6454,
+        "total_votes": 250131,
+        "dem_candidate": "Jerry Cannon",
+        "rep_candidate": "Dan Benishek",
+        "margin": 17151,
+        "margin_pct": 6.856807,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 70851,
+        "rep_votes": 135568,
+        "other_votes": 6653,
+        "total_votes": 213072,
+        "dem_candidate": "Dean Vanderstelt",
+        "rep_candidate": "Bill Huizenga",
+        "margin": 64717,
+        "margin_pct": 30.373301,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 84720,
+        "rep_votes": 125754,
+        "other_votes": 6691,
+        "total_votes": 217165,
+        "dem_candidate": "Bob Goodrich",
+        "rep_candidate": "Justin Amash",
+        "margin": 41034,
+        "margin_pct": 18.89531,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 85777,
+        "rep_votes": 123962,
+        "other_votes": 9684,
+        "total_votes": 219423,
+        "dem_candidate": "Jeff Holmes",
+        "rep_candidate": "John Moolenaar",
+        "margin": 38185,
+        "margin_pct": 17.40246,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 148182,
+        "rep_votes": 69222,
+        "other_votes": 4734,
+        "total_votes": 222138,
+        "dem_candidate": "Daniel T. Kildee",
+        "rep_candidate": "Allen Hardwick",
+        "margin": 78960,
+        "margin_pct": -35.545472,
+        "winner": "DEM",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 84391,
+        "rep_votes": 116801,
+        "other_votes": 7784,
+        "total_votes": 208976,
+        "dem_candidate": "Paul Clements",
+        "rep_candidate": "Fred Upton",
+        "margin": 32410,
+        "margin_pct": 15.508958,
+        "winner": "REP",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 92083,
+        "rep_votes": 119564,
+        "other_votes": 12038,
+        "total_votes": 223685,
+        "dem_candidate": "Pam Byrnes",
+        "rep_candidate": "Tim Walberg",
+        "margin": 27481,
+        "margin_pct": 12.28558,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 102269,
+        "rep_votes": 132739,
+        "other_votes": 8117,
+        "total_votes": 243125,
+        "dem_candidate": "Eric Schertzing",
+        "rep_candidate": "Mike Bishop",
+        "margin": 30470,
+        "margin_pct": 12.532648,
+        "winner": "REP",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 136342,
+        "rep_votes": 81470,
+        "other_votes": 7945,
+        "total_votes": 225757,
+        "dem_candidate": "Sander Levin",
+        "rep_candidate": "George Brikho",
+        "margin": 54872,
+        "margin_pct": -24.30578,
+        "winner": "DEM",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 67143,
+        "rep_votes": 157069,
+        "other_votes": 4480,
+        "total_votes": 228692,
+        "dem_candidate": "Chuck Stadler",
+        "rep_candidate": "Candice S. Miller",
+        "margin": 89926,
+        "margin_pct": 39.321883,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 101681,
+        "rep_votes": 141846,
+        "other_votes": 7711,
+        "total_votes": 251238,
+        "dem_candidate": "Bobby Mckenzie",
+        "rep_candidate": "Kerry L. Bentivolio",
+        "margin": 40165,
+        "margin_pct": 15.986833,
+        "winner": "REP",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 134346,
+        "rep_votes": 64716,
+        "other_votes": 7598,
+        "total_votes": 206660,
+        "dem_candidate": "Debbie Dingell",
+        "rep_candidate": "Terry Bowman",
+        "margin": 69630,
+        "margin_pct": -33.693022,
+        "winner": "DEM",
+        "color": ""
+      },
+      "13": {
+        "dem_votes": 132710,
+        "rep_votes": 27234,
+        "other_votes": 7003,
+        "total_votes": 166947,
+        "dem_candidate": "John Conyers, Jr.",
+        "rep_candidate": "Jeff Gorman",
+        "margin": 105476,
+        "margin_pct": -63.179332,
+        "winner": "DEM",
+        "color": ""
+      },
+      "14": {
+        "dem_votes": 165272,
+        "rep_votes": 41801,
+        "other_votes": 5395,
+        "total_votes": 212468,
+        "dem_candidate": "Brenda Lawrence",
+        "rep_candidate": "Christina L. Barr",
+        "margin": 123471,
+        "margin_pct": -58.112751,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

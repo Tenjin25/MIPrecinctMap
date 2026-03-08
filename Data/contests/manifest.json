@@ -1,0 +1,165 @@
+{
+  "files": [
+    {
+      "year": 2010,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_2010.json",
+      "rows": 5419,
+      "level": "precinct"
+    },
+    {
+      "year": 2014,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_2014.json",
+      "rows": 5042,
+      "level": "precinct"
+    },
+    {
+      "year": 2018,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_2018.json",
+      "rows": 5082,
+      "level": "precinct"
+    },
+    {
+      "year": 2022,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_2022.json",
+      "rows": 4718,
+      "level": "precinct"
+    },
+    {
+      "year": 2010,
+      "contest_type": "governor",
+      "file": "governor_2010.json",
+      "rows": 5430,
+      "level": "precinct"
+    },
+    {
+      "year": 2014,
+      "contest_type": "governor",
+      "file": "governor_2014.json",
+      "rows": 5060,
+      "level": "precinct"
+    },
+    {
+      "year": 2018,
+      "contest_type": "governor",
+      "file": "governor_2018.json",
+      "rows": 5093,
+      "level": "precinct"
+    },
+    {
+      "year": 2022,
+      "contest_type": "governor",
+      "file": "governor_2022.json",
+      "rows": 4718,
+      "level": "precinct"
+    },
+    {
+      "year": 2008,
+      "contest_type": "president",
+      "file": "president_2008.json",
+      "rows": 5707,
+      "level": "precinct"
+    },
+    {
+      "year": 2012,
+      "contest_type": "president",
+      "file": "president_2012.json",
+      "rows": 5238,
+      "level": "precinct"
+    },
+    {
+      "year": 2016,
+      "contest_type": "president",
+      "file": "president_2016.json",
+      "rows": 5077,
+      "level": "precinct"
+    },
+    {
+      "year": 2020,
+      "contest_type": "president",
+      "file": "president_2020.json",
+      "rows": 2871,
+      "level": "precinct"
+    },
+    {
+      "year": 2024,
+      "contest_type": "president",
+      "file": "president_2024.json",
+      "rows": 4367,
+      "level": "precinct"
+    },
+    {
+      "year": 2010,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_2010.json",
+      "rows": 5420,
+      "level": "precinct"
+    },
+    {
+      "year": 2014,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_2014.json",
+      "rows": 5041,
+      "level": "precinct"
+    },
+    {
+      "year": 2018,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_2018.json",
+      "rows": 5083,
+      "level": "precinct"
+    },
+    {
+      "year": 2022,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_2022.json",
+      "rows": 4702,
+      "level": "precinct"
+    },
+    {
+      "year": 2008,
+      "contest_type": "us_senate",
+      "file": "us_senate_2008.json",
+      "rows": 5688,
+      "level": "precinct"
+    },
+    {
+      "year": 2012,
+      "contest_type": "us_senate",
+      "file": "us_senate_2012.json",
+      "rows": 5221,
+      "level": "precinct"
+    },
+    {
+      "year": 2014,
+      "contest_type": "us_senate",
+      "file": "us_senate_2014.json",
+      "rows": 5055,
+      "level": "precinct"
+    },
+    {
+      "year": 2018,
+      "contest_type": "us_senate",
+      "file": "us_senate_2018.json",
+      "rows": 5087,
+      "level": "precinct"
+    },
+    {
+      "year": 2020,
+      "contest_type": "us_senate",
+      "file": "us_senate_2020.json",
+      "rows": 2898,
+      "level": "precinct"
+    },
+    {
+      "year": 2024,
+      "contest_type": "us_senate",
+      "file": "us_senate_2024.json",
+      "rows": 4366,
+      "level": "precinct"
+    }
+  ]
+}
