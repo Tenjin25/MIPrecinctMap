@@ -479,6 +479,29 @@ async function buildVtdDistrictShareMaps() {
   return out;
 }
 
+function bumpShareCount(container, key, district) {
+  if (!key || !district) return;
+  if (!container.has(key)) container.set(key, { total: 0, districts: new Map() });
+  const node = container.get(key);
+  node.total += 1;
+  node.districts.set(district, (node.districts.get(district) || 0) + 1);
+}
+
+function finalizeShareMap(countsMap) {
+  const shareMap = new Map();
+  for (const [key, node] of countsMap.entries()) {
+    if (!node || !(node.total > 0)) continue;
+    const parts = [];
+    for (const [district, count] of node.districts.entries()) {
+      if (!district || !(count > 0)) continue;
+      parts.push({ district, share: count / node.total });
+    }
+    parts.sort((a, b) => b.share - a.share || a.district.localeCompare(b.district));
+    if (parts.length) shareMap.set(key, parts);
+  }
+  return shareMap;
+}
+
 function runMapshaper(inputZip, outputGeojson) {
   if (fileExists(outputGeojson)) return;
   const result = spawnSync(
@@ -513,6 +536,11 @@ const districtFeaturesByScope = {
 const vtdDistrictSharesByScope = await buildVtdDistrictShareMaps();
 const precinctAssignmentLookup = new Map();
 const countyNameToFips = new Map();
+const currentShareCountsByScope = {
+  congressional: { vtd: new Map(), county: new Map() },
+  state_house: { vtd: new Map(), county: new Map() },
+  state_senate: { vtd: new Map(), county: new Map() }
+};
 const centroidGeojsonPath = path.join(dataDir, 'precinct_centroids.geojson');
 if (fileExists(centroidGeojsonPath)) {
   const centroidGeojson = readJson(centroidGeojsonPath);
@@ -531,6 +559,13 @@ if (fileExists(centroidGeojsonPath)) {
       state_senate: assignPointToDistrict(point, districtFeaturesByScope.state_senate)
     };
     const vtd = String(props.vtdst || props.VTDST || '').trim();
+
+    for (const scope of Object.keys(districts)) {
+      const district = districts[scope];
+      if (!district) continue;
+      if (vtd) bumpShareCount(currentShareCountsByScope[scope].vtd, vtd, district);
+      if (countyFips) bumpShareCount(currentShareCountsByScope[scope].county, countyFips, district);
+    }
 
     const rawNames = [
       props.prec_id,
@@ -551,6 +586,20 @@ if (fileExists(centroidGeojsonPath)) {
         precinctAssignmentLookup.set(lookupKey, { vtd, districts });
       }
     }
+  }
+}
+
+for (const scope of Object.keys(currentShareCountsByScope)) {
+  const currentShares = {
+    vtd: finalizeShareMap(currentShareCountsByScope[scope].vtd),
+    county: finalizeShareMap(currentShareCountsByScope[scope].county)
+  };
+  if (scope === 'congressional') {
+    vtdDistrictSharesByScope[scope] = currentShares;
+    continue;
+  }
+  if (!(vtdDistrictSharesByScope?.[scope]?.vtd instanceof Map) || vtdDistrictSharesByScope[scope].vtd.size === 0) {
+    vtdDistrictSharesByScope[scope] = currentShares;
   }
 }
 
