@@ -355,11 +355,18 @@
       const counties = countiesSource._data.features;
       // Normalize county names for matching
       function normalizeCountyName(name) {
-        return (name || '')
+        let normalized = (name || '')
+          .replace(/ county$/i, '')
           .replace(/[^a-z0-9 .\-]/gi, '')  // Keep periods for St. names and hyphens for Miami-Dade
           .replace(/\s+/g, ' ')
           .trim()
           .toUpperCase();
+        const compact = normalized.replace(/\./g, '');
+        if (compact === 'GD TRAVERSE') normalized = 'GRAND TRAVERSE';
+        if (compact === 'SHIAWASSE') normalized = 'SHIAWASSEE';
+        if (compact === 'ST JOSEPHS' || compact === 'ST JOSEPH') normalized = 'ST. JOSEPH';
+        if (compact === 'ST CLAIR') normalized = 'ST. CLAIR';
+        return normalized;
       }
       const normTarget = normalizeCountyName(countyName);
       const countyFeature = counties.find(f => {
@@ -2805,8 +2812,8 @@ document.addEventListener('DOMContentLoaded', function() {
       2008: withBase('./Data/20081104__mi__general__precinct.csv'),
       2012: withBase('./Data/20121106__mi__general__precinct.csv'),
       2016: withBase('./Data/20161108__mi__general__precinct.csv'),
-      2020: withBase('./Data/20201103__mi__general__precinct.csv'),
-      2024: withBase('./Data/20241105__mi__general__precinct.csv')
+      2020: withBase('./Data/20201103__mi__general__precinct_mvic.csv'),
+      2024: withBase('./Data/20241105__mi__general__precinct_mvic.csv')
 	    };
 
 	    async function loadPresidentSliceFromOpenElectionsCSV(year) {
@@ -3115,11 +3122,18 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!boundaryGeoJSON || !boundaryGeoJSON.features || !electionData) return boundaryGeoJSON;
   const electionMap = {};
   function normalizeCountyName(name) {
-    return (name || '')
+    let normalized = (name || '')
+      .replace(/ county$/i, '')
       .replace(/[^a-z0-9 .\-]/gi, '')  // Keep periods for St. names and hyphens for Miami-Dade
       .replace(/\s+/g, ' ')
       .trim()
       .toUpperCase();
+    const compact = normalized.replace(/\./g, '');
+    if (compact === 'GD TRAVERSE') normalized = 'GRAND TRAVERSE';
+    if (compact === 'SHIAWASSE') normalized = 'SHIAWASSEE';
+    if (compact === 'ST JOSEPHS' || compact === 'ST JOSEPH') normalized = 'ST. JOSEPH';
+    if (compact === 'ST CLAIR') normalized = 'ST. CLAIR';
+    return normalized;
   }
   electionData.forEach(row => {
     let name = normalizeCountyName(row[countyNameKey]);
@@ -3140,11 +3154,18 @@ document.addEventListener('DOMContentLoaded', function() {
       const map = {};
       if (!geojson || !geojson.features) return map;
       function normalizeCountyName(name) {
-        return (name || '')
+        let normalized = (name || '')
+          .replace(/ county$/i, '')
           .replace(/[^a-z0-9 .\-]/gi, '')  // Keep periods for St. names and hyphens for Miami-Dade
           .replace(/\s+/g, ' ')
           .trim()
           .toUpperCase();
+        const compact = normalized.replace(/\./g, '');
+        if (compact === 'GD TRAVERSE') normalized = 'GRAND TRAVERSE';
+        if (compact === 'SHIAWASSE') normalized = 'SHIAWASSEE';
+        if (compact === 'ST JOSEPHS' || compact === 'ST JOSEPH') normalized = 'ST. JOSEPH';
+        if (compact === 'ST CLAIR') normalized = 'ST. CLAIR';
+        return normalized;
       }
       geojson.features.forEach(f => {
         const p = f.properties || {};
@@ -4750,11 +4771,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       // Normalize and find county data
       function normalizeCountyName(name) {
-        return (name || '')
+        let normalized = (name || '')
+          .replace(/ county$/i, '')
           .replace(/[^a-z0-9 .\-]/gi, '')  // Keep periods for St. names and hyphens for Miami-Dade
           .replace(/\s+/g, ' ')
           .trim()
           .toUpperCase();
+        const compact = normalized.replace(/\./g, '');
+        if (compact === 'GD TRAVERSE') normalized = 'GRAND TRAVERSE';
+        if (compact === 'SHIAWASSE') normalized = 'SHIAWASSEE';
+        if (compact === 'ST JOSEPHS' || compact === 'ST JOSEPH') normalized = 'ST. JOSEPH';
+        if (compact === 'ST CLAIR') normalized = 'ST. CLAIR';
+        return normalized;
       }
       let norm = normalizeCountyName(countyName);
       let countyData = currentElectionResults[norm];
@@ -7482,13 +7510,20 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       lastContestSliceMeta = { contestType, year: Number(year), rows: contestData };
 
-	      function normalizeCountyName(name) {
-	        return (name || '')
-	          .replace(/[^a-z0-9 .\-]/gi, '')
-	          .replace(/\s+/g, ' ')
-	          .trim()
-	          .toUpperCase();
-	      }
+      function normalizeCountyName(name) {
+        let normalized = (name || '')
+          .replace(/ county$/i, '')
+          .replace(/[^a-z0-9 .\-]/gi, '')
+          .replace(/\s+/g, ' ')
+          .trim()
+          .toUpperCase();
+        const compact = normalized.replace(/\./g, '');
+        if (compact === 'GD TRAVERSE') normalized = 'GRAND TRAVERSE';
+        if (compact === 'SHIAWASSE') normalized = 'SHIAWASSEE';
+        if (compact === 'ST JOSEPHS' || compact === 'ST JOSEPH') normalized = 'ST. JOSEPH';
+        if (compact === 'ST CLAIR') normalized = 'ST. CLAIR';
+        return normalized;
+      }
 
       // Only build heavy precinct matching/color expressions when the overlay is enabled.
       // If users switch contests with precincts off, keep the county path fast.
