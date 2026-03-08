@@ -246,29 +246,45 @@ function buildPrecinctAliases(rawValue, county = '') {
     push(`${dashWardMatch[1]}-${dashWardMatch[2]}`);
   }
 
-  const cityOfMatch = base.match(/^(CITY|VILLAGE|TOWNSHIP) OF (.+?) PRECINCT (\d+)$/);
+  const cityOfMatch = base.match(/^(CITY|VILLAGE|TOWNSHIP) OF (.+?) PRECINCT ([A-Z0-9]+)$/);
   if (cityOfMatch) {
     push(`${cityOfMatch[2]} ${cityOfMatch[1]} PRECINCT ${cityOfMatch[3]}`);
     push(`${cityOfMatch[2]} PRECINCT ${cityOfMatch[3]}`);
   }
 
-  const suffixTypeMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) PRECINCT (\d+)$/);
+  const cityOfWardPrecinctMatch = base.match(/^(CITY|VILLAGE|TOWNSHIP) OF (.+?) WARD (\d+) PRECINCT ([A-Z0-9]+)$/);
+  if (cityOfWardPrecinctMatch) {
+    push(`${cityOfWardPrecinctMatch[2]} ${cityOfWardPrecinctMatch[1]} WARD ${cityOfWardPrecinctMatch[3]} PRECINCT ${cityOfWardPrecinctMatch[4]}`);
+    push(`${cityOfWardPrecinctMatch[2]} ${cityOfWardPrecinctMatch[1]} ${cityOfWardPrecinctMatch[4]} WARD ${cityOfWardPrecinctMatch[3]}`);
+    push(`${cityOfWardPrecinctMatch[2]} WARD ${cityOfWardPrecinctMatch[3]} PRECINCT ${cityOfWardPrecinctMatch[4]}`);
+    push(`${cityOfWardPrecinctMatch[2]} PRECINCT ${cityOfWardPrecinctMatch[4]} WARD ${cityOfWardPrecinctMatch[3]}`);
+    push(`${cityOfWardPrecinctMatch[2]} ${cityOfWardPrecinctMatch[3]}-${cityOfWardPrecinctMatch[4]}`);
+    push(`${cityOfWardPrecinctMatch[2]} DISTRICT ${cityOfWardPrecinctMatch[3]} PRECINCT ${cityOfWardPrecinctMatch[4]}`);
+    push(`${cityOfWardPrecinctMatch[2]} PRECINCT ${cityOfWardPrecinctMatch[4]}`);
+  }
+
+  const suffixTypeMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) PRECINCT ([A-Z0-9]+)$/);
   if (suffixTypeMatch) {
     push(`${suffixTypeMatch[2]} OF ${suffixTypeMatch[1]} PRECINCT ${suffixTypeMatch[3]}`);
     push(`${suffixTypeMatch[1]} PRECINCT ${suffixTypeMatch[3]}`);
   }
 
-  const numberedTypeMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) (\d+)$/);
+  const numberedTypeMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) ([A-Z0-9]+)$/);
   if (numberedTypeMatch) {
     push(`${numberedTypeMatch[1]} ${numberedTypeMatch[2]} PRECINCT ${numberedTypeMatch[3]}`);
     push(`${numberedTypeMatch[2]} OF ${numberedTypeMatch[1]} PRECINCT ${numberedTypeMatch[3]}`);
     push(`${numberedTypeMatch[1]} PRECINCT ${numberedTypeMatch[3]}`);
+    push(`${numberedTypeMatch[1]} ${numberedTypeMatch[3]}`);
   }
 
-  const numberedTypeWardMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) (\d+) WARD (\d+)$/);
+  const numberedTypeWardMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) ([A-Z0-9]+) WARD (\d+)$/);
   if (numberedTypeWardMatch) {
     push(`${numberedTypeWardMatch[1]} ${numberedTypeWardMatch[2]} PRECINCT ${numberedTypeWardMatch[3]} WARD ${numberedTypeWardMatch[4]}`);
     push(`${numberedTypeWardMatch[2]} OF ${numberedTypeWardMatch[1]} PRECINCT ${numberedTypeWardMatch[3]} WARD ${numberedTypeWardMatch[4]}`);
+    push(`${numberedTypeWardMatch[1]} ${numberedTypeWardMatch[2]} WARD ${numberedTypeWardMatch[4]} PRECINCT ${numberedTypeWardMatch[3]}`);
+    push(`${numberedTypeWardMatch[2]} OF ${numberedTypeWardMatch[1]} WARD ${numberedTypeWardMatch[4]} PRECINCT ${numberedTypeWardMatch[3]}`);
+    push(`${numberedTypeWardMatch[1]} ${numberedTypeWardMatch[4]}-${numberedTypeWardMatch[3]}`);
+    push(`${numberedTypeWardMatch[1]} DISTRICT ${numberedTypeWardMatch[4]} PRECINCT ${numberedTypeWardMatch[3]}`);
     push(`WARD ${numberedTypeWardMatch[4]} PRECINCT ${numberedTypeWardMatch[3]}`);
     push(`PRECINCT ${numberedTypeWardMatch[3]} WARD ${numberedTypeWardMatch[4]}`);
   }
@@ -278,13 +294,13 @@ function buildPrecinctAliases(rawValue, county = '') {
     push(`${townshipOfMatch[1]} TOWNSHIP`);
   }
 
-  const wardLeadingMatch = base.match(/^WARD (\d+) PRECINCT (\d+)$/);
+  const wardLeadingMatch = base.match(/^WARD (\d+) PRECINCT ([A-Z0-9]+)$/);
   if (wardLeadingMatch) {
     push(`${wardLeadingMatch[1]}-${wardLeadingMatch[2]}`);
     push(`PRECINCT ${wardLeadingMatch[2]} WARD ${wardLeadingMatch[1]}`);
   }
 
-  const wardTrailingMatch = base.match(/^PRECINCT (\d+) WARD (\d+)$/);
+  const wardTrailingMatch = base.match(/^PRECINCT ([A-Z0-9]+) WARD (\d+)$/);
   if (wardTrailingMatch) {
     push(`WARD ${wardTrailingMatch[2]} PRECINCT ${wardTrailingMatch[1]}`);
     push(`${wardTrailingMatch[2]}-${wardTrailingMatch[1]}`);
@@ -292,6 +308,48 @@ function buildPrecinctAliases(rawValue, county = '') {
 
   return aliases;
 }
+
+const MANUAL_PRECINCT_ALIAS_OVERRIDES = new Map([
+  ['KENT|EAST GRAND RAPIDS CITY 2 WARD 1', ['City of East Grand Rapids, Ward 1, Precinct 1']],
+  ['KENT|EAST GRAND RAPIDS CITY 3 WARD 2', ['City of East Grand Rapids, Ward 2, Precinct 2']],
+  ['KENT|EAST GRAND RAPIDS CITY 4 WARD 2', ['City of East Grand Rapids, Ward 2, Precinct 2']],
+  ['KENT|EAST GRAND RAPIDS CITY 5 WARD 3', ['City of East Grand Rapids, Ward 3, Precinct 3']],
+  ['KENT|EAST GRAND RAPIDS CITY 6 WARD 3', ['City of East Grand Rapids, Ward 3, Precinct 3']],
+  ['KENT|GRAND RAPIDS CITY 24 WARD 1', ['City of Grand Rapids, Ward 2, Precinct 24']],
+  ['KENT|GRAND RAPIDS CITY 49 WARD 2', ['City of Grand Rapids, Ward 3, Precinct 49']],
+  ['KENT|GRAND RAPIDS CITY 50 WARD 2', ['City of Grand Rapids, Ward 3, Precinct 50']],
+  ['KENT|GRAND RAPIDS CITY 75 WARD 3', ['City of Grand Rapids, Ward 3, Precinct 74']],
+  ['KENT|GRAND RAPIDS CITY 76 WARD 3', ['City of Grand Rapids, Ward 3, Precinct 74']],
+  ['KENT|GRAND RAPIDS CITY 77 WARD 3', ['City of Grand Rapids, Ward 3, Precinct 74']],
+  ['KENT|WYOMING CITY 10 WARD 2', ['City of Wyoming, Ward 1, Precinct 10']],
+  ['KENT|WYOMING CITY 11 WARD 2', ['City of Wyoming, Ward 1, Precinct 11']],
+  ['KENT|WYOMING CITY 21 WARD 3', ['City of Wyoming, Ward 2, Precinct 21']],
+  ['KENT|WYOMING CITY 22 WARD 3', ['City of Wyoming, Ward 2, Precinct 22']],
+  ['MUSKEGON|MUSKEGON CITY 3 WARD 1', ['City of Muskegon, Ward 2, Precinct 3']],
+  ['MUSKEGON|MUSKEGON CITY 4 WARD 1', ['City of Muskegon, Ward 2, Precinct 4']],
+  ['MUSKEGON|MUSKEGON CITY 5 WARD 2', ['City of Muskegon, Ward 3, Precinct 5']],
+  ['MUSKEGON|MUSKEGON CITY 6 WARD 2', ['City of Muskegon, Ward 3, Precinct 6']],
+  ['MUSKEGON|MUSKEGON CITY 7 WARD 2', ['City of Muskegon, Ward 3, Precinct 7']],
+  ['MUSKEGON|MUSKEGON CITY 8 WARD 3', ['City of Muskegon, Ward 4, Precinct 8']],
+  ['MUSKEGON|MUSKEGON CITY 9 WARD 3', ['City of Muskegon, Ward 4, Precinct 9']],
+  ['MUSKEGON|MUSKEGON CITY 10 WARD 3', ['City of Muskegon, Ward 4, Precinct 9']],
+  ['MUSKEGON|MUSKEGON CITY 11 WARD 4', ['City of Muskegon, Ward 4, Precinct 9']],
+  ['MUSKEGON|MUSKEGON CITY 12 WARD 4', ['City of Muskegon, Ward 4, Precinct 9']],
+  ['MUSKEGON|MUSKEGON CITY 13 WARD 4', ['City of Muskegon, Ward 4, Precinct 9']],
+  ['MUSKEGON|MUSKEGON CITY 14 WARD 4', ['City of Muskegon, Ward 4, Precinct 9']],
+  ['MUSKEGON|NORTH MUSKEGON CITY 2', ['City of North Muskegon, Precinct 1']],
+  ['MUSKEGON|NORTON SHORES CITY 1 WARD 1', ['City of Norton Shores, Precinct 1']],
+  ['MUSKEGON|NORTON SHORES CITY 2 WARD 1', ['City of Norton Shores, Precinct 2']],
+  ['MUSKEGON|NORTON SHORES CITY 3 WARD 1', ['City of Norton Shores, Precinct 3']],
+  ['MUSKEGON|NORTON SHORES CITY 4 WARD 1', ['City of Norton Shores, Precinct 4']],
+  ['MUSKEGON|NORTON SHORES CITY 5 WARD 1', ['City of Norton Shores, Precinct 5']],
+  ['MUSKEGON|NORTON SHORES CITY 6 WARD 2', ['City of Norton Shores, Precinct 6']],
+  ['MUSKEGON|NORTON SHORES CITY 7 WARD 2', ['City of Norton Shores, Precinct 7']],
+  ['MUSKEGON|NORTON SHORES CITY 8 WARD 2', ['City of Norton Shores, Precinct 7']],
+  ['MUSKEGON|NORTON SHORES CITY 9 WARD 2', ['City of Norton Shores, Precinct 7']],
+  ['MUSKEGON|NORTON SHORES CITY 10 WARD 2', ['City of Norton Shores, Precinct 7']],
+  ['MUSKEGON|ROOSEVELT PARK CITY 2', ['City of Roosevelt Park, Precinct 1']]
+]);
 
 function computeRingBounds(ring) {
   let minX = Infinity;
@@ -633,6 +691,22 @@ function lookupPrecinctAssignment(county, precinct) {
     if (precinctAssignmentLookup.has(lookupKey)) {
       match = precinctAssignmentLookup.get(lookupKey);
       break;
+    }
+  }
+
+  if (!match) {
+    const normalizedPrecinct = normalizePrecinctAlias(precinct, countyKey);
+    const overrideKey = `${countyKey}|${normalizedPrecinct}`;
+    const overrideTargets = MANUAL_PRECINCT_ALIAS_OVERRIDES.get(overrideKey) || [];
+    for (const target of overrideTargets) {
+      for (const alias of buildPrecinctAliases(target, countyKey)) {
+        const lookupKey = `${countyKey}|${alias}`;
+        if (precinctAssignmentLookup.has(lookupKey)) {
+          match = precinctAssignmentLookup.get(lookupKey);
+          break;
+        }
+      }
+      if (match) break;
     }
   }
 
