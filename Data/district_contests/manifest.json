@@ -47,21 +47,21 @@
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2020.json",
-      "districts": 15
+      "districts": 13
     },
     {
       "year": 2022,
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2022.json",
-      "districts": 15
+      "districts": 12
     },
     {
       "year": 2024,
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2024.json",
-      "districts": 13
+      "districts": 12
     },
     {
       "year": 2008,
@@ -110,21 +110,21 @@
       "scope": "state_house",
       "contest_type": "state_house",
       "file": "state_house_state_house_2020.json",
-      "districts": 69
+      "districts": 99
     },
     {
       "year": 2022,
       "scope": "state_house",
       "contest_type": "state_house",
       "file": "state_house_state_house_2022.json",
-      "districts": 109
+      "districts": 99
     },
     {
       "year": 2024,
       "scope": "state_house",
       "contest_type": "state_house",
       "file": "state_house_state_house_2024.json",
-      "districts": 110
+      "districts": 99
     },
     {
       "year": 2010,
@@ -152,7 +152,7 @@
       "scope": "state_senate",
       "contest_type": "state_senate",
       "file": "state_senate_state_senate_2022.json",
-      "districts": 38
+      "districts": 35
     }
   ]
 }

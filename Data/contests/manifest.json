@@ -25,7 +25,7 @@
       "year": 2022,
       "contest_type": "attorney_general",
       "file": "attorney_general_2022.json",
-      "rows": 4718,
+      "rows": 4677,
       "level": "precinct"
     },
     {
@@ -53,7 +53,7 @@
       "year": 2022,
       "contest_type": "governor",
       "file": "governor_2022.json",
-      "rows": 4718,
+      "rows": 4677,
       "level": "precinct"
     },
     {
@@ -81,14 +81,14 @@
       "year": 2020,
       "contest_type": "president",
       "file": "president_2020.json",
-      "rows": 2871,
+      "rows": 4755,
       "level": "precinct"
     },
     {
       "year": 2024,
       "contest_type": "president",
       "file": "president_2024.json",
-      "rows": 4367,
+      "rows": 4347,
       "level": "precinct"
     },
     {
@@ -116,7 +116,7 @@
       "year": 2022,
       "contest_type": "secretary_of_state",
       "file": "secretary_of_state_2022.json",
-      "rows": 4702,
+      "rows": 4677,
       "level": "precinct"
     },
     {
@@ -151,14 +151,14 @@
       "year": 2020,
       "contest_type": "us_senate",
       "file": "us_senate_2020.json",
-      "rows": 2898,
+      "rows": 4755,
       "level": "precinct"
     },
     {
       "year": 2024,
       "contest_type": "us_senate",
       "file": "us_senate_2024.json",
-      "rows": 4366,
+      "rows": 4347,
       "level": "precinct"
     }
   ]

@@ -43,6 +43,15 @@ function parseCsvLine(line) {
   return fields;
 }
 
+function canonicalCountyName(rawCounty) {
+  const county = String(rawCounty || '').replace(/\s+/g, ' ').trim();
+  if (!county) return '';
+  if (/^Gd\.?\s+Traverse$/i.test(county)) return 'Grand Traverse';
+  if (/^Shiawasse$/i.test(county)) return 'Shiawassee';
+  if (/^St\.?\s*Joseph'?s$/i.test(county)) return 'St. Joseph';
+  return county;
+}
+
 function normalizeOffice(rawOffice) {
   const office = String(rawOffice || '').trim().toLowerCase();
   if (!office) return null;
@@ -183,9 +192,16 @@ const precinctContestAgg = new Map();
 const countyContestAgg = new Map();
 const districtContestAgg = new Map();
 
-const csvFiles = fs.readdirSync(dataDir)
-  .filter(name => /^\d{8}__mi__general__precinct\.csv$/i.test(name))
-  .sort();
+const preferredCsvByDate = new Map();
+fs.readdirSync(dataDir)
+  .filter(name => /^\d{8}__mi__general__precinct(?:_mvic)?\.csv$/i.test(name))
+  .sort()
+  .forEach(name => {
+    const dateKey = name.slice(0, 8);
+    const prev = preferredCsvByDate.get(dateKey);
+    if (!prev || /_mvic\.csv$/i.test(name)) preferredCsvByDate.set(dateKey, name);
+  });
+const csvFiles = Array.from(preferredCsvByDate.values()).sort();
 
 for (const fileName of csvFiles) {
   const year = Number(fileName.slice(0, 4));
@@ -219,7 +235,7 @@ for (const fileName of csvFiles) {
     const votes = Number(row.votes || 0);
     if (!Number.isFinite(votes) || votes < 0) continue;
 
-    const county = String(row.county || '').trim();
+    const county = canonicalCountyName(row.county);
     if (!county) continue;
 
     if (officeMeta.kind === 'statewide') {
