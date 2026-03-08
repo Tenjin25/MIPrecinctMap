@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 46.794904
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 73081,
+        "rep_votes": 129005,
+        "other_votes": 10849,
+        "total_votes": 212935,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 55924,
+        "margin_pct": 26.263414,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 53316,
+        "rep_votes": 108555,
+        "other_votes": 9217,
+        "total_votes": 171088,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 55239,
+        "margin_pct": 32.286893,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 21136,
+        "rep_votes": 52837,
+        "other_votes": 2522,
+        "total_votes": 76495,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 31701,
+        "margin_pct": 41.441924,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 36964,
+        "rep_votes": 83154,
+        "other_votes": 4696,
+        "total_votes": 124814,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 46190,
+        "margin_pct": 37.007067,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 50404,
+        "rep_votes": 100068,
+        "other_votes": 7473,
+        "total_votes": 157945,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 49664,
+        "margin_pct": 31.443857,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 43323,
+        "rep_votes": 48493,
+        "other_votes": 3355,
+        "total_votes": 95171,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 5170,
+        "margin_pct": 5.432327,
+        "winner": "REP",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 50796,
+        "rep_votes": 97262,
+        "other_votes": 6191,
+        "total_votes": 154249,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 46466,
+        "margin_pct": 30.12402,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 56063,
+        "rep_votes": 68745,
+        "other_votes": 5060,
+        "total_votes": 129868,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 12682,
+        "margin_pct": 9.7653,
+        "winner": "REP",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 57022,
+        "rep_votes": 123092,
+        "other_votes": 9341,
+        "total_votes": 189455,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 66070,
+        "margin_pct": 34.873717,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 21811,
+        "rep_votes": 35880,
+        "other_votes": 2448,
+        "total_votes": 60139,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 14069,
+        "margin_pct": 23.394137,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 31301,
+        "rep_votes": 45875,
+        "other_votes": 2728,
+        "total_votes": 79904,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 14574,
+        "margin_pct": 18.239387,
+        "winner": "REP",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 7251,
+        "rep_votes": 7576,
+        "other_votes": 703,
+        "total_votes": 15530,
+        "dem_candidate": "David Leyton",
+        "rep_candidate": "Bill Schuette",
+        "margin": 325,
+        "margin_pct": 2.092724,
+        "winner": "REP",
+        "color": ""
+      }
+    }
+  }
+}

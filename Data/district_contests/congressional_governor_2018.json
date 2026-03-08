@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 51.82169
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 120488,
+        "rep_votes": 162249,
+        "other_votes": 8740,
+        "total_votes": 291477,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 41761,
+        "margin_pct": 14.327374,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 94773,
+        "rep_votes": 144254,
+        "other_votes": 8565,
+        "total_votes": 247592,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 49481,
+        "margin_pct": 19.984895,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 50652,
+        "rep_votes": 70936,
+        "other_votes": 3429,
+        "total_votes": 125017,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 20284,
+        "margin_pct": 16.224993,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 82593,
+        "rep_votes": 110950,
+        "other_votes": 6144,
+        "total_votes": 199687,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 28357,
+        "margin_pct": 14.200724,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 92720,
+        "rep_votes": 137718,
+        "other_votes": 7393,
+        "total_votes": 237831,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 44998,
+        "margin_pct": 18.920158,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 105777,
+        "rep_votes": 71447,
+        "other_votes": 4079,
+        "total_votes": 181303,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 34330,
+        "margin_pct": -18.935153,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 111909,
+        "rep_votes": 114821,
+        "other_votes": 6173,
+        "total_votes": 232903,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 2912,
+        "margin_pct": 1.250306,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 93135,
+        "rep_votes": 89647,
+        "other_votes": 5121,
+        "total_votes": 187903,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 3488,
+        "margin_pct": -1.856277,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 104438,
+        "rep_votes": 157329,
+        "other_votes": 7797,
+        "total_votes": 269564,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 52891,
+        "margin_pct": 19.620943,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 40327,
+        "rep_votes": 42533,
+        "other_votes": 2142,
+        "total_votes": 85002,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 2206,
+        "margin_pct": 2.595233,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 62354,
+        "rep_votes": 53804,
+        "other_votes": 2809,
+        "total_votes": 118967,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 8550,
+        "margin_pct": -7.186867,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 15609,
+        "rep_votes": 9086,
+        "other_votes": 784,
+        "total_votes": 25479,
+        "dem_candidate": "Gretchen Whitmer",
+        "rep_candidate": "Bill Schuette",
+        "margin": 6523,
+        "margin_pct": -25.601476,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

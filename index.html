@@ -8125,11 +8125,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (totalVotes === 0) return;
         
-        const demPct = (demVotes / totalVotes) * 100;
-        const repPct = (repVotes / totalVotes) * 100;
-        const winner = repPct > demPct ? 'R' : 'D';
-        const marginPct = Math.abs(repPct - demPct);
-        const color = categoryColorForMargin(marginPct, winner);
+        const signedMarginPct = signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
+        const winner = winnerFromSignedMarginPct(signedMarginPct);
+        const color = colorForMarginMode(Math.abs(signedMarginPct), winner === 'T' ? 'R' : winner);
         
         expr.push([
           '==',
@@ -8296,9 +8294,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const repPct = (totalRep / totalVotes) * 100;
       const totalOther = Math.max(0, totalVotes - totalDem - totalRep);
       const otherPct = ((totalVotes - totalDem - totalRep) / totalVotes) * 100;
-      const winner = repPct > demPct ? 'R' : 'D';
-      const marginPct = Math.abs(repPct - demPct);
-      const color = categoryColorForMargin(marginPct, winner);
+      const signedMarginPct = signedMarginPctFromVotes(totalDem, totalRep, totalVotes);
+      const winner = winnerFromSignedMarginPct(signedMarginPct);
+      const color = colorForMarginMode(Math.abs(signedMarginPct), winner === 'T' ? 'R' : winner);
 
       // Apply uniform color to all districts (showing statewide result)
       const layerName = currentView === 'districts' ? 'district-fill' : 

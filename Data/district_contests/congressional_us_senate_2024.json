@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "match_coverage_pct": 93.892941
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 174049,
+        "rep_votes": 273924,
+        "other_votes": 12319,
+        "total_votes": 460292,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 99875,
+        "margin_pct": 21.698183,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 146903,
+        "rep_votes": 270049,
+        "other_votes": 13163,
+        "total_votes": 430115,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 123146,
+        "margin_pct": 28.630948,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 212184,
+        "rep_votes": 182429,
+        "other_votes": 11315,
+        "total_votes": 405928,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 29755,
+        "margin_pct": -7.330118,
+        "winner": "DEM",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 195112,
+        "rep_votes": 221053,
+        "other_votes": 12059,
+        "total_votes": 428224,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 25941,
+        "margin_pct": 6.057811,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 143527,
+        "rep_votes": 250832,
+        "other_votes": 12253,
+        "total_votes": 406612,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 107305,
+        "margin_pct": 26.390023,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 217527,
+        "rep_votes": 156245,
+        "other_votes": 12786,
+        "total_votes": 386558,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 61282,
+        "margin_pct": -15.853248,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 222032,
+        "rep_votes": 217308,
+        "other_votes": 10507,
+        "total_votes": 449847,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 4724,
+        "margin_pct": -1.050135,
+        "winner": "DEM",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 208947,
+        "rep_votes": 203521,
+        "other_votes": 11874,
+        "total_votes": 424342,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 5426,
+        "margin_pct": -1.278686,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 163062,
+        "rep_votes": 298237,
+        "other_votes": 11666,
+        "total_votes": 472965,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 135175,
+        "margin_pct": 28.580339,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 143147,
+        "rep_votes": 162972,
+        "other_votes": 9164,
+        "total_votes": 315283,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 19825,
+        "margin_pct": 6.288002,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 244376,
+        "rep_votes": 177352,
+        "other_votes": 11685,
+        "total_votes": 433413,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 67024,
+        "margin_pct": -15.464234,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 162049,
+        "rep_votes": 66429,
+        "other_votes": 17102,
+        "total_votes": 245580,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 95620,
+        "margin_pct": -38.936395,
+        "winner": "DEM",
+        "color": ""
+      },
+      "13": {
+        "dem_votes": 152977,
+        "rep_votes": 81939,
+        "other_votes": 10549,
+        "total_votes": 245465,
+        "dem_candidate": "ELISSA SLOTKIN",
+        "rep_candidate": "MIKE ROGERS",
+        "margin": 71038,
+        "margin_pct": -28.940175,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

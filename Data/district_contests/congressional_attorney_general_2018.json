@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 51.867701
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 103763,
+        "rep_votes": 165997,
+        "other_votes": 14022,
+        "total_votes": 283782,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 62234,
+        "margin_pct": 21.930214,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 78035,
+        "rep_votes": 148249,
+        "other_votes": 15239,
+        "total_votes": 241523,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 70214,
+        "margin_pct": 29.071351,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 43196,
+        "rep_votes": 73182,
+        "other_votes": 5355,
+        "total_votes": 121733,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 29986,
+        "margin_pct": 24.632598,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 71919,
+        "rep_votes": 114876,
+        "other_votes": 9293,
+        "total_votes": 196088,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 42957,
+        "margin_pct": 21.907001,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 81242,
+        "rep_votes": 139891,
+        "other_votes": 11298,
+        "total_votes": 232431,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 58649,
+        "margin_pct": 25.232865,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 96831,
+        "rep_votes": 73328,
+        "other_votes": 6721,
+        "total_votes": 176880,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 23503,
+        "margin_pct": -13.28754,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 96465,
+        "rep_votes": 121279,
+        "other_votes": 9538,
+        "total_votes": 227282,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 24814,
+        "margin_pct": 10.917715,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 79420,
+        "rep_votes": 94238,
+        "other_votes": 9728,
+        "total_votes": 183386,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 14818,
+        "margin_pct": 8.080224,
+        "winner": "REP",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 89263,
+        "rep_votes": 160653,
+        "other_votes": 12061,
+        "total_votes": 261977,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 71390,
+        "margin_pct": 27.250484,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 35969,
+        "rep_votes": 43392,
+        "other_votes": 3318,
+        "total_votes": 82679,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 7423,
+        "margin_pct": 8.978096,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 56823,
+        "rep_votes": 54637,
+        "other_votes": 4330,
+        "total_votes": 115790,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 2186,
+        "margin_pct": -1.887901,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 14231,
+        "rep_votes": 9358,
+        "other_votes": 1243,
+        "total_votes": 24832,
+        "dem_candidate": "Dana Nessel",
+        "rep_candidate": "Tom Leonard",
+        "margin": 4873,
+        "margin_pct": -19.623872,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "match_coverage_pct": 86.831405
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 155089,
+        "rep_votes": 205810,
+        "other_votes": 8393,
+        "total_votes": 369292,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 50721,
+        "margin_pct": 13.73466,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 122687,
+        "rep_votes": 187447,
+        "other_votes": 9093,
+        "total_votes": 319227,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 64760,
+        "margin_pct": 20.286505,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 163378,
+        "rep_votes": 130062,
+        "other_votes": 7247,
+        "total_votes": 300687,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 33316,
+        "margin_pct": -11.07996,
+        "winner": "DEM",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 158469,
+        "rep_votes": 159504,
+        "other_votes": 7808,
+        "total_votes": 325781,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 1035,
+        "margin_pct": 0.317698,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 115183,
+        "rep_votes": 175680,
+        "other_votes": 7796,
+        "total_votes": 298659,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 60497,
+        "margin_pct": 20.256212,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 161684,
+        "rep_votes": 100951,
+        "other_votes": 4972,
+        "total_votes": 267607,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 60733,
+        "margin_pct": -22.694847,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 177580,
+        "rep_votes": 153184,
+        "other_votes": 7615,
+        "total_votes": 338379,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 24396,
+        "margin_pct": -7.209667,
+        "winner": "DEM",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 128884,
+        "rep_votes": 119307,
+        "other_votes": 6175,
+        "total_votes": 254366,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 9577,
+        "margin_pct": -3.765047,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 132604,
+        "rep_votes": 196713,
+        "other_votes": 8176,
+        "total_votes": 337493,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 64109,
+        "margin_pct": 18.995653,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 118124,
+        "rep_votes": 101944,
+        "other_votes": 4986,
+        "total_votes": 225054,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 16180,
+        "margin_pct": -7.189386,
+        "winner": "DEM",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 210223,
+        "rep_votes": 124341,
+        "other_votes": 6336,
+        "total_votes": 340900,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 85882,
+        "margin_pct": -25.192725,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 140075,
+        "rep_votes": 42518,
+        "other_votes": 3818,
+        "total_votes": 186411,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 97557,
+        "margin_pct": -52.334358,
+        "winner": "DEM",
+        "color": ""
+      },
+      "13": {
+        "dem_votes": 119894,
+        "rep_votes": 45457,
+        "other_votes": 3900,
+        "total_votes": 169251,
+        "dem_candidate": "DANA NESSEL",
+        "rep_candidate": "MATTHEW DEPERNO",
+        "margin": 74437,
+        "margin_pct": -43.980242,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

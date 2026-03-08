@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 40.220244
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 163852,
+        "rep_votes": 115876,
+        "other_votes": 10661,
+        "total_votes": 290389,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 47976,
+        "margin_pct": -16.521287,
+        "winner": "DEM",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 126868,
+        "rep_votes": 104216,
+        "other_votes": 9165,
+        "total_votes": 240249,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 22652,
+        "margin_pct": -9.428551,
+        "winner": "DEM",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 43912,
+        "rep_votes": 52075,
+        "other_votes": 3149,
+        "total_votes": 99136,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 8163,
+        "margin_pct": 8.234143,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 80970,
+        "rep_votes": 87097,
+        "other_votes": 5607,
+        "total_votes": 173674,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 6127,
+        "margin_pct": 3.527874,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 121964,
+        "rep_votes": 99662,
+        "other_votes": 9311,
+        "total_votes": 230937,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 22302,
+        "margin_pct": -9.657179,
+        "winner": "DEM",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 81843,
+        "rep_votes": 41444,
+        "other_votes": 4923,
+        "total_votes": 128210,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 40399,
+        "margin_pct": -31.510023,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 101815,
+        "rep_votes": 80600,
+        "other_votes": 7229,
+        "total_votes": 189644,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 21215,
+        "margin_pct": -11.18675,
+        "winner": "DEM",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 123095,
+        "rep_votes": 70277,
+        "other_votes": 6900,
+        "total_votes": 200272,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 52818,
+        "margin_pct": -26.373133,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 127675,
+        "rep_votes": 98111,
+        "other_votes": 10271,
+        "total_votes": 236057,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 29564,
+        "margin_pct": -12.524094,
+        "winner": "DEM",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 39961,
+        "rep_votes": 22411,
+        "other_votes": 2567,
+        "total_votes": 64939,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 17550,
+        "margin_pct": -27.025362,
+        "winner": "DEM",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 44362,
+        "rep_votes": 26988,
+        "other_votes": 2991,
+        "total_votes": 74341,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 17374,
+        "margin_pct": -23.370684,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 14958,
+        "rep_votes": 6240,
+        "other_votes": 1082,
+        "total_votes": 22280,
+        "dem_candidate": "Carl Levin",
+        "rep_candidate": "Jack Hoogendyk, Jr.",
+        "margin": 8718,
+        "margin_pct": -39.129264,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 40.329494
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 142438,
+        "rep_votes": 150514,
+        "other_votes": 5541,
+        "total_votes": 298493,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 8076,
+        "margin_pct": 2.705591,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 117302,
+        "rep_votes": 125112,
+        "other_votes": 4779,
+        "total_votes": 247193,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 7810,
+        "margin_pct": 3.159475,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 43266,
+        "rep_votes": 57383,
+        "other_votes": 1662,
+        "total_votes": 102311,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 14117,
+        "margin_pct": 13.798125,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 80241,
+        "rep_votes": 95216,
+        "other_votes": 3098,
+        "total_votes": 178555,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 14975,
+        "margin_pct": 8.386772,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 112952,
+        "rep_votes": 123621,
+        "other_votes": 4522,
+        "total_votes": 241095,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 10669,
+        "margin_pct": 4.425227,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 79146,
+        "rep_votes": 51895,
+        "other_votes": 2030,
+        "total_votes": 133071,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 27251,
+        "margin_pct": -20.478542,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 95563,
+        "rep_votes": 97298,
+        "other_votes": 3351,
+        "total_votes": 196212,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 1735,
+        "margin_pct": 0.884248,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 111639,
+        "rep_votes": 91167,
+        "other_votes": 3642,
+        "total_votes": 206448,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 20472,
+        "margin_pct": -9.916299,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 112792,
+        "rep_votes": 127822,
+        "other_votes": 4983,
+        "total_votes": 245597,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 15030,
+        "margin_pct": 6.119782,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 35671,
+        "rep_votes": 31001,
+        "other_votes": 1183,
+        "total_votes": 67855,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 4670,
+        "margin_pct": -6.882323,
+        "winner": "DEM",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 40533,
+        "rep_votes": 35433,
+        "other_votes": 1194,
+        "total_votes": 77160,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 5100,
+        "margin_pct": -6.609642,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 13889,
+        "rep_votes": 8836,
+        "other_votes": 509,
+        "total_votes": 23234,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "John Mccain",
+        "margin": 5053,
+        "margin_pct": -21.7483,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

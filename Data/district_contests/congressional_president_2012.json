@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 48.043726
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 133584,
+        "rep_votes": 170546,
+        "other_votes": 3730,
+        "total_votes": 307860,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 36962,
+        "margin_pct": 12.006107,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 110484,
+        "rep_votes": 145555,
+        "other_votes": 3258,
+        "total_votes": 259297,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 35071,
+        "margin_pct": 13.525417,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 45592,
+        "rep_votes": 79754,
+        "other_votes": 1182,
+        "total_votes": 126528,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 34162,
+        "margin_pct": 26.999557,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 85911,
+        "rep_votes": 123950,
+        "other_votes": 2353,
+        "total_votes": 212214,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 38039,
+        "margin_pct": 17.924831,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 109559,
+        "rep_votes": 144932,
+        "other_votes": 3069,
+        "total_votes": 257560,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 35373,
+        "margin_pct": 13.733887,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 79588,
+        "rep_votes": 59769,
+        "other_votes": 1351,
+        "total_votes": 140708,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 19819,
+        "margin_pct": -14.085198,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 106200,
+        "rep_votes": 127143,
+        "other_votes": 2478,
+        "total_votes": 235821,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 20943,
+        "margin_pct": 8.880888,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 107276,
+        "rep_votes": 98347,
+        "other_votes": 2157,
+        "total_votes": 207780,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 8929,
+        "margin_pct": -4.297334,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 117634,
+        "rep_votes": 167688,
+        "other_votes": 3241,
+        "total_votes": 288563,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 50054,
+        "margin_pct": 17.345952,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 45411,
+        "rep_votes": 48696,
+        "other_votes": 878,
+        "total_votes": 94985,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 3285,
+        "margin_pct": 3.458441,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 56863,
+        "rep_votes": 60286,
+        "other_votes": 1088,
+        "total_votes": 118237,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 3423,
+        "margin_pct": 2.895033,
+        "winner": "REP",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 13945,
+        "rep_votes": 9183,
+        "other_votes": 260,
+        "total_votes": 23388,
+        "dem_candidate": "Barack Obama",
+        "rep_candidate": "Mitt Romney",
+        "margin": 4762,
+        "margin_pct": -20.360869,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

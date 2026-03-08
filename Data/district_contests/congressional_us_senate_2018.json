@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 51.88538
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 118968,
+        "rep_votes": 166106,
+        "other_votes": 6138,
+        "total_votes": 291212,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 47138,
+        "margin_pct": 16.186833,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 92681,
+        "rep_votes": 148323,
+        "other_votes": 6021,
+        "total_votes": 247025,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 55642,
+        "margin_pct": 22.524846,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 49040,
+        "rep_votes": 73464,
+        "other_votes": 2151,
+        "total_votes": 124655,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 24424,
+        "margin_pct": 19.593277,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 80382,
+        "rep_votes": 114766,
+        "other_votes": 4124,
+        "total_votes": 199272,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 34384,
+        "margin_pct": 17.254807,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 90437,
+        "rep_votes": 141998,
+        "other_votes": 5098,
+        "total_votes": 237533,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 51561,
+        "margin_pct": 21.706879,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 103946,
+        "rep_votes": 74553,
+        "other_votes": 2522,
+        "total_votes": 181021,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 29393,
+        "margin_pct": -16.237343,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 107567,
+        "rep_votes": 120869,
+        "other_votes": 3698,
+        "total_votes": 232134,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 13302,
+        "margin_pct": 5.730311,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 89748,
+        "rep_votes": 94061,
+        "other_votes": 3684,
+        "total_votes": 187493,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 4313,
+        "margin_pct": 2.300353,
+        "winner": "REP",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 102013,
+        "rep_votes": 162553,
+        "other_votes": 4678,
+        "total_votes": 269244,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 60540,
+        "margin_pct": 22.485181,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 40119,
+        "rep_votes": 43490,
+        "other_votes": 1245,
+        "total_votes": 84854,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 3371,
+        "margin_pct": 3.972706,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 60872,
+        "rep_votes": 56038,
+        "other_votes": 1788,
+        "total_votes": 118698,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 4834,
+        "margin_pct": -4.07252,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 15167,
+        "rep_votes": 9663,
+        "other_votes": 562,
+        "total_votes": 25392,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "John James",
+        "margin": 5504,
+        "margin_pct": -21.676118,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

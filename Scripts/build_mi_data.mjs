@@ -168,6 +168,217 @@ function fileExists(filePath) {
   }
 }
 
+function readJson(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function normalizeCountyLookup(rawCounty) {
+  return canonicalCountyName(rawCounty)
+    .toUpperCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function normalizeNumericToken(token) {
+  if (!/^\d+$/.test(token)) return token;
+  return String(Number(token));
+}
+
+function normalizePrecinctAlias(rawValue, county = '') {
+  let value = String(rawValue || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toUpperCase()
+    .replace(/[’']/g, '')
+    .replace(/\([^)]*\)/g, ' ')
+    .replace(/\s+-\s+[A-Z]{2,4}\s*$/g, ' ')
+    .replace(/\bPCT\b/g, 'PRECINCT')
+    .replace(/\bTWP\b/g, 'TOWNSHIP')
+    .replace(/\bCHARTER TOWNSHIP\b/g, 'TOWNSHIP')
+    .replace(/\bDISTRICT\b/g, ' ')
+    .replace(/\bDIST\b/g, ' ')
+    .replace(/\bTHE\s+(CITY|VILLAGE|TOWNSHIP)\s+OF\b/g, '$1 OF')
+    .replace(/\bA MICHIGAN (CITY|VILLAGE|TOWNSHIP)\b/g, ' ')
+    .replace(/\bPRECINCT\s*0+(\d)\b/g, 'PRECINCT $1')
+    .replace(/\bWARD\s*0+(\d)\b/g, 'WARD $1')
+    .replace(/,/g, ' ')
+    .replace(/[./-]/g, ' ')
+    .replace(/&/g, ' AND ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (county) {
+    const countyKey = normalizeCountyLookup(county);
+    if (countyKey) {
+      value = value.replace(new RegExp(`\\b${countyKey.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b$`), '').trim();
+    }
+  }
+
+  const tokens = value
+    .split(' ')
+    .filter(Boolean)
+    .map(normalizeNumericToken);
+
+  return tokens.join(' ').trim();
+}
+
+function buildPrecinctAliases(rawValue, county = '') {
+  const aliases = new Set();
+
+  function push(candidate) {
+    const normalized = normalizePrecinctAlias(candidate, county);
+    if (normalized) aliases.add(normalized);
+  }
+
+  push(rawValue);
+  const base = normalizePrecinctAlias(rawValue, county);
+  if (!base) return aliases;
+
+  const wardPrecinctMatch = base.match(/^(\d+)\s+(\d+)$/);
+  if (wardPrecinctMatch) {
+    push(`WARD ${wardPrecinctMatch[1]} PRECINCT ${wardPrecinctMatch[2]}`);
+  }
+
+  const dashWardMatch = base.match(/^(\d+)\s+(\d+)$/);
+  if (dashWardMatch) {
+    push(`${dashWardMatch[1]}-${dashWardMatch[2]}`);
+  }
+
+  const cityOfMatch = base.match(/^(CITY|VILLAGE|TOWNSHIP) OF (.+?) PRECINCT (\d+)$/);
+  if (cityOfMatch) {
+    push(`${cityOfMatch[2]} ${cityOfMatch[1]} PRECINCT ${cityOfMatch[3]}`);
+    push(`${cityOfMatch[2]} PRECINCT ${cityOfMatch[3]}`);
+  }
+
+  const suffixTypeMatch = base.match(/^(.+?) (CITY|VILLAGE|TOWNSHIP) PRECINCT (\d+)$/);
+  if (suffixTypeMatch) {
+    push(`${suffixTypeMatch[2]} OF ${suffixTypeMatch[1]} PRECINCT ${suffixTypeMatch[3]}`);
+    push(`${suffixTypeMatch[1]} PRECINCT ${suffixTypeMatch[3]}`);
+  }
+
+  const townshipOfMatch = base.match(/^TOWNSHIP OF (.+)$/);
+  if (townshipOfMatch) {
+    push(`${townshipOfMatch[1]} TOWNSHIP`);
+  }
+
+  const wardLeadingMatch = base.match(/^WARD (\d+) PRECINCT (\d+)$/);
+  if (wardLeadingMatch) {
+    push(`${wardLeadingMatch[1]}-${wardLeadingMatch[2]}`);
+    push(`PRECINCT ${wardLeadingMatch[2]} WARD ${wardLeadingMatch[1]}`);
+  }
+
+  const wardTrailingMatch = base.match(/^PRECINCT (\d+) WARD (\d+)$/);
+  if (wardTrailingMatch) {
+    push(`WARD ${wardTrailingMatch[2]} PRECINCT ${wardTrailingMatch[1]}`);
+    push(`${wardTrailingMatch[2]}-${wardTrailingMatch[1]}`);
+  }
+
+  return aliases;
+}
+
+function computeRingBounds(ring) {
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  for (const [x, y] of ring) {
+    if (x < minX) minX = x;
+    if (y < minY) minY = y;
+    if (x > maxX) maxX = x;
+    if (y > maxY) maxY = y;
+  }
+
+  return { minX, minY, maxX, maxY };
+}
+
+function boundsContainPoint(bounds, point) {
+  return (
+    point[0] >= bounds.minX &&
+    point[0] <= bounds.maxX &&
+    point[1] >= bounds.minY &&
+    point[1] <= bounds.maxY
+  );
+}
+
+function pointInRing(point, ring) {
+  const x = point[0];
+  const y = point[1];
+  let inside = false;
+
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i += 1) {
+    const xi = ring[i][0];
+    const yi = ring[i][1];
+    const xj = ring[j][0];
+    const yj = ring[j][1];
+    const intersects = ((yi > y) !== (yj > y)) &&
+      (x < ((xj - xi) * (y - yi)) / ((yj - yi) || Number.EPSILON) + xi);
+    if (intersects) inside = !inside;
+  }
+
+  return inside;
+}
+
+function pointInPolygon(point, rings) {
+  if (!rings.length || !pointInRing(point, rings[0])) return false;
+  for (let i = 1; i < rings.length; i += 1) {
+    if (pointInRing(point, rings[i])) return false;
+  }
+  return true;
+}
+
+function pointInGeometry(point, geometry) {
+  if (!geometry) return false;
+  if (geometry.type === 'Polygon') return pointInPolygon(point, geometry.coordinates || []);
+  if (geometry.type === 'MultiPolygon') {
+    return (geometry.coordinates || []).some(polygon => pointInPolygon(point, polygon));
+  }
+  return false;
+}
+
+function normalizeDistrictId(rawValue) {
+  const num = Number(String(rawValue || '').trim());
+  if (!Number.isFinite(num)) return '';
+  return String(num);
+}
+
+function loadDistrictFeatures(filePath, propertyName) {
+  const geojson = readJson(filePath);
+  return (geojson.features || [])
+    .map(feature => {
+      const district = normalizeDistrictId(feature?.properties?.[propertyName]);
+      if (!district || !feature?.geometry) return null;
+      let bounds = null;
+      if (feature.geometry.type === 'Polygon') {
+        bounds = computeRingBounds(feature.geometry.coordinates[0] || []);
+      } else if (feature.geometry.type === 'MultiPolygon') {
+        const polygons = feature.geometry.coordinates || [];
+        const firstRing = polygons[0]?.[0] || [];
+        bounds = computeRingBounds(firstRing);
+        for (let i = 1; i < polygons.length; i += 1) {
+          const nextBounds = computeRingBounds(polygons[i][0] || []);
+          bounds = {
+            minX: Math.min(bounds.minX, nextBounds.minX),
+            minY: Math.min(bounds.minY, nextBounds.minY),
+            maxX: Math.max(bounds.maxX, nextBounds.maxX),
+            maxY: Math.max(bounds.maxY, nextBounds.maxY)
+          };
+        }
+      }
+      if (!bounds) return null;
+      return { district, bounds, geometry: feature.geometry };
+    })
+    .filter(Boolean);
+}
+
+function assignPointToDistrict(point, districtFeatures) {
+  for (const feature of districtFeatures) {
+    if (!boundsContainPoint(feature.bounds, point)) continue;
+    if (pointInGeometry(point, feature.geometry)) return feature.district;
+  }
+  return '';
+}
+
 function runMapshaper(inputZip, outputGeojson) {
   if (fileExists(outputGeojson)) return;
   const result = spawnSync(
@@ -191,6 +402,70 @@ function writeEmptyFeatureCollection(filePath) {
 const precinctContestAgg = new Map();
 const countyContestAgg = new Map();
 const districtContestAgg = new Map();
+const districtCoverageAgg = new Map();
+
+const districtFeaturesByScope = {
+  congressional: loadDistrictFeatures(path.join(tilesetDir, 'mi_cd118_tileset.geojson'), 'CD118FP'),
+  state_house: loadDistrictFeatures(path.join(tilesetDir, 'mi_state_house_2022_lines_tileset.geojson'), 'SLDLST'),
+  state_senate: loadDistrictFeatures(path.join(tilesetDir, 'mi_state_senate_2022_lines_tileset.geojson'), 'SLDUST')
+};
+
+const precinctDistrictLookup = new Map();
+const centroidGeojsonPath = path.join(dataDir, 'precinct_centroids.geojson');
+if (fileExists(centroidGeojsonPath)) {
+  const centroidGeojson = readJson(centroidGeojsonPath);
+  for (const feature of centroidGeojson.features || []) {
+    const point = feature?.geometry?.coordinates;
+    if (!Array.isArray(point) || point.length < 2) continue;
+    const props = feature.properties || {};
+    const countyKey = normalizeCountyLookup(props.county_nam || props.County_Name || props.Jurisdiction_Name || props.jurisdiction_name || '');
+    if (!countyKey) continue;
+
+    const districts = {
+      congressional: assignPointToDistrict(point, districtFeaturesByScope.congressional),
+      state_house: assignPointToDistrict(point, districtFeaturesByScope.state_house),
+      state_senate: assignPointToDistrict(point, districtFeaturesByScope.state_senate)
+    };
+
+    const rawNames = [
+      props.prec_id,
+      props.precinct_long_name,
+      props.precinct_short_name,
+      props.Precinct_Long_Name,
+      props.Precinct_Short_Name
+    ];
+
+    const aliases = new Set();
+    for (const rawName of rawNames) {
+      for (const alias of buildPrecinctAliases(rawName, countyKey)) aliases.add(alias);
+    }
+
+    for (const alias of aliases) {
+      const lookupKey = `${countyKey}|${alias}`;
+      if (!precinctDistrictLookup.has(lookupKey)) precinctDistrictLookup.set(lookupKey, districts);
+    }
+  }
+}
+
+const precinctDistrictCache = new Map();
+
+function lookupPrecinctDistricts(county, precinct) {
+  const countyKey = normalizeCountyLookup(county);
+  const cacheKey = `${countyKey}|${precinct}`;
+  if (precinctDistrictCache.has(cacheKey)) return precinctDistrictCache.get(cacheKey);
+
+  let match = null;
+  for (const alias of buildPrecinctAliases(precinct, countyKey)) {
+    const lookupKey = `${countyKey}|${alias}`;
+    if (precinctDistrictLookup.has(lookupKey)) {
+      match = precinctDistrictLookup.get(lookupKey);
+      break;
+    }
+  }
+
+  precinctDistrictCache.set(cacheKey, match);
+  return match;
+}
 
 const preferredCsvByDate = new Map();
 fs.readdirSync(dataDir)
@@ -246,6 +521,24 @@ for (const fileName of csvFiles) {
         const precinctAggKey = `${year}|${officeMeta.contestType}|${county}|${precinctKey}`;
         const precinctNode = ensureAgg(precinctContestAgg, precinctAggKey);
         addVotes(precinctNode, row.party, String(row.candidate || '').trim(), votes);
+
+        const matchedDistricts = lookupPrecinctDistricts(county, precinct);
+        for (const scope of Object.keys(districtFeaturesByScope)) {
+          const coverageKey = `${year}|${scope}|${officeMeta.contestType}`;
+          if (!districtCoverageAgg.has(coverageKey)) {
+            districtCoverageAgg.set(coverageKey, { total_votes: 0, matched_votes: 0 });
+          }
+          const coverage = districtCoverageAgg.get(coverageKey);
+          coverage.total_votes += votes;
+
+          const district = matchedDistricts?.[scope] || '';
+          if (!district) continue;
+
+          coverage.matched_votes += votes;
+          const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${district}`;
+          const districtNode = ensureAgg(districtContestAgg, districtAggKey);
+          addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes);
+        }
       }
 
       const countyAggKey = `${year}|${officeMeta.contestType}|${county}`;
@@ -323,12 +616,17 @@ for (const [aggKey, rawNode] of districtContestAgg.entries()) {
   const [yearStr, scope, contestType, district] = aggKey.split('|');
   const year = Number(yearStr);
   const finalized = finalizeNode(rawNode);
+  const coverageKey = `${year}|${scope}|${contestType}`;
+  const coverage = districtCoverageAgg.get(coverageKey);
+  const matchCoveragePct = coverage && coverage.total_votes > 0
+    ? Number(((coverage.matched_votes / coverage.total_votes) * 100).toFixed(6))
+    : 100;
 
   if (!districtResultsByYear[year]) districtResultsByYear[year] = {};
   if (!districtResultsByYear[year][scope]) districtResultsByYear[year][scope] = {};
   if (!districtResultsByYear[year][scope][contestType]) {
     districtResultsByYear[year][scope][contestType] = {
-      meta: { match_coverage_pct: 100 },
+      meta: { match_coverage_pct: matchCoveragePct },
       general: { results: {} }
     };
   }
@@ -377,7 +675,7 @@ writeJson(path.join(dataDir, 'mi_district_results_2022_lines.json'), {
   metadata: {
     generated_at: new Date().toISOString(),
     source: 'Michigan precinct CSV files',
-    note: 'District rows come directly from reported contest districts; statewide reallocation to district lines is not included.'
+    note: 'Statewide contests are aggregated from matched official precinct centroids to current district polygons; district-office contests still use reported district rows.'
   },
   results_by_year: districtResultsByYear
 });

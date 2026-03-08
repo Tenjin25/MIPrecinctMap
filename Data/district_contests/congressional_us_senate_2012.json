@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 48.021994
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 154896,
+        "rep_votes": 138511,
+        "other_votes": 9996,
+        "total_votes": 303403,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 16385,
+        "margin_pct": -5.400408,
+        "winner": "DEM",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 124310,
+        "rep_votes": 122952,
+        "other_votes": 8987,
+        "total_votes": 256249,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 1358,
+        "margin_pct": -0.529953,
+        "winner": "DEM",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 47547,
+        "rep_votes": 74213,
+        "other_votes": 3509,
+        "total_votes": 125269,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 26666,
+        "margin_pct": 21.28699,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 88657,
+        "rep_votes": 114298,
+        "other_votes": 6531,
+        "total_votes": 209486,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 25641,
+        "margin_pct": 12.239959,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 119059,
+        "rep_votes": 123286,
+        "other_votes": 9128,
+        "total_votes": 251473,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 4227,
+        "margin_pct": 1.680896,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 83090,
+        "rep_votes": 50113,
+        "other_votes": 4823,
+        "total_votes": 138026,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 32977,
+        "margin_pct": -23.891875,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 117678,
+        "rep_votes": 106992,
+        "other_votes": 7369,
+        "total_votes": 232039,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 10686,
+        "margin_pct": -4.60526,
+        "winner": "DEM",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 120915,
+        "rep_votes": 77306,
+        "other_votes": 6569,
+        "total_votes": 204790,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 43609,
+        "margin_pct": -21.294497,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 140595,
+        "rep_votes": 132208,
+        "other_votes": 9716,
+        "total_votes": 282519,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 8387,
+        "margin_pct": -2.96865,
+        "winner": "DEM",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 51998,
+        "rep_votes": 37731,
+        "other_votes": 2946,
+        "total_votes": 92675,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 14267,
+        "margin_pct": -15.394659,
+        "winner": "DEM",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 61469,
+        "rep_votes": 50506,
+        "other_votes": 3625,
+        "total_votes": 115600,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 10963,
+        "margin_pct": -9.483564,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 14669,
+        "rep_votes": 7238,
+        "other_votes": 988,
+        "total_votes": 22895,
+        "dem_candidate": "Debbie Stabenow",
+        "rep_candidate": "Pete Hoekstra",
+        "margin": 7431,
+        "margin_pct": -32.456868,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

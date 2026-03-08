@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 51.108277
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 70401,
+        "rep_votes": 123801,
+        "other_votes": 8309,
+        "total_votes": 202511,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 53400,
+        "margin_pct": 26.368938,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 56592,
+        "rep_votes": 111450,
+        "other_votes": 8598,
+        "total_votes": 176640,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 54858,
+        "margin_pct": 31.056386,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 22821,
+        "rep_votes": 57856,
+        "other_votes": 2933,
+        "total_votes": 83610,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 35035,
+        "margin_pct": 41.902882,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 44069,
+        "rep_votes": 91308,
+        "other_votes": 6043,
+        "total_votes": 141420,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 47239,
+        "margin_pct": 33.403338,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 58044,
+        "rep_votes": 106655,
+        "other_votes": 7975,
+        "total_votes": 172674,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 48611,
+        "margin_pct": 28.151893,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 58387,
+        "rep_votes": 64180,
+        "other_votes": 4070,
+        "total_votes": 126637,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 5793,
+        "margin_pct": 4.574492,
+        "winner": "REP",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 62061,
+        "rep_votes": 105244,
+        "other_votes": 5723,
+        "total_votes": 173028,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 43183,
+        "margin_pct": 24.957232,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 59230,
+        "rep_votes": 76743,
+        "other_votes": 3972,
+        "total_votes": 139945,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 17513,
+        "margin_pct": 12.514202,
+        "winner": "REP",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 61687,
+        "rep_votes": 129243,
+        "other_votes": 7754,
+        "total_votes": 198684,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 67556,
+        "margin_pct": 34.001731,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 22996,
+        "rep_votes": 35411,
+        "other_votes": 2072,
+        "total_votes": 60479,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 12415,
+        "margin_pct": 20.527787,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 31541,
+        "rep_votes": 44917,
+        "other_votes": 2466,
+        "total_votes": 78924,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 13376,
+        "margin_pct": 16.94795,
+        "winner": "REP",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 8976,
+        "rep_votes": 8383,
+        "other_votes": 775,
+        "total_votes": 18134,
+        "dem_candidate": "Mark Totten",
+        "rep_candidate": "Bill Schuette",
+        "margin": 593,
+        "margin_pct": -3.2701,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

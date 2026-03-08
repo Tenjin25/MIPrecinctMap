@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 46.742961
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 69969,
+        "rep_votes": 142364,
+        "other_votes": 6538,
+        "total_votes": 218871,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 72395,
+        "margin_pct": 33.076561,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 49658,
+        "rep_votes": 120829,
+        "other_votes": 4152,
+        "total_votes": 174639,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 71171,
+        "margin_pct": 40.753211,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 18265,
+        "rep_votes": 58900,
+        "other_votes": 1281,
+        "total_votes": 78446,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 40635,
+        "margin_pct": 51.799964,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 32881,
+        "rep_votes": 92492,
+        "other_votes": 2521,
+        "total_votes": 127894,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 59611,
+        "margin_pct": 46.609692,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 49389,
+        "rep_votes": 108765,
+        "other_votes": 3864,
+        "total_votes": 162018,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 59376,
+        "margin_pct": 36.64778,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 38919,
+        "rep_votes": 57908,
+        "other_votes": 1646,
+        "total_votes": 98473,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 18989,
+        "margin_pct": 19.283458,
+        "winner": "REP",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 48492,
+        "rep_votes": 106415,
+        "other_votes": 2926,
+        "total_votes": 157833,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 57923,
+        "margin_pct": 36.698916,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 50979,
+        "rep_votes": 78488,
+        "other_votes": 2549,
+        "total_votes": 132016,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 27509,
+        "margin_pct": 20.837626,
+        "winner": "REP",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 53172,
+        "rep_votes": 138350,
+        "other_votes": 4121,
+        "total_votes": 195643,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 85178,
+        "margin_pct": 43.537464,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 20817,
+        "rep_votes": 40886,
+        "other_votes": 1089,
+        "total_votes": 62792,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 20069,
+        "margin_pct": 31.961078,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 27530,
+        "rep_votes": 54304,
+        "other_votes": 1270,
+        "total_votes": 83104,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 26774,
+        "margin_pct": 32.217462,
+        "winner": "REP",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 6651,
+        "rep_votes": 9219,
+        "other_votes": 371,
+        "total_votes": 16241,
+        "dem_candidate": "Virg Bernero",
+        "rep_candidate": "Rick Snyder",
+        "margin": 2568,
+        "margin_pct": 15.811834,
+        "winner": "REP",
+        "color": ""
+      }
+    }
+  }
+}

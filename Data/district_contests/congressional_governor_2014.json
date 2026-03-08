@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "match_coverage_pct": 51.08614
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 85881,
+        "rep_votes": 114747,
+        "other_votes": 6056,
+        "total_votes": 206684,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 28866,
+        "margin_pct": 13.966248,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 69272,
+        "rep_votes": 105661,
+        "other_votes": 5403,
+        "total_votes": 180336,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 36389,
+        "margin_pct": 20.178445,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 24426,
+        "rep_votes": 59974,
+        "other_votes": 1622,
+        "total_votes": 86022,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 35548,
+        "margin_pct": 41.324312,
+        "winner": "REP",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 47746,
+        "rep_votes": 93616,
+        "other_votes": 3332,
+        "total_votes": 144694,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 45870,
+        "margin_pct": 31.701384,
+        "winner": "REP",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 69396,
+        "rep_votes": 103253,
+        "other_votes": 4780,
+        "total_votes": 177429,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 33857,
+        "margin_pct": 19.081999,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 59376,
+        "rep_votes": 68586,
+        "other_votes": 2249,
+        "total_votes": 130211,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 9210,
+        "margin_pct": 7.073135,
+        "winner": "REP",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 71516,
+        "rep_votes": 101864,
+        "other_votes": 3276,
+        "total_votes": 176656,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 30348,
+        "margin_pct": 17.17915,
+        "winner": "REP",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 71269,
+        "rep_votes": 68537,
+        "other_votes": 3462,
+        "total_votes": 143268,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 2732,
+        "margin_pct": -1.906916,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 71743,
+        "rep_votes": 127446,
+        "other_votes": 5069,
+        "total_votes": 204258,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 55703,
+        "margin_pct": 27.270902,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 24926,
+        "rep_votes": 36544,
+        "other_votes": 1243,
+        "total_votes": 62713,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 11618,
+        "margin_pct": 18.525665,
+        "winner": "REP",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 30726,
+        "rep_votes": 49517,
+        "other_votes": 1324,
+        "total_votes": 81567,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 18791,
+        "margin_pct": 23.037503,
+        "winner": "REP",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 9400,
+        "rep_votes": 8884,
+        "other_votes": 435,
+        "total_votes": 18719,
+        "dem_candidate": "Mark Schauer",
+        "rep_candidate": "Rick Snyder",
+        "margin": 516,
+        "margin_pct": -2.756558,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}

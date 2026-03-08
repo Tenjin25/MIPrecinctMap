@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "match_coverage_pct": 86.822457
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 163777,
+        "rep_votes": 204192,
+        "other_votes": 7051,
+        "total_votes": 375020,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 40415,
+        "margin_pct": 10.776759,
+        "winner": "REP",
+        "color": ""
+      },
+      "2": {
+        "dem_votes": 128820,
+        "rep_votes": 189854,
+        "other_votes": 6528,
+        "total_votes": 325202,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 61034,
+        "margin_pct": 18.768027,
+        "winner": "REP",
+        "color": ""
+      },
+      "3": {
+        "dem_votes": 167506,
+        "rep_votes": 132738,
+        "other_votes": 4720,
+        "total_votes": 304964,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 34768,
+        "margin_pct": -11.40069,
+        "winner": "DEM",
+        "color": ""
+      },
+      "4": {
+        "dem_votes": 164820,
+        "rep_votes": 160880,
+        "other_votes": 5178,
+        "total_votes": 330878,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 3940,
+        "margin_pct": -1.190771,
+        "winner": "DEM",
+        "color": ""
+      },
+      "5": {
+        "dem_votes": 123729,
+        "rep_votes": 175154,
+        "other_votes": 5493,
+        "total_votes": 304376,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 51425,
+        "margin_pct": 16.895222,
+        "winner": "REP",
+        "color": ""
+      },
+      "6": {
+        "dem_votes": 167958,
+        "rep_votes": 101678,
+        "other_votes": 3342,
+        "total_votes": 272978,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 66280,
+        "margin_pct": -24.280345,
+        "winner": "DEM",
+        "color": ""
+      },
+      "7": {
+        "dem_votes": 186178,
+        "rep_votes": 153367,
+        "other_votes": 5457,
+        "total_votes": 345002,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 32811,
+        "margin_pct": -9.51038,
+        "winner": "DEM",
+        "color": ""
+      },
+      "8": {
+        "dem_votes": 134537,
+        "rep_votes": 119678,
+        "other_votes": 4545,
+        "total_votes": 258760,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 14859,
+        "margin_pct": -5.742387,
+        "winner": "DEM",
+        "color": ""
+      },
+      "9": {
+        "dem_votes": 140029,
+        "rep_votes": 199142,
+        "other_votes": 6079,
+        "total_votes": 345250,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 59113,
+        "margin_pct": 17.121796,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 123789,
+        "rep_votes": 102376,
+        "other_votes": 3612,
+        "total_votes": 229777,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 21413,
+        "margin_pct": -9.319035,
+        "winner": "DEM",
+        "color": ""
+      },
+      "11": {
+        "dem_votes": 218527,
+        "rep_votes": 124258,
+        "other_votes": 4384,
+        "total_votes": 347169,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 94269,
+        "margin_pct": -27.153634,
+        "winner": "DEM",
+        "color": ""
+      },
+      "12": {
+        "dem_votes": 145810,
+        "rep_votes": 42341,
+        "other_votes": 2087,
+        "total_votes": 190238,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 103469,
+        "margin_pct": -54.389239,
+        "winner": "DEM",
+        "color": ""
+      },
+      "13": {
+        "dem_votes": 125192,
+        "rep_votes": 45475,
+        "other_votes": 2204,
+        "total_votes": 172871,
+        "dem_candidate": "GRETCHEN WHITMER",
+        "rep_candidate": "TUDOR M. DIXON",
+        "margin": 79717,
+        "margin_pct": -46.113576,
+        "winner": "DEM",
+        "color": ""
+      }
+    }
+  }
+}
