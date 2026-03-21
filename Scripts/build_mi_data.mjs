@@ -123,6 +123,37 @@ function ensureAgg(map, key) {
   return map.get(key);
 }
 
+function normalizeCandidateToken(token) {
+  const value = String(token || '');
+  const alpha = value.replace(/[^A-Za-z]/g, '');
+  if (!alpha) return value;
+  if (/^[IVXLCDM]+$/i.test(alpha) && alpha.length <= 6) return value.toUpperCase();
+  if (/^[A-Za-z]\.?$/.test(value)) return value.toUpperCase();
+
+  let normalized = value.toLowerCase();
+  normalized = normalized.replace(/(^|[-'])[a-z]/g, match => match.toUpperCase());
+  normalized = normalized.replace(/^Mc([a-z])/, (_, ch) => `Mc${ch.toUpperCase()}`);
+  normalized = normalized.replace(/^Mac([a-z])/, (_, ch) => `Mac${ch.toUpperCase()}`);
+  return normalized;
+}
+
+function normalizeCandidateName(rawCandidate) {
+  const value = String(rawCandidate || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!value) return '';
+
+  const lowerParticles = new Set(['de', 'del', 'da', 'la', 'le', 'van', 'von']);
+  const words = value.split(' ');
+  return words
+    .map((token, index) => {
+      const normalized = normalizeCandidateToken(token);
+      if (index > 0 && lowerParticles.has(normalized.toLowerCase())) return normalized.toLowerCase();
+      return normalized;
+    })
+    .join(' ');
+}
+
 function addVotes(node, party, candidate, votes) {
   const p = String(party || '').trim().toUpperCase();
   node.total_votes += votes;
@@ -567,6 +598,111 @@ async function buildVtdDistrictShareMaps() {
   return out;
 }
 
+function buildCongressionalShareMapsFromShapefiles() {
+  const empty = { vtd: new Map(), county: new Map() };
+  const vtdZipPath = path.join(dataDir, 'tl_2020_26_vtd20.zip');
+  const congressionalZipPath = path.join(dataDir, 'tl_2022_26_cd118.zip');
+  if (!fileExists(vtdZipPath) || !fileExists(congressionalZipPath)) return empty;
+
+  const tmpDir = path.join(dataDir, '.blockassign_tmp');
+  const overlapCsvPath = path.join(tmpDir, 'congressional_vtd_cd118_overlap.csv');
+  fs.mkdirSync(tmpDir, { recursive: true });
+
+  const vtdLayerName = path.basename(vtdZipPath, path.extname(vtdZipPath));
+  const congressionalLayerName = path.basename(congressionalZipPath, path.extname(congressionalZipPath));
+  const filterExpr = "VTDST20 != null && CD118FP != null && VTDST20 != 'ZZZZZZ'";
+  const overlapResult = spawnSync(
+    'cmd.exe',
+    [
+      '/c',
+      'npx.cmd',
+      '--yes',
+      'mapshaper',
+      '-i',
+      `files=${vtdZipPath},${congressionalZipPath}`,
+      'combine-files',
+      '-union',
+      `target=${vtdLayerName},${congressionalLayerName}`,
+      'fields=VTDST20,COUNTYFP20,CD118FP',
+      '-filter',
+      filterExpr,
+      '-each',
+      'part_area=$.area',
+      '-dissolve',
+      'VTDST20,COUNTYFP20,CD118FP',
+      'sum-fields=part_area',
+      '-o',
+      'format=csv',
+      overlapCsvPath
+    ],
+    { cwd: rootDir, stdio: 'inherit', shell: false }
+  );
+  if (overlapResult.status !== 0 || !fileExists(overlapCsvPath)) {
+    console.warn('Warning: congressional shapefile overlap failed; falling back to assignment-file shares where available.');
+    return empty;
+  }
+
+  const csvText = fs.readFileSync(overlapCsvPath, 'utf8');
+  const lines = csvText.split(/\r?\n/).filter(Boolean);
+  if (lines.length < 2) return empty;
+  const headers = parseCsvLine(lines[0]);
+  const idxArea = headers.indexOf('part_area');
+  const idxVtd = headers.indexOf('VTDST20');
+  const idxCounty = headers.indexOf('COUNTYFP20');
+  const idxDistrict = headers.indexOf('CD118FP');
+  if (idxArea < 0 || idxVtd < 0 || idxCounty < 0 || idxDistrict < 0) return empty;
+
+  const countsByVtd = new Map();
+  const countsByCounty = new Map();
+  for (let i = 1; i < lines.length; i += 1) {
+    const values = parseCsvLine(lines[i]);
+    if (!values.length) continue;
+    const area = Number(values[idxArea] || 0);
+    const vtd = String(values[idxVtd] || '').trim();
+    const countyFips = String(values[idxCounty] || '').trim().padStart(3, '0');
+    const district = normalizeDistrictId(values[idxDistrict]);
+    if (!(area > 0) || !vtd || !district) continue;
+
+    if (!countsByVtd.has(vtd)) countsByVtd.set(vtd, { total: 0, districts: new Map() });
+    const vtdNode = countsByVtd.get(vtd);
+    vtdNode.total += area;
+    vtdNode.districts.set(district, (vtdNode.districts.get(district) || 0) + area);
+
+    if (countyFips) {
+      if (!countsByCounty.has(countyFips)) countsByCounty.set(countyFips, { total: 0, districts: new Map() });
+      const countyNode = countsByCounty.get(countyFips);
+      countyNode.total += area;
+      countyNode.districts.set(district, (countyNode.districts.get(district) || 0) + area);
+    }
+  }
+
+  const vtdShareMap = new Map();
+  for (const [vtd, node] of countsByVtd.entries()) {
+    if (!(node.total > 0)) continue;
+    const parts = [];
+    for (const [district, area] of node.districts.entries()) {
+      if (!(area > 0)) continue;
+      parts.push({ district, share: area / node.total });
+    }
+    parts.sort((a, b) => b.share - a.share || a.district.localeCompare(b.district));
+    if (parts.length) vtdShareMap.set(vtd, parts);
+  }
+
+  const countyShareMap = new Map();
+  for (const [countyFips, node] of countsByCounty.entries()) {
+    if (!(node.total > 0)) continue;
+    const parts = [];
+    for (const [district, area] of node.districts.entries()) {
+      if (!(area > 0)) continue;
+      parts.push({ district, share: area / node.total });
+    }
+    parts.sort((a, b) => b.share - a.share || a.district.localeCompare(b.district));
+    if (parts.length) countyShareMap.set(countyFips, parts);
+  }
+
+  return { vtd: vtdShareMap, county: countyShareMap };
+}
+
 function bumpShareCount(container, key, district) {
   if (!key || !district) return;
   if (!container.has(key)) container.set(key, { total: 0, districts: new Map() });
@@ -588,6 +724,45 @@ function finalizeShareMap(countsMap) {
     if (parts.length) shareMap.set(key, parts);
   }
   return shareMap;
+}
+
+function allowedDistrictSetFromFeatures(features) {
+  const out = new Set();
+  for (const feature of features || []) {
+    const district = normalizeDistrictId(feature?.district);
+    if (district) out.add(district);
+  }
+  return out;
+}
+
+function constrainShareParts(parts, allowedDistricts) {
+  if (!Array.isArray(parts) || !parts.length || !(allowedDistricts instanceof Set) || !allowedDistricts.size) return [];
+  const filtered = [];
+  let total = 0;
+  for (const part of parts) {
+    const district = normalizeDistrictId(part?.district);
+    const share = Number(part?.share || 0);
+    if (!district || !allowedDistricts.has(district) || !(share > 0)) continue;
+    filtered.push({ district, share });
+    total += share;
+  }
+  if (!(total > 0) || !filtered.length) return [];
+  const normalized = filtered.map(part => ({
+    district: part.district,
+    share: part.share / total
+  }));
+  normalized.sort((a, b) => b.share - a.share || a.district.localeCompare(b.district));
+  return normalized;
+}
+
+function constrainShareMapToDistricts(shareMap, allowedDistricts) {
+  const out = new Map();
+  if (!(shareMap instanceof Map)) return out;
+  for (const [key, parts] of shareMap.entries()) {
+    const constrained = constrainShareParts(parts, allowedDistricts);
+    if (constrained.length) out.set(key, constrained);
+  }
+  return out;
 }
 
 function runMapshaper(inputZip, outputGeojson) {
@@ -614,7 +789,7 @@ const precinctContestAgg = new Map();
 const countyContestAgg = new Map();
 const districtContestAgg = new Map();
 const districtCoverageAgg = new Map();
-const bafFallbackScopes = new Set(['congressional']);
+const overlapPreferredScopes = new Set(['congressional']);
 
 const districtFeaturesByScope = {
   congressional: loadDistrictFeatures(path.join(tilesetDir, 'mi_cd118_tileset.geojson'), 'CD118FP'),
@@ -623,6 +798,20 @@ const districtFeaturesByScope = {
 };
 
 const vtdDistrictSharesByScope = await buildVtdDistrictShareMaps();
+const congressionalShapeShares = buildCongressionalShareMapsFromShapefiles();
+if (congressionalShapeShares.vtd.size > 0 || congressionalShapeShares.county.size > 0) {
+  vtdDistrictSharesByScope.congressional = congressionalShapeShares;
+}
+
+for (const [scope, districtFeatures] of Object.entries(districtFeaturesByScope)) {
+  const allowedDistricts = allowedDistrictSetFromFeatures(districtFeatures);
+  const sourceShares = vtdDistrictSharesByScope?.[scope] || {};
+  vtdDistrictSharesByScope[scope] = {
+    vtd: constrainShareMapToDistricts(sourceShares.vtd, allowedDistricts),
+    county: constrainShareMapToDistricts(sourceShares.county, allowedDistricts)
+  };
+}
+
 const precinctAssignmentLookup = new Map();
 const countyNameToFips = new Map();
 const currentShareCountsByScope = {
@@ -684,19 +873,21 @@ for (const scope of Object.keys(currentShareCountsByScope)) {
     county: finalizeShareMap(currentShareCountsByScope[scope].county)
   };
   const hasCurrentShares = currentShares.vtd.size > 0 || currentShares.county.size > 0;
+  const overlapShares = vtdDistrictSharesByScope?.[scope];
+  const hasOverlapShares = (overlapShares?.vtd instanceof Map && overlapShares.vtd.size > 0) ||
+    (overlapShares?.county instanceof Map && overlapShares.county.size > 0);
+
+  if (overlapPreferredScopes.has(scope) && hasOverlapShares) {
+    // Prefer VTD overlap shares for scopes where the assignment files are trusted.
+    continue;
+  }
   if (hasCurrentShares) {
-    // Prefer current polygon overlays whenever we can compute assignments.
+    // Otherwise use current centroid-to-polygon assignments.
     vtdDistrictSharesByScope[scope] = currentShares;
     continue;
   }
-  if (!bafFallbackScopes.has(scope)) {
-    // Legislative scopes should not use BAF fallback because those lines predate 2022 redistricting.
-    vtdDistrictSharesByScope[scope] = { vtd: new Map(), county: new Map() };
-    continue;
-  }
-  if (!(vtdDistrictSharesByScope?.[scope]?.vtd instanceof Map) || !(vtdDistrictSharesByScope?.[scope]?.county instanceof Map)) {
-    vtdDistrictSharesByScope[scope] = { vtd: new Map(), county: new Map() };
-  }
+  if (hasOverlapShares) continue;
+  vtdDistrictSharesByScope[scope] = { vtd: new Map(), county: new Map() };
 }
 
 const precinctDistrictCache = new Map();
@@ -777,6 +968,7 @@ for (const fileName of csvFiles) {
 
     const votes = Number(row.votes || 0);
     if (!Number.isFinite(votes) || votes < 0) continue;
+    const candidate = normalizeCandidateName(row.candidate);
 
     const county = canonicalCountyName(row.county);
     if (!county) continue;
@@ -788,7 +980,7 @@ for (const fileName of csvFiles) {
       if (!isNonGeographicPrecinctName(precinct)) {
         const precinctAggKey = `${year}|${officeMeta.contestType}|${county}|${precinctKey}`;
         const precinctNode = ensureAgg(precinctContestAgg, precinctAggKey);
-        addVotes(precinctNode, row.party, String(row.candidate || '').trim(), votes);
+        addVotes(precinctNode, row.party, candidate, votes);
 
         const precinctAssignment = lookupPrecinctAssignment(county, precinct);
         for (const scope of Object.keys(districtFeaturesByScope)) {
@@ -808,7 +1000,7 @@ for (const fileName of csvFiles) {
               if (!(share > 0)) continue;
               const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${part.district}`;
               const districtNode = ensureAgg(districtContestAgg, districtAggKey);
-              addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes * share);
+              addVotes(districtNode, row.party, candidate, votes * share);
               allocated = true;
             }
           } else {
@@ -816,7 +1008,7 @@ for (const fileName of csvFiles) {
             if (fallbackDistrict) {
               const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${fallbackDistrict}`;
               const districtNode = ensureAgg(districtContestAgg, districtAggKey);
-              addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes);
+              addVotes(districtNode, row.party, candidate, votes);
               allocated = true;
             } else {
               const countyFips = countyNameToFips.get(normalizeCountyLookup(county)) || '';
@@ -827,7 +1019,7 @@ for (const fileName of csvFiles) {
                   if (!(share > 0)) continue;
                   const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${part.district}`;
                   const districtNode = ensureAgg(districtContestAgg, districtAggKey);
-                  addVotes(districtNode, row.party, String(row.candidate || '').trim(), votes * share);
+                  addVotes(districtNode, row.party, candidate, votes * share);
                   allocated = true;
                 }
               }
@@ -840,7 +1032,7 @@ for (const fileName of csvFiles) {
 
       const countyAggKey = `${year}|${officeMeta.contestType}|${county}`;
       const countyNode = ensureAgg(countyContestAgg, countyAggKey);
-      addVotes(countyNode, row.party, String(row.candidate || '').trim(), votes);
+      addVotes(countyNode, row.party, candidate, votes);
       continue;
     }
 
@@ -848,7 +1040,7 @@ for (const fileName of csvFiles) {
     if (!district) continue;
     const aggKey = `${year}|${officeMeta.scope}|${officeMeta.contestType}|${district}`;
     const node = ensureAgg(districtContestAgg, aggKey);
-    addVotes(node, row.party, String(row.candidate || '').trim(), votes);
+    addVotes(node, row.party, candidate, votes);
   }
 }
 
@@ -972,7 +1164,7 @@ writeJson(path.join(dataDir, 'mi_district_results_2022_lines.json'), {
   metadata: {
     generated_at: new Date().toISOString(),
     source: 'Michigan precinct CSV files',
-    note: 'Statewide contests are aggregated from matched official precinct centroids to current district polygons; district-office contests still use reported district rows.'
+    note: 'Statewide contests use VTD overlap shares for congressional and centroid-to-2022 polygon matching for legislative scopes; district-office contests still use reported district rows.'
   },
   results_by_year: districtResultsByYear
 });
