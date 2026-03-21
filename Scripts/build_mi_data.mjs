@@ -138,17 +138,22 @@ function addVotes(node, party, candidate, votes) {
 }
 
 function finalizeNode(node) {
-  const total = Number(node.total_votes || 0);
-  const dem = Number(node.dem_votes || 0);
-  const rep = Number(node.rep_votes || 0);
+  const dem = Math.round(Number(node.dem_votes || 0));
+  const rep = Math.round(Number(node.rep_votes || 0));
+  const other = Math.round(Number(node.other_votes || 0));
+  const total = dem + rep + other;
   const signedMarginVotes = rep - dem;
   const signedMarginPct = total > 0 ? ((rep - dem) / total) * 100 : 0;
   let winner = 'TIE';
   if (dem > rep) winner = 'DEM';
   else if (rep > dem) winner = 'REP';
-  else if (node.other_votes > 0) winner = 'OTHER';
+  else if (other > 0) winner = 'OTHER';
   return {
     ...node,
+    dem_votes: dem,
+    rep_votes: rep,
+    other_votes: other,
+    total_votes: total,
     margin: Math.abs(signedMarginVotes),
     margin_pct: Number(signedMarginPct.toFixed(6)),
     winner,
