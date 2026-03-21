@@ -124,7 +124,7 @@ node .\Scripts\download_mi_tiger2008_vtd.mjs
 
 - Precinct name matching is still heuristic; a perfect statewide precinct-name crosswalk is not yet guaranteed.
 - Non-geographic/aggregate labels (for example early vote, counting boards, multi-precinct rollups) are intentionally excluded from precinct fill slices, but retained in county totals.
-- District allocations for statewide contests use matched precinct assignments; congressional uses VTD overlap shares from TIGER VTD and CD118 shapefile intersections, while State House and State Senate use precinct-centroid overlays against 2022 legislative shapefiles.
+- District allocations for statewide contests use matched precinct assignments; congressional uses VTD overlap shares from TIGER VTD and CD118 shapefile intersections, while State House and State Senate use precinct-centroid overlays against 2022 legislative shapefiles. Pre-2022 U.S. House precinct rows are also reallocated to 2022 congressional lines through the same congressional share maps.
 
 ## Optional Local Preview (Development Only)
 

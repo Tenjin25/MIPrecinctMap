@@ -124,49 +124,49 @@
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2008.json",
-      "districts": 15
+      "districts": 13
     },
     {
       "year": 2010,
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2010.json",
-      "districts": 15
+      "districts": 13
     },
     {
       "year": 2012,
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2012.json",
-      "districts": 14
+      "districts": 13
     },
     {
       "year": 2014,
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2014.json",
-      "districts": 14
+      "districts": 13
     },
     {
       "year": 2016,
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2016.json",
-      "districts": 14
+      "districts": 13
     },
     {
       "year": 2018,
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2018.json",
-      "districts": 14
+      "districts": 13
     },
     {
       "year": 2020,
       "scope": "congressional",
       "contest_type": "us_house",
       "file": "congressional_us_house_2020.json",
-      "districts": 14
+      "districts": 13
     },
     {
       "year": 2022,

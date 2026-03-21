@@ -926,6 +926,54 @@ function lookupPrecinctAssignment(county, precinct) {
   return match;
 }
 
+function allocateVotesToDistrictScope({ year, scope, contestType, county, precinct, party, candidate, votes }) {
+  const coverageKey = `${year}|${scope}|${contestType}`;
+  if (!districtCoverageAgg.has(coverageKey)) {
+    districtCoverageAgg.set(coverageKey, { total_votes: 0, matched_votes: 0 });
+  }
+  const coverage = districtCoverageAgg.get(coverageKey);
+  coverage.total_votes += votes;
+
+  let allocated = false;
+  const precinctAssignment = lookupPrecinctAssignment(county, precinct);
+  const vtd = String(precinctAssignment?.vtd || '').trim();
+  const vtdShares = vtd ? (vtdDistrictSharesByScope?.[scope]?.vtd?.get(vtd) || null) : null;
+  if (Array.isArray(vtdShares) && vtdShares.length) {
+    for (const part of vtdShares) {
+      const share = Number(part.share || 0);
+      if (!(share > 0)) continue;
+      const districtAggKey = `${year}|${scope}|${contestType}|${part.district}`;
+      const districtNode = ensureAgg(districtContestAgg, districtAggKey);
+      addVotes(districtNode, party, candidate, votes * share);
+      allocated = true;
+    }
+  } else {
+    const fallbackDistrict = precinctAssignment?.districts?.[scope] || '';
+    if (fallbackDistrict) {
+      const districtAggKey = `${year}|${scope}|${contestType}|${fallbackDistrict}`;
+      const districtNode = ensureAgg(districtContestAgg, districtAggKey);
+      addVotes(districtNode, party, candidate, votes);
+      allocated = true;
+    } else {
+      const countyFips = countyNameToFips.get(normalizeCountyLookup(county)) || '';
+      const countyShares = countyFips ? (vtdDistrictSharesByScope?.[scope]?.county?.get(countyFips) || null) : null;
+      if (Array.isArray(countyShares) && countyShares.length) {
+        for (const part of countyShares) {
+          const share = Number(part.share || 0);
+          if (!(share > 0)) continue;
+          const districtAggKey = `${year}|${scope}|${contestType}|${part.district}`;
+          const districtNode = ensureAgg(districtContestAgg, districtAggKey);
+          addVotes(districtNode, party, candidate, votes * share);
+          allocated = true;
+        }
+      }
+    }
+  }
+
+  if (allocated) coverage.matched_votes += votes;
+  return allocated;
+}
+
 const preferredCsvByDate = new Map();
 fs.readdirSync(dataDir)
   .filter(name => /^\d{8}__mi__general__precinct(?:_mvic)?\.csv$/i.test(name))
@@ -982,57 +1030,44 @@ for (const fileName of csvFiles) {
         const precinctNode = ensureAgg(precinctContestAgg, precinctAggKey);
         addVotes(precinctNode, row.party, candidate, votes);
 
-        const precinctAssignment = lookupPrecinctAssignment(county, precinct);
         for (const scope of Object.keys(districtFeaturesByScope)) {
-          const coverageKey = `${year}|${scope}|${officeMeta.contestType}`;
-          if (!districtCoverageAgg.has(coverageKey)) {
-            districtCoverageAgg.set(coverageKey, { total_votes: 0, matched_votes: 0 });
-          }
-          const coverage = districtCoverageAgg.get(coverageKey);
-          coverage.total_votes += votes;
-          let allocated = false;
-
-          const vtd = String(precinctAssignment?.vtd || '').trim();
-          const vtdShares = vtd ? (vtdDistrictSharesByScope?.[scope]?.vtd?.get(vtd) || null) : null;
-          if (Array.isArray(vtdShares) && vtdShares.length) {
-            for (const part of vtdShares) {
-              const share = Number(part.share || 0);
-              if (!(share > 0)) continue;
-              const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${part.district}`;
-              const districtNode = ensureAgg(districtContestAgg, districtAggKey);
-              addVotes(districtNode, row.party, candidate, votes * share);
-              allocated = true;
-            }
-          } else {
-            const fallbackDistrict = precinctAssignment?.districts?.[scope] || '';
-            if (fallbackDistrict) {
-              const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${fallbackDistrict}`;
-              const districtNode = ensureAgg(districtContestAgg, districtAggKey);
-              addVotes(districtNode, row.party, candidate, votes);
-              allocated = true;
-            } else {
-              const countyFips = countyNameToFips.get(normalizeCountyLookup(county)) || '';
-              const countyShares = countyFips ? (vtdDistrictSharesByScope?.[scope]?.county?.get(countyFips) || null) : null;
-              if (Array.isArray(countyShares) && countyShares.length) {
-                for (const part of countyShares) {
-                  const share = Number(part.share || 0);
-                  if (!(share > 0)) continue;
-                  const districtAggKey = `${year}|${scope}|${officeMeta.contestType}|${part.district}`;
-                  const districtNode = ensureAgg(districtContestAgg, districtAggKey);
-                  addVotes(districtNode, row.party, candidate, votes * share);
-                  allocated = true;
-                }
-              }
-            }
-          }
-
-          if (allocated) coverage.matched_votes += votes;
+          allocateVotesToDistrictScope({
+            year,
+            scope,
+            contestType: officeMeta.contestType,
+            county,
+            precinct,
+            party: row.party,
+            candidate,
+            votes
+          });
         }
       }
 
       const countyAggKey = `${year}|${officeMeta.contestType}|${county}`;
       const countyNode = ensureAgg(countyContestAgg, countyAggKey);
       addVotes(countyNode, row.party, candidate, votes);
+      continue;
+    }
+
+    const shouldReallocateUsHouseTo2022Lines =
+      officeMeta.contestType === 'us_house' &&
+      officeMeta.scope === 'congressional' &&
+      year < 2022;
+    if (shouldReallocateUsHouseTo2022Lines) {
+      const precinct = String(row.precinct || '').trim();
+      if (!isNonGeographicPrecinctName(precinct)) {
+        allocateVotesToDistrictScope({
+          year,
+          scope: officeMeta.scope,
+          contestType: officeMeta.contestType,
+          county,
+          precinct,
+          party: row.party,
+          candidate: '',
+          votes
+        });
+      }
       continue;
     }
 
@@ -1164,7 +1199,7 @@ writeJson(path.join(dataDir, 'mi_district_results_2022_lines.json'), {
   metadata: {
     generated_at: new Date().toISOString(),
     source: 'Michigan precinct CSV files',
-    note: 'Statewide contests use VTD overlap shares for congressional and centroid-to-2022 polygon matching for legislative scopes; district-office contests still use reported district rows.'
+    note: 'Statewide contests use VTD overlap shares for congressional and centroid-to-2022 polygon matching for legislative scopes; pre-2022 U.S. House rows are reallocated to 2022 congressional lines via precinct matching, while post-2022 district-office contests use reported district rows.'
   },
   results_by_year: districtResultsByYear
 });
