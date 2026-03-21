@@ -124,7 +124,7 @@ node .\Scripts\download_mi_tiger2008_vtd.mjs
 
 - Precinct name matching is still heuristic; a perfect statewide precinct-name crosswalk is not yet guaranteed.
 - Non-geographic/aggregate labels (for example early vote, counting boards, multi-precinct rollups) are intentionally excluded from precinct fill slices, but retained in county totals.
-- District allocations for statewide contests use matched precinct assignments and fallback share logic when direct matches are unavailable.
+- District allocations for statewide contests use matched precinct assignments; State House and State Senate use precinct-centroid overlays against 2022 legislative shapefiles (no BAF fallback), while congressional still uses fallback share logic when direct matches are unavailable.
 
 ## Optional Local Preview (Development Only)
 

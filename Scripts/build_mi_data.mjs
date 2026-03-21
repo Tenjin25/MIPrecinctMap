@@ -609,6 +609,7 @@ const precinctContestAgg = new Map();
 const countyContestAgg = new Map();
 const districtContestAgg = new Map();
 const districtCoverageAgg = new Map();
+const bafFallbackScopes = new Set(['congressional']);
 
 const districtFeaturesByScope = {
   congressional: loadDistrictFeatures(path.join(tilesetDir, 'mi_cd118_tileset.geojson'), 'CD118FP'),
@@ -677,12 +678,19 @@ for (const scope of Object.keys(currentShareCountsByScope)) {
     vtd: finalizeShareMap(currentShareCountsByScope[scope].vtd),
     county: finalizeShareMap(currentShareCountsByScope[scope].county)
   };
-  if (scope === 'congressional') {
+  const hasCurrentShares = currentShares.vtd.size > 0 || currentShares.county.size > 0;
+  if (hasCurrentShares) {
+    // Prefer current polygon overlays whenever we can compute assignments.
     vtdDistrictSharesByScope[scope] = currentShares;
     continue;
   }
-  if (!(vtdDistrictSharesByScope?.[scope]?.vtd instanceof Map) || vtdDistrictSharesByScope[scope].vtd.size === 0) {
-    vtdDistrictSharesByScope[scope] = currentShares;
+  if (!bafFallbackScopes.has(scope)) {
+    // Legislative scopes should not use BAF fallback because those lines predate 2022 redistricting.
+    vtdDistrictSharesByScope[scope] = { vtd: new Map(), county: new Map() };
+    continue;
+  }
+  if (!(vtdDistrictSharesByScope?.[scope]?.vtd instanceof Map) || !(vtdDistrictSharesByScope?.[scope]?.county instanceof Map)) {
+    vtdDistrictSharesByScope[scope] = { vtd: new Map(), county: new Map() };
   }
 }
 
