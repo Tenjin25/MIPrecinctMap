@@ -14860,6 +14860,72 @@ document.addEventListener('DOMContentLoaded', function() {
         countyAgg[countyNorm][`${contestType}_other`] += otherVotes;
         countyAgg[countyNorm][`${contestType}_total`] += totalVotes;
       });
+      // Reconcile county rollups with county-level aggregates when contest slices
+      // intentionally omit non-geographic rows that do not map to precinct shapes.
+      // This keeps statewide/county totals accurate while preserving precinct overlay behavior.
+      let supplementedCountyCount = 0;
+      if (Array.isArray(electionData) && electionData.length) {
+        const refByCounty = {};
+        electionData.forEach(row => {
+          if (Number(row?.year) !== Number(year)) return;
+          const countyNorm = normalizeCountyName(row?.county || '');
+          if (!countyNorm) return;
+
+          const demVotes = Number(row?.[`${contestType}_dem`] || 0);
+          const repVotes = Number(row?.[`${contestType}_rep`] || 0);
+          const otherVotes = Number(row?.[`${contestType}_other`] || 0);
+          const totalVotes = Number(row?.[`${contestType}_total`] || (demVotes + repVotes + otherVotes));
+          if (totalVotes <= 0 && demVotes <= 0 && repVotes <= 0 && otherVotes <= 0) return;
+
+          refByCounty[countyNorm] = {
+            county: (row?.county || countyNorm).toString(),
+            dem: demVotes,
+            rep: repVotes,
+            other: otherVotes,
+            total: totalVotes,
+            demCandidate: (row?.[`${contestType}_dem_candidate`] || '').toString(),
+            repCandidate: (row?.[`${contestType}_rep_candidate`] || '').toString()
+          };
+        });
+
+        Object.keys(refByCounty).forEach(countyNorm => {
+          const ref = refByCounty[countyNorm];
+          const current = countyAgg[countyNorm];
+          const currentTotal = Number(current?.[`${contestType}_total`] || 0);
+          const refTotal = Number(ref.total || 0);
+
+          // Only supplement upward to avoid replacing valid precinct-mapped totals.
+          if (!(refTotal > currentTotal + 0.5)) return;
+
+          if (!countyAgg[countyNorm]) {
+            countyAgg[countyNorm] = {
+              year: Number(year),
+              county: ref.county,
+              [`${contestType}_dem`]: 0,
+              [`${contestType}_rep`]: 0,
+              [`${contestType}_other`]: 0,
+              [`${contestType}_total`]: 0,
+              [`${contestType}_dem_candidate`]: '',
+              [`${contestType}_rep_candidate`]: ''
+            };
+          }
+
+          countyAgg[countyNorm][`${contestType}_dem`] = ref.dem;
+          countyAgg[countyNorm][`${contestType}_rep`] = ref.rep;
+          countyAgg[countyNorm][`${contestType}_other`] = ref.other;
+          countyAgg[countyNorm][`${contestType}_total`] = ref.total;
+          if (!countyAgg[countyNorm][`${contestType}_dem_candidate`] && ref.demCandidate) {
+            countyAgg[countyNorm][`${contestType}_dem_candidate`] = ref.demCandidate;
+          }
+          if (!countyAgg[countyNorm][`${contestType}_rep_candidate`] && ref.repCandidate) {
+            countyAgg[countyNorm][`${contestType}_rep_candidate`] = ref.repCandidate;
+          }
+          supplementedCountyCount += 1;
+        });
+      }
+      if (supplementedCountyCount > 0) {
+        debugLog(`Supplemented county totals from aggregate source for ${contestType} ${year}: ${supplementedCountyCount} counties.`);
+      }
       currentElectionResults = countyAgg;
 
       // Calculate statewide totals
@@ -14869,18 +14935,19 @@ document.addEventListener('DOMContentLoaded', function() {
       let statewidTotalVotes = 0;
       let statewideDemCandidate = '';
       let statewideRepCandidate = '';
-      
-      contestData.forEach(row => {
-        const demVotes = row[`${contestType}_dem`] || 0;
-        const repVotes = row[`${contestType}_rep`] || 0;
-        const otherVotes = row[`${contestType}_other`] || 0;
-        const totalVotes = row[`${contestType}_total`] || 0;
-        const demCand = row[`${contestType}_dem_candidate`] || '';
-        const repCand = row[`${contestType}_rep_candidate`] || '';
+
+      Object.keys(countyAgg).forEach(countyNorm => {
+        const row = countyAgg[countyNorm];
+        const demVotes = Number(row?.[`${contestType}_dem`] || 0);
+        const repVotes = Number(row?.[`${contestType}_rep`] || 0);
+        const otherVotes = Number(row?.[`${contestType}_other`] || 0);
+        const totalVotes = Number(row?.[`${contestType}_total`] || (demVotes + repVotes + otherVotes));
+        const demCand = (row?.[`${contestType}_dem_candidate`] || '').toString();
+        const repCand = (row?.[`${contestType}_rep_candidate`] || '').toString();
         statewidedemVotes += demVotes;
         statewidrepVotes += repVotes;
         statewidotherVotes += otherVotes;
-        statewidTotalVotes += totalVotes; // Use total which includes other parties
+        statewidTotalVotes += totalVotes;
         if (!statewideDemCandidate && demCand) statewideDemCandidate = demCand;
         if (!statewideRepCandidate && repCand) statewideRepCandidate = repCand;
       });
