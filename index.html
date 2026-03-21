@@ -14908,7 +14908,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Reconcile county rollups with county-level aggregates when contest slices
       // intentionally omit non-geographic rows that do not map to precinct shapes.
       // This keeps statewide/county totals accurate while preserving precinct overlay behavior.
-      let supplementedCountyCount = 0;
+      let reconciledCountyCount = 0;
       if (Array.isArray(electionData) && electionData.length) {
         const refByCounty = {};
         electionData.forEach(row => {
@@ -14939,8 +14939,8 @@ document.addEventListener('DOMContentLoaded', function() {
           const currentTotal = Number(current?.[`${contestType}_total`] || 0);
           const refTotal = Number(ref.total || 0);
 
-          // Only supplement upward to avoid replacing valid precinct-mapped totals.
-          if (!(refTotal > currentTotal + 0.5)) return;
+          // Reconcile any material mismatch against canonical county totals.
+          if (Math.abs(refTotal - currentTotal) <= 0.5) return;
 
           if (!countyAgg[countyNorm]) {
             countyAgg[countyNorm] = {
@@ -14965,11 +14965,11 @@ document.addEventListener('DOMContentLoaded', function() {
           if (!countyAgg[countyNorm][`${contestType}_rep_candidate`] && ref.repCandidate) {
             countyAgg[countyNorm][`${contestType}_rep_candidate`] = ref.repCandidate;
           }
-          supplementedCountyCount += 1;
+          reconciledCountyCount += 1;
         });
       }
-      if (supplementedCountyCount > 0) {
-        debugLog(`Supplemented county totals from aggregate source for ${contestType} ${year}: ${supplementedCountyCount} counties.`);
+      if (reconciledCountyCount > 0) {
+        debugLog(`Reconciled county totals from aggregate source for ${contestType} ${year}: ${reconciledCountyCount} counties.`);
       }
       currentElectionResults = countyAgg;
 
