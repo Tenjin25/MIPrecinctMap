@@ -98,13 +98,26 @@ node .\Scripts\build_mi_data.mjs
 node .\Scripts\download_mi_official_precincts.mjs
 ```
 
-5. Optional TIGER 2008 fallback geometry workflow:
+5. Optional: build precinct alias index used by centroid/key matching in the UI:
+
+```powershell
+node .\Scripts\build_precinct_aliases.mjs
+```
+
+6. Optional: build pre-2018 unmatched audit + historical fallback centroids:
+
+```powershell
+node .\Scripts\build_precinct_unmatched_audit.mjs
+node .\Scripts\build_historical_unmatched_centroids.mjs
+```
+
+7. Optional TIGER 2008 fallback geometry workflow:
 
 ```powershell
 node .\Scripts\download_mi_tiger2008_vtd.mjs
 ```
 
-6. Commit updated `Data/` files and push to `main` so Pages serves the latest build.
+8. Commit updated `Data/` files and push to `main` so Pages serves the latest build.
 
 ## Generated Artifacts
 
@@ -119,6 +132,9 @@ node .\Scripts\download_mi_tiger2008_vtd.mjs
 - `Data/tileset/mi_cd118_tileset.geojson`
 - `Data/tileset/mi_state_house_2022_lines_tileset.geojson`
 - `Data/tileset/mi_state_senate_2022_lines_tileset.geojson`
+- `Data/precinct_aliases.json` (from `Scripts/build_precinct_aliases.mjs`)
+- `Data/precinct_unmatched_pre2018_audit.csv` (from `Scripts/build_precinct_unmatched_audit.mjs`)
+- `Data/precinct_centroids_historical_unmatched.geojson` (from `Scripts/build_historical_unmatched_centroids.mjs`)
 
 ## Known Limitations
 

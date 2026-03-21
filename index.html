@@ -6350,6 +6350,8 @@ document.addEventListener('DOMContentLoaded', function() {
         counties: withBase('./Data/tl_2020_26_county20.geojson'),
         precincts: withBase('./Data/Voting_Precincts.geojson'),
         precinct_centroids: withBase('./Data/precinct_centroids.geojson'),
+        precinct_centroids_historical_unmatched: withBase('./Data/precinct_centroids_historical_unmatched.geojson'),
+        precinct_aliases: withBase('./Data/precinct_aliases.json'),
         districts: withBase('./Data/tileset/mi_cd118_tileset.geojson'),
         state_house: withBase('./Data/tileset/mi_state_house_2022_lines_tileset.geojson'),
         state_senate: withBase('./Data/tileset/mi_state_senate_2022_lines_tileset.geojson'),
@@ -12024,9 +12026,26 @@ document.addEventListener('DOMContentLoaded', function() {
 	      if (precinctCentroidsLoadInFlight) return false;
 	      precinctCentroidsLoadInFlight = true;
 	      try {
-	        const pts = await loadJSON(CONFIG.paths.precinct_centroids);
+	        const basePts = await loadJSON(CONFIG.paths.precinct_centroids);
+          const mergedFeatures = Array.isArray(basePts?.features) ? [...basePts.features] : [];
+          const historicalPath = CONFIG.paths?.precinct_centroids_historical_unmatched;
+          if (historicalPath) {
+            try {
+              const historical = await loadJSON(historicalPath);
+              if (Array.isArray(historical?.features) && historical.features.length) {
+                mergedFeatures.push(...historical.features);
+              }
+            } catch (err) {
+              console.warn('Historical unmatched centroids unavailable:', err?.message || err);
+            }
+          }
+          const pts = {
+            type: 'FeatureCollection',
+            features: mergedFeatures
+          };
           precinctCentroidsData = pts;
           try {
+            const seenNorms = new Set();
             precinctCentroidsData.features = (precinctCentroidsData.features || []).map(f => {
               const p = f.properties || {};
               const county = (p.county_nam || p.COUNTYNAME || p.County || p.NAME || '').toString().trim();
@@ -12044,15 +12063,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 has_polygon: !!(norm && precinctPolygonNormSet && precinctPolygonNormSet.has(norm))
               };
               return f;
+            }).filter(f => {
+              const n = ((f?.properties || {}).precinct_norm || '').toString().trim().toUpperCase();
+              if (!n) return false;
+              if (seenNorms.has(n)) return false;
+              seenNorms.add(n);
+              return true;
             });
           } catch (_) {}
-	        map.addSource('precinct-centroids', { type: 'geojson', data: pts });
+	        map.addSource('precinct-centroids', { type: 'geojson', data: precinctCentroidsData });
 	        precinctCentroidsLoaded = true;
 	        // Build a lightweight county -> precinct code index for key-variant matching.
 	        try {
-	          if (!precinctCodeIndexByCounty && pts && pts.features) {
+	          if (!precinctCodeIndexByCounty && precinctCentroidsData && precinctCentroidsData.features) {
 	            const idx = new Map();
-	            (pts.features || []).forEach(f => {
+	            (precinctCentroidsData.features || []).forEach(f => {
 	              const p = f.properties || {};
 	              const county = (p.county_nam || p.COUNTYNAME || p.County || p.NAME || '').toString()
 	                .replace(/[^a-z0-9 .\-]/gi, '')
