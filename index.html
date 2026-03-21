@@ -8273,6 +8273,57 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
 
+    function roundVoteCount(value) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return 0;
+      return Math.round(n);
+    }
+
+    function normalizeDistrictResultRow(row) {
+      const src = row || {};
+      const demVotes = roundVoteCount(src.dem_votes);
+      const repVotes = roundVoteCount(src.rep_votes);
+      const otherVotes = roundVoteCount(src.other_votes);
+      let totalVotes = roundVoteCount(src.total_votes);
+      if (totalVotes <= 0) {
+        totalVotes = demVotes + repVotes + otherVotes;
+      }
+      const marginVotes = repVotes - demVotes;
+      const marginPct = totalVotes > 0 ? (marginVotes / totalVotes) * 100 : 0;
+      const winner = marginVotes > 0 ? 'REP' : (marginVotes < 0 ? 'DEM' : 'TIE');
+
+      return {
+        ...src,
+        dem_votes: demVotes,
+        rep_votes: repVotes,
+        other_votes: otherVotes,
+        total_votes: totalVotes,
+        margin: marginVotes,
+        margin_pct: Number(marginPct.toFixed(6)),
+        winner
+      };
+    }
+
+    function normalizeDistrictSlicePayload(payload) {
+      if (!payload || typeof payload !== 'object') return payload;
+      const general = payload.general || null;
+      const results = general?.results || null;
+      if (!results || typeof results !== 'object') return payload;
+
+      const normalizedResults = {};
+      Object.keys(results).forEach(districtId => {
+        normalizedResults[districtId] = normalizeDistrictResultRow(results[districtId]);
+      });
+
+      return {
+        ...payload,
+        general: {
+          ...(general || {}),
+          results: normalizedResults
+        }
+      };
+    }
+
     async function loadDistrictSlice(scope, contestType, year) {
       const key = `${scope}_${contestType}_${year}`;
       if (districtSliceCache.has(key)) return districtSliceCache.get(key);
@@ -8281,14 +8332,16 @@ document.addEventListener('DOMContentLoaded', function() {
       for (const path of candidatePaths) {
         try {
           const payload = await loadJSON(path);
-          districtSliceCache.set(key, payload);
-          return payload;
+          const normalized = normalizeDistrictSlicePayload(payload);
+          districtSliceCache.set(key, normalized);
+          return normalized;
         } catch (_) {}
       }
 
       const fallback = districtElectionDataJSON?.results_by_year?.[year]?.[scope]?.[contestType] || null;
-      districtSliceCache.set(key, fallback);
-      return fallback;
+      const normalizedFallback = normalizeDistrictSlicePayload(fallback);
+      districtSliceCache.set(key, normalizedFallback);
+      return normalizedFallback;
     }
 
     function parseCSV(csvText) {
@@ -14588,7 +14641,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const candidatePaths = getPreferredDistrictSlicePaths(scope, contestType, year);
       for (const path of candidatePaths) {
         try {
-          return await loadJSON(path);
+          const payload = await loadJSON(path);
+          return normalizeDistrictSlicePayload(payload);
         } catch (_) {}
       }
       return null;
