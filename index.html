@@ -14114,15 +14114,16 @@ document.addEventListener('DOMContentLoaded', function() {
         setStatus('Loading election index...');
         candidateNameCache = new Map();
         contestSliceCache = new Map();
+        let contestManifestLoaded = false;
 	        try {
 	          const manifest = await loadJSON(`${CONFIG.paths.contests_dir}/manifest.json`);
 	          contestManifest = manifest?.files || [];
+	          contestManifestLoaded = true;
 	          // Add CSV-backed presidential elections not present in the precomputed contest slices.
 	          Object.keys(PRESIDENT_OPEN_ELECTIONS_CSV).map(Number).forEach(y => {
 	            const exists = contestManifest.some(e => e && e.contest_type === 'president' && Number(e.year) === Number(y));
 	            if (!exists) contestManifest.push({ year: y, contest_type: 'president', file: `open_elections_csv_${y}.csv`, rows: 1 });
 	          });
-	          electionData = [];
 	          updateContestSelectForCurrentView();
 	          setStatus('Election index loaded');
 	        } catch (manifestErr) {
@@ -14140,6 +14141,26 @@ document.addEventListener('DOMContentLoaded', function() {
           }
           setStatus('Election data loaded');
           populateContestSelectFromElectionJSON(electionData);
+        }
+
+        // Always load county aggregate election data so statewide/county totals remain canonical
+        // even when contest slices are active.
+        if (!Array.isArray(electionData) || electionData.length === 0) {
+          try {
+            setStatus('Loading aggregate election data...');
+            electionDataJSON = await loadJSON(CONFIG.paths.election);
+            electionData = flattenElectionJSON(electionDataJSON);
+            debugLog('Aggregate election data loaded:', Array.isArray(electionData) ? electionData.length : 0, 'records');
+            if (contestManifestLoaded) {
+              // Keep manifest-driven contest list while enabling aggregate totals/candidate lookup.
+              updateContestSelectForCurrentView();
+              setStatus('Election index loaded');
+            } else {
+              setStatus('Election data loaded');
+            }
+          } catch (aggregateErr) {
+            console.warn('Aggregate election data not loaded:', aggregateErr?.message || aggregateErr);
+          }
         }
 
         try {
