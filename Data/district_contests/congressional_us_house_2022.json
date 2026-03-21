@@ -5,14 +5,14 @@
   "general": {
     "results": {
       "1": {
-        "dem_votes": 302972,
-        "rep_votes": 392295,
-        "other_votes": 19424,
-        "total_votes": 714691,
+        "dem_votes": 145370,
+        "rep_votes": 233093,
+        "other_votes": 9995,
+        "total_votes": 388458,
         "dem_candidate": "Bob Lorinser",
         "rep_candidate": "Jack Bergman",
-        "margin": 89323,
-        "margin_pct": 12.498129,
+        "margin": 87723,
+        "margin_pct": 22.582364,
         "winner": "REP",
         "color": ""
       },
@@ -109,6 +109,18 @@
         "rep_candidate": "Lisa McClain",
         "margin": 114596,
         "margin_pct": 30.736467,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 157602,
+        "rep_votes": 159202,
+        "other_votes": 9429,
+        "total_votes": 326233,
+        "dem_candidate": "Carl J. Marlinga",
+        "rep_candidate": "John James",
+        "margin": 1600,
+        "margin_pct": 0.490447,
         "winner": "REP",
         "color": ""
       },

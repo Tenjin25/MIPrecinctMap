@@ -5,14 +5,14 @@
   "general": {
     "results": {
       "1": {
-        "dem_votes": 372300,
-        "rep_votes": 499702,
-        "other_votes": 30484,
-        "total_votes": 902486,
+        "dem_votes": 180937,
+        "rep_votes": 282265,
+        "other_votes": 13983,
+        "total_votes": 477185,
         "dem_candidate": "Callie Barr",
-        "rep_candidate": "John James",
-        "margin": 127402,
-        "margin_pct": 14.116784,
+        "rep_candidate": "Jack Bergman",
+        "margin": 101328,
+        "margin_pct": 21.234532,
         "winner": "REP",
         "color": ""
       },
@@ -109,6 +109,18 @@
         "rep_candidate": "Lisa McClain",
         "margin": 174237,
         "margin_pct": 37.240154,
+        "winner": "REP",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 191363,
+        "rep_votes": 217437,
+        "other_votes": 16501,
+        "total_votes": 425301,
+        "dem_candidate": "Carl J. Marlinga",
+        "rep_candidate": "John James",
+        "margin": 26074,
+        "margin_pct": 6.130717,
         "winner": "REP",
         "color": ""
       },

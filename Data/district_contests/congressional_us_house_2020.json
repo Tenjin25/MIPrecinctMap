@@ -5,14 +5,14 @@
   "general": {
     "results": {
       "1": {
-        "dem_votes": 291508,
-        "rep_votes": 528188,
+        "dem_votes": 215251,
+        "rep_votes": 392368,
         "other_votes": 6310,
-        "total_votes": 826006,
+        "total_votes": 613929,
         "dem_candidate": "Dana Ferguson",
         "rep_candidate": "Jack Bergman",
-        "margin": 236680,
-        "margin_pct": 28.653545,
+        "margin": 177117,
+        "margin_pct": 28.849753,
         "winner": "REP",
         "color": ""
       },
@@ -110,6 +110,18 @@
         "margin": 77022,
         "margin_pct": -19.298101,
         "winner": "DEM",
+        "color": ""
+      },
+      "10": {
+        "dem_votes": 76257,
+        "rep_votes": 135820,
+        "other_votes": 0,
+        "total_votes": 212077,
+        "dem_candidate": "Kimberly Bizon",
+        "rep_candidate": "Lisa McClain",
+        "margin": 59563,
+        "margin_pct": 28.085554,
+        "winner": "REP",
         "color": ""
       },
       "11": {

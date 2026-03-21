@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-03-21T05:12:58.703Z",
+    "generated_at": "2026-03-21T05:34:49.882Z",
     "source": "Michigan precinct CSV files",
     "note": "Statewide contests use VTD overlap shares for congressional and centroid-to-2022 polygon matching for legislative scopes; district-office contests still use reported district rows."
   },
@@ -42191,14 +42191,14 @@
           "general": {
             "results": {
               "1": {
-                "dem_votes": 291508,
-                "rep_votes": 528188,
+                "dem_votes": 215251,
+                "rep_votes": 392368,
                 "other_votes": 6310,
-                "total_votes": 826006,
+                "total_votes": 613929,
                 "dem_candidate": "Dana Ferguson",
                 "rep_candidate": "Jack Bergman",
-                "margin": 236680,
-                "margin_pct": 28.653545,
+                "margin": 177117,
+                "margin_pct": 28.849753,
                 "winner": "REP",
                 "color": ""
               },
@@ -42296,6 +42296,18 @@
                 "margin": 77022,
                 "margin_pct": -19.298101,
                 "winner": "DEM",
+                "color": ""
+              },
+              "10": {
+                "dem_votes": 76257,
+                "rep_votes": 135820,
+                "other_votes": 0,
+                "total_votes": 212077,
+                "dem_candidate": "Kimberly Bizon",
+                "rep_candidate": "Lisa McClain",
+                "margin": 59563,
+                "margin_pct": 28.085554,
+                "winner": "REP",
                 "color": ""
               },
               "11": {
@@ -47644,14 +47656,14 @@
           "general": {
             "results": {
               "1": {
-                "dem_votes": 302972,
-                "rep_votes": 392295,
-                "other_votes": 19424,
-                "total_votes": 714691,
+                "dem_votes": 145370,
+                "rep_votes": 233093,
+                "other_votes": 9995,
+                "total_votes": 388458,
                 "dem_candidate": "Bob Lorinser",
                 "rep_candidate": "Jack Bergman",
-                "margin": 89323,
-                "margin_pct": 12.498129,
+                "margin": 87723,
+                "margin_pct": 22.582364,
                 "winner": "REP",
                 "color": ""
               },
@@ -47748,6 +47760,18 @@
                 "rep_candidate": "Lisa McClain",
                 "margin": 114596,
                 "margin_pct": 30.736467,
+                "winner": "REP",
+                "color": ""
+              },
+              "10": {
+                "dem_votes": 157602,
+                "rep_votes": 159202,
+                "other_votes": 9429,
+                "total_votes": 326233,
+                "dem_candidate": "Carl J. Marlinga",
+                "rep_candidate": "John James",
+                "margin": 1600,
+                "margin_pct": 0.490447,
                 "winner": "REP",
                 "color": ""
               },
@@ -55143,14 +55167,14 @@
           "general": {
             "results": {
               "1": {
-                "dem_votes": 372300,
-                "rep_votes": 499702,
-                "other_votes": 30484,
-                "total_votes": 902486,
+                "dem_votes": 180937,
+                "rep_votes": 282265,
+                "other_votes": 13983,
+                "total_votes": 477185,
                 "dem_candidate": "Callie Barr",
-                "rep_candidate": "John James",
-                "margin": 127402,
-                "margin_pct": 14.116784,
+                "rep_candidate": "Jack Bergman",
+                "margin": 101328,
+                "margin_pct": 21.234532,
                 "winner": "REP",
                 "color": ""
               },
@@ -55247,6 +55271,18 @@
                 "rep_candidate": "Lisa McClain",
                 "margin": 174237,
                 "margin_pct": 37.240154,
+                "winner": "REP",
+                "color": ""
+              },
+              "10": {
+                "dem_votes": 191363,
+                "rep_votes": 217437,
+                "other_votes": 16501,
+                "total_votes": 425301,
+                "dem_candidate": "Carl J. Marlinga",
+                "rep_candidate": "John James",
+                "margin": 26074,
+                "margin_pct": 6.130717,
                 "winner": "REP",
                 "color": ""
               },
