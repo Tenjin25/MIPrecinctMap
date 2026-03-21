@@ -8407,8 +8407,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       
       if (record && record[candidateField]) {
-        candidateNameCache.set(cacheKey, record[candidateField]);
-        return record[candidateField];
+        const candidateDisplay = fullCandidateLabel(record[candidateField], record[candidateField]);
+        candidateNameCache.set(cacheKey, candidateDisplay);
+        return candidateDisplay;
       }
       
       const fallback = party === 'Democrat' ? 'D' : 'R';
@@ -9370,7 +9371,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Prefer the surname in compact labels; ignore trailing suffixes like Jr./III.
       let idx = parts.length - 1;
       while (idx > 0 && isNameSuffixToken(parts[idx])) idx -= 1;
-      return parts[idx];
+      return toTitleCaseName(parts[idx]);
     }
 
     function fullCandidateLabel(name, fallback = '') {
@@ -14216,6 +14217,50 @@ document.addEventListener('DOMContentLoaded', function() {
       return agg;
     }
 
+    function getCanonicalStatewideTotals(contestType, year, fallback = null) {
+      const y = Number(year);
+      let dem = 0;
+      let rep = 0;
+      let other = 0;
+      let total = 0;
+      let demCandidate = '';
+      let repCandidate = '';
+
+      if (Array.isArray(electionData) && electionData.length) {
+        electionData.forEach(row => {
+          if (Number(row?.year) !== y) return;
+          const d = Number(row?.[`${contestType}_dem`] || 0);
+          const r = Number(row?.[`${contestType}_rep`] || 0);
+          const o = Number(row?.[`${contestType}_other`] || 0);
+          const rawTotal = Number(row?.[`${contestType}_total`]);
+          const t = Number.isFinite(rawTotal) && rawTotal > 0 ? rawTotal : (d + r + o);
+          if (t <= 0 && d <= 0 && r <= 0 && o <= 0) return;
+          dem += d;
+          rep += r;
+          other += o;
+          total += t;
+          if (!demCandidate) demCandidate = (row?.[`${contestType}_dem_candidate`] || '').toString().trim();
+          if (!repCandidate) repCandidate = (row?.[`${contestType}_rep_candidate`] || '').toString().trim();
+        });
+      }
+
+      if (total > 0) {
+        return { dem, rep, other, total, demCandidate, repCandidate, source: 'county_aggregate' };
+      }
+      if (fallback && Number(fallback.total || 0) > 0) {
+        return {
+          dem: Number(fallback.dem || 0),
+          rep: Number(fallback.rep || 0),
+          other: Number(fallback.other || 0),
+          total: Number(fallback.total || 0),
+          demCandidate: (fallback.demCandidate || '').toString().trim(),
+          repCandidate: (fallback.repCandidate || '').toString().trim(),
+          source: 'fallback'
+        };
+      }
+      return null;
+    }
+
     function categoryColorForMargin(marginPct, winner) {
       if (marginPct >= 40) {
         return winner === 'R' ? '#67000d' : '#08306b';
@@ -15340,16 +15385,42 @@ document.addEventListener('DOMContentLoaded', function() {
             } catch (_) {}
           }
 
-          const demPct = totalVotes ? (totalDem / totalVotes) * 100 : 0;
-          const repPct = totalVotes ? (totalRep / totalVotes) * 100 : 0;
-          const totalOther = Math.max(0, totalVotes - totalDem - totalRep);
-          const otherPct = totalVotes ? ((totalVotes - totalDem - totalRep) / totalVotes) * 100 : 0;
+          const districtOther = Math.max(0, totalVotes - totalDem - totalRep);
+          const statewideTotals = getCanonicalStatewideTotals(contestType, year, {
+            dem: totalDem,
+            rep: totalRep,
+            other: districtOther,
+            total: totalVotes
+          }) || { dem: totalDem, rep: totalRep, other: districtOther, total: totalVotes, demCandidate: '', repCandidate: '' };
+          const summaryDem = Number(statewideTotals.dem || 0);
+          const summaryRep = Number(statewideTotals.rep || 0);
+          const summaryOther = Number(statewideTotals.other || 0);
+          const summaryTotal = Number(statewideTotals.total || 0);
+          const demPct = summaryTotal ? (summaryDem / summaryTotal) * 100 : 0;
+          const repPct = summaryTotal ? (summaryRep / summaryTotal) * 100 : 0;
+          const otherPct = summaryTotal ? (summaryOther / summaryTotal) * 100 : 0;
           const coverageText = (coveragePct !== undefined && coveragePct !== null)
             ? ` | match coverage ${Number(coveragePct).toFixed(2)}%`
             : '';
+          updateStatewideResults(contestType, year, summaryDem, summaryRep, summaryTotal, {
+            otherVotes: summaryOther,
+            demCandidate: (statewideTotals.demCandidate || '').toString(),
+            repCandidate: (statewideTotals.repCandidate || '').toString()
+          });
           setStatewideContestTitle(`${formatContestName(contestType, year)} (${year})${coverageText}`);
           setStatus(`Applied district crosswalk results: ${formatContestName(contestType, year)} ${year} (${demPct.toFixed(2)}% D, ${repPct.toFixed(2)}% R, ${otherPct.toFixed(2)}% O)${coverageText}`);
-          setVoteCounterBaselineState('Statewide', `${formatContestName(contestType, year)} ${year}`, totalDem, totalRep, totalOther, { kind: 'statewide', contestType, year: Number(year) });
+          setVoteCounterBaselineState(
+            'Statewide',
+            `${formatContestName(contestType, year)} ${year}`,
+            summaryDem,
+            summaryRep,
+            summaryOther,
+            { kind: 'statewide', contestType, year: Number(year) },
+            {
+              demCandidate: (statewideTotals.demCandidate || '').toString(),
+              repCandidate: (statewideTotals.repCandidate || '').toString()
+            }
+          );
           return;
         }
       }
