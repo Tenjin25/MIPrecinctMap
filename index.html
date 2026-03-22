@@ -8120,13 +8120,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function refreshPinnedDistrictForContest(contestType, year) {
-      const pinned = voteCounterPinned || null;
-      const meta = pinned?.meta || null;
-      if (!meta || meta.kind !== 'district') return false;
       if (!contestType || !year) return false;
 
-      let scope = (meta.scope || '').toString().trim();
-      let districtNum = Number(meta.districtNum);
+      const pinned = voteCounterPinned || null;
+      const meta = pinned?.meta || null;
+      let scope = '';
+      let districtNum = NaN;
+
+      if (meta && meta.kind === 'district') {
+        scope = (meta.scope || '').toString().trim();
+        districtNum = Number(meta.districtNum);
+      } else {
+        const selectedLabel = (window.lastSelectedCounty || '').toString().trim();
+        let m = selectedLabel.match(/^CONGRESSIONAL\s+DISTRICT\s+(\d+)$/i) || selectedLabel.match(/^DISTRICT\s+(\d+)$/i);
+        if (m) {
+          scope = 'congressional';
+          districtNum = Number(m[1]);
+        }
+        if (!Number.isFinite(districtNum)) {
+          m = selectedLabel.match(/^STATE\s+HOUSE\s+DISTRICT\s+(\d+)$/i);
+          if (m) {
+            scope = 'state_house';
+            districtNum = Number(m[1]);
+          }
+        }
+        if (!Number.isFinite(districtNum)) {
+          m = selectedLabel.match(/^STATE\s+SENATE\s+DISTRICT\s+(\d+)$/i);
+          if (m) {
+            scope = 'state_senate';
+            districtNum = Number(m[1]);
+          }
+        }
+      }
+
       if (!scope || !Number.isFinite(districtNum)) return false;
 
       const viewScope = getDistrictScopeForView(currentView);
