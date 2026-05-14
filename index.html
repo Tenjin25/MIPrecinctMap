@@ -10537,6 +10537,12 @@ document.addEventListener('DOMContentLoaded', function() {
       return `<span class="meta-chip shift"><span class="dot" style="background:${dotColor};"></span>Shift: ${label}${years ? ` <span style="color:#64748b;font-weight:800;">(${years})</span>` : ''}</span>`;
     }
 
+    function formatShiftLabel(delta) {
+      const s = Number(delta);
+      if (!Number.isFinite(s) || Math.abs(s) < 0.01) return '↔ No clear shift';
+      return `${s > 0 ? '→' : '←'} ${s > 0 ? 'R' : 'D'}+${Math.abs(s).toFixed(2)}%`;
+    }
+
     function winnerChipHTML(winner) {
       const w = (winner || '').toString().toUpperCase();
       const cls = w === 'R' ? 'rep' : (w === 'D' ? 'dem' : 'tie');
@@ -10866,9 +10872,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
-      const shiftDelta = (currentVizMode === 'shift' && vizShiftCache?.prevYear)
-        ? (signedMarginPct - Number((prevSignedForFlip !== null) ? prevSignedForFlip : 0))
-        : NaN;
+      let shiftDelta = NaN;
+      if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
+        let prevSignedForShift = null;
+        const prevTotalsForShift = vizShiftCache?.prevCountyTotals?.[norm] || null;
+        if (prevTotalsForShift && Number(prevTotalsForShift.total) > 0) {
+          prevSignedForShift = signedMarginPctFromVotes(prevTotalsForShift.dem, prevTotalsForShift.rep, prevTotalsForShift.total);
+        } else if (Number.isFinite(Number(prevSignedForFlip))) {
+          prevSignedForShift = Number(prevSignedForFlip);
+        }
+        if (Number.isFinite(Number(prevSignedForShift))) {
+          shiftDelta = signedMarginPct - Number(prevSignedForShift);
+        }
+      }
       const shiftClass = Number.isFinite(shiftDelta)
         ? (Math.abs(shiftDelta) < 0.01 ? 'tie' : (shiftDelta > 0 ? 'rep' : 'dem'))
         : 'tie';
@@ -10955,9 +10971,20 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       const marginCall = winnerMarginCall(repVotes, demVotes, demVotes + repVotes + otherVotes, repCandidate, demCandidate);
-      const shiftDelta = (currentVizMode === 'shift' && vizShiftCache?.prevYear)
-        ? (curSigned - Number((prevSignedForFlip !== null) ? prevSignedForFlip : 0))
-        : NaN;
+      let shiftDelta = NaN;
+      if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
+        const prevShiftMap = vizShiftCache?.prevPrecinctMarginByNorm;
+        let prevSignedForShift = null;
+        if (prevShiftMap?.has(precinctNorm)) {
+          const prevShiftSigned = Number(prevShiftMap.get(precinctNorm));
+          if (Number.isFinite(prevShiftSigned)) prevSignedForShift = prevShiftSigned;
+        } else if (Number.isFinite(Number(prevSignedForFlip))) {
+          prevSignedForShift = Number(prevSignedForFlip);
+        }
+        if (Number.isFinite(Number(prevSignedForShift))) {
+          shiftDelta = Number(curSigned) - Number(prevSignedForShift);
+        }
+      }
       const shiftClass = Number.isFinite(shiftDelta)
         ? (Math.abs(shiftDelta) < 0.01 ? 'tie' : (shiftDelta > 0 ? 'rep' : 'dem'))
         : 'tie';
