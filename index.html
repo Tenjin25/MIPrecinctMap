@@ -13602,6 +13602,10 @@ document.addEventListener('DOMContentLoaded', function() {
         map.flyTo({ center: coords, zoom: Math.max(CONFIG.precincts?.minZoom || 8.5, 10.0), speed: 0.9 });
       }
 
+      // Keep mobile context/focus labels in sync with precinct selections.
+      window.lastSelectedCounty = matchedTarget;
+      try { updateContextBanner(); } catch (_) {}
+
       // Pin vote counter if we have precinct-level results keyed by precinct_norm.
       const contestValue = document.getElementById('contestSelect')?.value || '';
       const [contestType, year] = parseContestValue(contestValue);
