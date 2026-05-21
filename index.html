@@ -8001,18 +8001,30 @@ document.addEventListener('DOMContentLoaded', function() {
           if (!demCand) demCand = r[`${contestType}_dem_candidate`] || '';
           if (!repCand) repCand = r[`${contestType}_rep_candidate`] || '';
         });
-        if (tot <= 0) continue;
-        const margin = rep - dem;
+        const canonical = getCanonicalStatewideTotals(contestType, year, {
+          dem,
+          rep,
+          other: oth,
+          total: tot,
+          demCandidate: demCand,
+          repCandidate: repCand
+        });
+        if (!canonical || Number(canonical.total || 0) <= 0) continue;
+        const demVotes = Number(canonical.dem || 0);
+        const repVotes = Number(canonical.rep || 0);
+        const otherVotes = Number(canonical.other || 0);
+        const totalVotes = Number(canonical.total || 0);
+        const margin = repVotes - demVotes;
         out.push({
           year,
-          dem_votes: dem,
-          rep_votes: rep,
-          other_votes: oth,
-          total_votes: tot,
-          dem_candidate: demCand,
-          rep_candidate: repCand,
+          dem_votes: demVotes,
+          rep_votes: repVotes,
+          other_votes: otherVotes,
+          total_votes: totalVotes,
+          dem_candidate: (canonical.demCandidate || demCand || '').toString(),
+          rep_candidate: (canonical.repCandidate || repCand || '').toString(),
           winner: margin > 0 ? 'REP' : (margin < 0 ? 'DEM' : 'TIE'),
-          margin_pct: Number(((margin / tot) * 100).toFixed(2))
+          margin_pct: Number(((margin / totalVotes) * 100).toFixed(2))
         });
       }
       if (!out.length && contestType === 'us_house' && Array.isArray(congressionalData) && congressionalData.length) {
