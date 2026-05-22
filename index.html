@@ -7982,14 +7982,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function getStatewideTrendSeries(contestType) {
-      const entries = (contestManifest || [])
-        .filter(f => f && f.contest_type === contestType && Number.isFinite(Number(f.year)))
-        .slice()
-        .sort((a, b) => Number(a.year) - Number(b.year));
+      const years = Array.from(new Set(
+        (contestManifest || [])
+          .filter(f => f && f.contest_type === contestType && Number.isFinite(Number(f.year)))
+          .map(f => Number(f.year))
+      )).sort((a, b) => a - b);
 
       const out = [];
-      for (const e of entries) {
-        const year = Number(e.year);
+      for (const year of years) {
         const rows = await loadContestSlice(contestType, year);
         let dem = 0, rep = 0, oth = 0, tot = 0;
         let demCand = '', repCand = '';
