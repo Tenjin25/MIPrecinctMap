@@ -11430,6 +11430,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const vizDistrictShiftCache = new Map(); // key: `${scope}_${contestType}_${year}` -> { prevYear, prevNode }
     let vizPrevCache = null; // { contestType, year, prevYear, prevPrecinctMarginByNorm: Map, prevCountyTotals: Object }
     const vizPrevDistrictCache = new Map(); // key: `${scope}_${contestType}_${year}` -> { prevYear, prevNode }
+    const vizPrevDistrictInflight = new Map(); // key: `${scope}_${contestType}_${year}` -> Promise
     let lastContestSliceMeta = null; // { contestType, year:number, rows:Array } for sidebar helpers
     // Session persistence was removed to avoid surprises on shared/low-memory machines.
     let contestSearchQuery = '';
@@ -11808,7 +11809,10 @@ document.addEventListener('DOMContentLoaded', function() {
       return out;
     }
 
-    function getActiveDistrictManifest() {
+    function getActiveDistrictManifest(linesYear = currentDistrictLinesYear) {
+      const y = normalizeDistrictLinesYear(linesYear);
+      const byLines = districtManifestByLines?.[String(y)];
+      if (Array.isArray(byLines) && byLines.length) return byLines;
       return districtManifest || [];
     }
 
@@ -12518,6 +12522,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Keep `districtSliceCache` warm across line switches: cache keys include the lines year.
       districtCarryCrosswalkCache.clear();
       vizPrevDistrictCache.clear();
+      vizPrevDistrictInflight.clear();
       clearDistrictSearchGeoJSONCache();
       updateDistrictLinesToggleUI();
 
@@ -19118,21 +19123,31 @@ document.addEventListener('DOMContentLoaded', function() {
     async function loadDistrictSlice(scope, contestType, year) {
       const key = `${scope}_${contestType}_${year}`;
       if (districtSliceCache.has(key)) return districtSliceCache.get(key);
+      if (districtSliceInflight.has(key)) return districtSliceInflight.get(key);
 
-      const candidatePaths = getPreferredDistrictSlicePaths(scope, contestType, year);
-      for (const path of candidatePaths) {
-        try {
-          const payload = await loadJSON(path);
-          const normalized = normalizeDistrictSlicePayload(payload);
-          districtSliceCache.set(key, normalized);
-          return normalized;
-        } catch (_) {}
+      const p = (async () => {
+        const candidatePaths = getPreferredDistrictSlicePaths(scope, contestType, year);
+        for (const path of candidatePaths) {
+          try {
+            const payload = await loadJSON(path);
+            const normalized = normalizeDistrictSlicePayload(payload);
+            districtSliceCache.set(key, normalized);
+            return normalized;
+          } catch (_) {}
+        }
+
+        const fallback = districtElectionDataJSON?.results_by_year?.[year]?.[scope]?.[contestType] || null;
+        const normalizedFallback = normalizeDistrictSlicePayload(fallback);
+        districtSliceCache.set(key, normalizedFallback);
+        return normalizedFallback;
+      })();
+
+      districtSliceInflight.set(key, p);
+      try {
+        return await p;
+      } finally {
+        districtSliceInflight.delete(key);
       }
-
-      const fallback = districtElectionDataJSON?.results_by_year?.[year]?.[scope]?.[contestType] || null;
-      const normalizedFallback = normalizeDistrictSlicePayload(fallback);
-      districtSliceCache.set(key, normalizedFallback);
-      return normalizedFallback;
     }
 
     function parseCSV(csvText) {
@@ -26392,11 +26407,20 @@ document.addEventListener('DOMContentLoaded', function() {
       const requestId = ++districtHoverRequestId;
       setDistrictHoverOutline(scope, districtNum);
 
+      const districtNumText = String(districtNum);
+      const paddedDistrictNum = districtNumText.padStart(2, '0');
+      const shortDistrictLabel = scope === 'state_house'
+        ? 'HD'
+        : (scope === 'state_senate' ? 'SD' : null);
+      const formattedDistrictLabel = scope === 'congressional'
+        ? `MI-${paddedDistrictNum}`
+        : `${shortDistrictLabel || districtLabel}-${paddedDistrictNum}`;
+
       const contestValue = document.getElementById('contestSelect')?.value || '';
       const _demoRow = getDistrictDemographics(scope, districtNum);
       const _demoHTML = buildDemoHTML(_demoRow);
       if (!contestValue) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
+        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(formattedDistrictLabel,
           _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>'), { force: !!forceTooltip });
         wireTooltipButtons();
         return;
@@ -26419,7 +26443,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       if (!row) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
+        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(formattedDistrictLabel,
           _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>'), { force: !!forceTooltip });
         wireTooltipButtons();
         return;
@@ -26430,7 +26454,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const otherVotes = Number(row.other_votes || 0);
       const totalVotes = Number(row.total_votes || 0);
       if (totalVotes <= 0) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
+        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(formattedDistrictLabel,
           _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>'), { force: !!forceTooltip });
         wireTooltipButtons();
         return;
@@ -26449,7 +26473,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!repCandidate) repCandidate = getCandidateName(year, formatContestName(contestType, year), 'Republican');
       const subtitle = `${formatContestName(contestType, year)} ${year}`;
       setVoteCounterHoverState(
-        `Hover: ${districtLabel} ${districtNum}`,
+        `Hover: ${formattedDistrictLabel}`,
         subtitle,
         demVotes,
         repVotes,
@@ -26464,22 +26488,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
       let prevSignedForFlip = null;
       let prevYearForFlip = null;
-      try {
-        const prevCached = await ensurePrevDistrictCache(scope, contestType, Number(year));
-        prevYearForFlip = prevCached?.prevYear || null;
-        const prevResults = prevCached?.prevNode?.general?.results || null;
+      const prevCacheKey = `${scope}_${contestType}_${Number(year)}`;
+      const warmPrev = vizPrevDistrictCache.get(prevCacheKey) || null;
+      if (warmPrev) {
+        prevYearForFlip = warmPrev.prevYear || null;
+        const prevResults = warmPrev.prevNode?.general?.results || null;
         if (prevResults) {
           const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
           if (prevRow) prevSignedForFlip = Number(prevRow.margin_pct || 0);
         }
-      } catch (_) {}
+      } else if (currentVizMode === 'shift' || currentVizMode === 'flips') {
+        try {
+          const prevCached = await ensurePrevDistrictCache(scope, contestType, Number(year));
+          prevYearForFlip = prevCached?.prevYear || null;
+          const prevResults = prevCached?.prevNode?.general?.results || null;
+          if (prevResults) {
+            const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
+            if (prevRow) prevSignedForFlip = Number(prevRow.margin_pct || 0);
+          }
+        } catch (_) {}
+      } else {
+        // Warm flip history in the background so later hovers stay snappy.
+        ensurePrevDistrictCache(scope, contestType, Number(year)).catch(() => {});
+      }
 
       const subtitleByScope = scope === 'congressional'
         ? 'Congressional District'
         : (scope === 'state_senate' ? 'State Senate' : 'State House');
-      const districtTitle = scope === 'congressional'
-        ? `MI-${String(districtNum).padStart(2, '0')}`
-        : `${districtLabel} ${districtNum}`;
+      const districtTitle = formattedDistrictLabel;
       const winnerName = winner === 'R' ? shortCandidateLabel(repCandidate, 'Republican') : (winner === 'D' ? shortCandidateLabel(demCandidate, 'Democratic') : 'Tie');
       const winnerParty = winner === 'R' ? 'rep' : (winner === 'D' ? 'dem' : 'tie');
       const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
@@ -29447,7 +29483,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   await renderDistrictHover(
                     e,
                     'state_house',
-                    'State House District',
+                    'HD',
                     ['DISTRICT', 'SLDLST', 'district_id', 'district', 'NAMELSAD'],
                     { forceTooltip: true }
                   );
@@ -29555,7 +29591,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   await renderDistrictHover(
                     e,
                     'state_senate',
-                    'State Senate District',
+                    'SD',
                     ['DISTRICT', 'SLDUST', 'district_id', 'district', 'NAMELSAD'],
                     { forceTooltip: true }
                   );
@@ -32262,23 +32298,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function tryLoadDistrictSliceStrict(scope, contestType, year) {
-      const candidatePaths = getPreferredDistrictSlicePaths(scope, contestType, year);
-      for (const path of candidatePaths) {
-        try {
-          const payload = await loadJSON(path);
-          return normalizeDistrictSlicePayload(payload);
-        } catch (_) {}
-      }
+      const node = await loadDistrictSlice(scope, contestType, year);
+      const results = node?.general?.results || null;
+      if (results && Object.keys(results).length) return node;
       return null;
     }
 
     async function getPreviousDistrictSlice(scope, contestType, year) {
       const y = Number(year);
-      const candidates = [y - 4, y - 6, y - 2, y - 8, y - 12].filter(v => v >= 2008);
+      const candidates = getPriorContestYearsFromAvailableYears(
+        contestType,
+        y,
+        getAvailableDistrictContestYearsForScopeType(scope, contestType, currentDistrictLinesYear, y)
+      );
       for (const cy of candidates) {
         const node = await tryLoadDistrictSliceStrict(scope, contestType, cy);
-        const results = node?.general?.results || null;
-        if (results && Object.keys(results).length) return { year: cy, node };
+        if (node) return { year: cy, node };
       }
       return null;
     }
@@ -32287,10 +32322,19 @@ document.addEventListener('DOMContentLoaded', function() {
       const y = Number(year);
       const key = `${scope}_${contestType}_${y}`;
       if (vizPrevDistrictCache.has(key)) return vizPrevDistrictCache.get(key);
-      const prev = await getPreviousDistrictSlice(scope, contestType, y);
-      const cached = prev ? { prevYear: prev.year, prevNode: prev.node } : { prevYear: null, prevNode: null };
-      vizPrevDistrictCache.set(key, cached);
-      return cached;
+      if (vizPrevDistrictInflight.has(key)) return vizPrevDistrictInflight.get(key);
+      const p = (async () => {
+        const prev = await getPreviousDistrictSlice(scope, contestType, y);
+        const cached = prev ? { prevYear: prev.year, prevNode: prev.node } : { prevYear: null, prevNode: null };
+        vizPrevDistrictCache.set(key, cached);
+        return cached;
+      })();
+      vizPrevDistrictInflight.set(key, p);
+      try {
+        return await p;
+      } finally {
+        vizPrevDistrictInflight.delete(key);
+      }
     }
 
     async function applyContest(contestKey, opts = {}) {
@@ -33011,14 +33055,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (districtResults && Object.keys(districtResults).length > 0) {
           let mode = (currentVizMode || 'margins');
-          // Preload previous-year results for shift/flip detection.
+          // Previous-year results are only required for shift/flip coloring.
+          // Margins/winners paint immediately and warm previous-year cache in the background.
           let prevYear = null;
           let prevResults = null;
-          try {
-            const prevCached = await ensurePrevDistrictCache(districtScope, contestType, Number(year));
-            prevYear = prevCached?.prevYear || null;
-            prevResults = prevCached?.prevNode?.general?.results || null;
-          } catch (_) {}
+          const prevCacheKey = `${districtScope}_${contestType}_${Number(year)}`;
+          const warmPrev = vizPrevDistrictCache.get(prevCacheKey) || null;
+          if (warmPrev) {
+            prevYear = warmPrev.prevYear || null;
+            prevResults = warmPrev.prevNode?.general?.results || null;
+          }
+          if (mode === 'shift' || mode === 'flips') {
+            try {
+              const prevCached = await ensurePrevDistrictCache(districtScope, contestType, Number(year));
+              prevYear = prevCached?.prevYear || null;
+              prevResults = prevCached?.prevNode?.general?.results || null;
+            } catch (_) {}
+          } else if (!warmPrev) {
+            ensurePrevDistrictCache(districtScope, contestType, Number(year)).catch(() => {});
+          }
           if (mode === 'shift' && !prevYear) {
             setStatus(`Shift mode needs a prior year for ${formatContestName(contestType, year)} in ${districtScope}. Falling back to Margins.`);
             mode = 'margins';
