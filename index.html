@@ -10310,8 +10310,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-07-19-hd80-81-pres-fix';
-    const APP_BUILD_ID = '2026-07-19-hd80-81-pres-fix';
+    const DATA_CACHE_BUSTER = '2026-07-23-optional-data-guard';
+    const APP_BUILD_ID = '2026-07-23-optional-data-guard';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -10349,14 +10349,15 @@ document.addEventListener('DOMContentLoaded', function() {
         districts: withBase('./Data/tileset/mi_cd118_tileset.geojson'),
         state_house: withBase('./Data/tileset/mi_state_house_2022_lines_tileset.geojson'),
         state_senate: withBase('./Data/tileset/mi_state_senate_2022_lines_tileset.geojson'),
-        county_demographics: withBase('./Data/county_demographics_2020_dp1.json'),
+        county_demographics: null, // optional MI DP1 county file not shipped yet
         election: withBase('./Data/mi_elections_aggregated.json'),
         district_election: withBase('./Data/mi_district_results_2022_lines.json'),
         district_contests_dir: withBase('./Data/district_contests'),
-        districts_info: withBase('./Data/mi_congressional_districts.csv'),
-        state_house_info: withBase('./Data/mi_state_house_districts.csv'),
-        state_senate_info: withBase('./Data/mi_state_senate_districts.csv'),
-        district_descriptions: withBase('./Data/district_descriptions.json'),
+        // Optional district info/demo sheets — omitted until MI CSVs are generated.
+        districts_info: null,
+        state_house_info: null,
+        state_senate_info: null,
+        district_descriptions: null,
         contests_dir: withBase('./Data/contests')
       },
       center: [-84.5, 44.5],
@@ -31447,53 +31448,63 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       // Optional district resources: do not fail app initialization if absent
-      try {
-        const districtsCSV = await loadCSV(CONFIG.paths.districts_info);
-        districtsInfo = parseCSV(districtsCSV);
-        setStatus('Congressional data loaded');
-      } catch (err) {
-        console.warn('District CSV not loaded:', err.message);
+      if (CONFIG.paths.districts_info) {
+        try {
+          const districtsCSV = await loadCSV(CONFIG.paths.districts_info);
+          districtsInfo = parseCSV(districtsCSV);
+          setStatus('Congressional data loaded');
+        } catch (err) {
+          console.warn('District CSV not loaded:', err.message);
+        }
       }
 
       // Optional descriptive district labels (manual overrides).
-      try {
-        districtDescriptions = await loadJSON(CONFIG.paths.district_descriptions);
-      } catch (_) {
-        districtDescriptions = null;
+      if (CONFIG.paths.district_descriptions) {
+        try {
+          districtDescriptions = await loadJSON(CONFIG.paths.district_descriptions);
+        } catch (_) {
+          districtDescriptions = null;
+        }
       }
 
       // Optional county demographics (DP1-derived) for sidebar/tooltips.
-      try {
-        countyDemographics = await loadJSON(CONFIG.paths.county_demographics);
-      } catch (err) {
-        countyDemographics = null;
-        console.warn('County demographics not loaded:', err?.message || err);
+      if (CONFIG.paths.county_demographics) {
+        try {
+          countyDemographics = await loadJSON(CONFIG.paths.county_demographics);
+        } catch (err) {
+          countyDemographics = null;
+          console.warn('County demographics not loaded:', err?.message || err);
+        }
       }
 
       // Optional county population estimates (Census Vintage 2025) for county insight + trajectory confirmation.
-      try {
-        const countyPopulationEstimatesCSV = await loadCSV(CONFIG.paths.county_population_estimates);
-        const rows = parseCSV(countyPopulationEstimatesCSV);
-        const idx = buildCountyPopulationEstimateIndex(rows);
-        countyPopulationEstimatesByNorm = idx.byNorm;
-        countyPopulationEstimateStatewide = idx.statewide;
-      } catch (err) {
-        countyPopulationEstimatesByNorm = null;
-        countyPopulationEstimateStatewide = null;
-        console.warn('County population estimates not loaded:', err?.message || err);
+      if (CONFIG.paths.county_population_estimates) {
+        try {
+          const countyPopulationEstimatesCSV = await loadCSV(CONFIG.paths.county_population_estimates);
+          const rows = parseCSV(countyPopulationEstimatesCSV);
+          const idx = buildCountyPopulationEstimateIndex(rows);
+          countyPopulationEstimatesByNorm = idx.byNorm;
+          countyPopulationEstimateStatewide = idx.statewide;
+        } catch (err) {
+          countyPopulationEstimatesByNorm = null;
+          countyPopulationEstimateStatewide = null;
+          console.warn('County population estimates not loaded:', err?.message || err);
+        }
       }
 
       // Optional precinct demographics (VAP by race from block aggregation).
-      try {
-        const precinctDemographicsCSV = await loadCSV(CONFIG.paths.precinct_demographics);
-        const rows = parseCSV(precinctDemographicsCSV);
-        const idx = buildPrecinctDemographicsIndexes(rows);
-        precinctDemographicsByNorm = idx.byNorm;
-        precinctDemographicsByCountyCode = idx.byCountyCode;
-      } catch (err) {
-        precinctDemographicsByNorm = null;
-        precinctDemographicsByCountyCode = null;
-        console.warn('Precinct demographics not loaded:', err?.message || err);
+      if (CONFIG.paths.precinct_demographics) {
+        try {
+          const precinctDemographicsCSV = await loadCSV(CONFIG.paths.precinct_demographics);
+          const rows = parseCSV(precinctDemographicsCSV);
+          const idx = buildPrecinctDemographicsIndexes(rows);
+          precinctDemographicsByNorm = idx.byNorm;
+          precinctDemographicsByCountyCode = idx.byCountyCode;
+        } catch (err) {
+          precinctDemographicsByNorm = null;
+          precinctDemographicsByCountyCode = null;
+          console.warn('Precinct demographics not loaded:', err?.message || err);
+        }
       }
 
       // Optional: preload RDH CVAP aggregates used for hover totals (non-blocking).
@@ -31538,11 +31549,17 @@ document.addEventListener('DOMContentLoaded', function() {
           if (stateHousePath) districtGeometrySourceKeyById.set('state-house', `state_house:${stateHousePath}`);
           window['state-house__search_geojson'] = stateHouseGeoJSON;
         }
-        const stateHouseCSV = await loadCSV(CONFIG.paths.state_house_info);
-        stateHouseInfo = parseCSV(stateHouseCSV);
         setStatus('State house districts loaded');
       } catch (err) {
-        console.warn('State house resources not loaded:', err.message);
+        console.warn('State house geometry not loaded:', err.message);
+      }
+      if (CONFIG.paths.state_house_info) {
+        try {
+          const stateHouseCSV = await loadCSV(CONFIG.paths.state_house_info);
+          stateHouseInfo = parseCSV(stateHouseCSV);
+        } catch (err) {
+          console.warn('State house CSV not loaded:', err.message);
+        }
       }
 
       try {
@@ -31562,11 +31579,17 @@ document.addEventListener('DOMContentLoaded', function() {
           if (stateSenatePath) districtGeometrySourceKeyById.set('state-senate', `state_senate:${stateSenatePath}`);
           window['state-senate__search_geojson'] = stateSenateGeoJSON;
         }
-        const stateSenateCSV = await loadCSV(CONFIG.paths.state_senate_info);
-        stateSenateInfo = parseCSV(stateSenateCSV);
         setStatus('State senate districts loaded');
       } catch (err) {
-        console.warn('State senate resources not loaded:', err.message);
+        console.warn('State senate geometry not loaded:', err.message);
+      }
+      if (CONFIG.paths.state_senate_info) {
+        try {
+          const stateSenateCSV = await loadCSV(CONFIG.paths.state_senate_info);
+          stateSenateInfo = parseCSV(stateSenateCSV);
+        } catch (err) {
+          console.warn('State senate CSV not loaded:', err.message);
+        }
       }
 
       syncCurrentViewLayersAfterHydration();
@@ -31751,27 +31774,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Optional district resources: do not fail app initialization if absent
-        try {
-          const districtsCSV = await loadCSV(CONFIG.paths.districts_info);
-          districtsInfo = parseCSV(districtsCSV);
-          setStatus('Congressional data loaded');
-        } catch (err) {
-          console.warn('District CSV not loaded:', err.message);
+        if (CONFIG.paths.districts_info) {
+          try {
+            const districtsCSV = await loadCSV(CONFIG.paths.districts_info);
+            districtsInfo = parseCSV(districtsCSV);
+            setStatus('Congressional data loaded');
+          } catch (err) {
+            console.warn('District CSV not loaded:', err.message);
+          }
         }
 
         // Optional descriptive district labels (manual overrides).
-        try {
-          districtDescriptions = await loadJSON(CONFIG.paths.district_descriptions);
-        } catch (_) {
-          districtDescriptions = null;
+        if (CONFIG.paths.district_descriptions) {
+          try {
+            districtDescriptions = await loadJSON(CONFIG.paths.district_descriptions);
+          } catch (_) {
+            districtDescriptions = null;
+          }
         }
 
         // Optional county demographics (DP1-derived) for sidebar/tooltips.
-        try {
-          countyDemographics = await loadJSON(CONFIG.paths.county_demographics);
-        } catch (err) {
-          countyDemographics = null;
-          console.warn('County demographics not loaded:', err?.message || err);
+        if (CONFIG.paths.county_demographics) {
+          try {
+            countyDemographics = await loadJSON(CONFIG.paths.county_demographics);
+          } catch (err) {
+            countyDemographics = null;
+            console.warn('County demographics not loaded:', err?.message || err);
+          }
         }
 
         try {
@@ -31797,11 +31826,17 @@ document.addEventListener('DOMContentLoaded', function() {
             map.addSource('state-house', { type: 'geojson', data: stateHouseGeoJSON });
             window['state-house__search_geojson'] = stateHouseGeoJSON;
           }
-          const stateHouseCSV = await loadCSV(CONFIG.paths.state_house_info);
-          stateHouseInfo = parseCSV(stateHouseCSV);
           setStatus('State house districts loaded');
         } catch (err) {
-          console.warn('State house resources not loaded:', err.message);
+          console.warn('State house geometry not loaded:', err.message);
+        }
+        if (CONFIG.paths.state_house_info) {
+          try {
+            const stateHouseCSV = await loadCSV(CONFIG.paths.state_house_info);
+            stateHouseInfo = parseCSV(stateHouseCSV);
+          } catch (err) {
+            console.warn('State house CSV not loaded:', err.message);
+          }
         }
 
         try {
@@ -31813,11 +31848,17 @@ document.addEventListener('DOMContentLoaded', function() {
             map.addSource('state-senate', { type: 'geojson', data: stateSenateGeoJSON });
             window['state-senate__search_geojson'] = stateSenateGeoJSON;
           }
-          const stateSenateCSV = await loadCSV(CONFIG.paths.state_senate_info);
-          stateSenateInfo = parseCSV(stateSenateCSV);
           setStatus('State senate districts loaded');
         } catch (err) {
-          console.warn('State senate resources not loaded:', err.message);
+          console.warn('State senate geometry not loaded:', err.message);
+        }
+        if (CONFIG.paths.state_senate_info) {
+          try {
+            const stateSenateCSV = await loadCSV(CONFIG.paths.state_senate_info);
+            stateSenateInfo = parseCSV(stateSenateCSV);
+          } catch (err) {
+            console.warn('State senate CSV not loaded:', err.message);
+          }
         }
 
         map.fitBounds(CONFIG.fitBounds, { padding: 20 });
