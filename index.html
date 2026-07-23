@@ -14231,7 +14231,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       return {
         cls: shift > 0 ? 'rep' : 'dem',
-        text: `Shift: ${shift > 0 ? 'R' : 'D'}+${Math.abs(shift).toFixed(2)} since ${prevYear}`
+        text: `Shift: ${shift > 0 ? 'R' : 'D'}+${Math.abs(shift).toFixed(2)}% since ${prevYear}`
       };
     }
 
@@ -23174,7 +23174,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!Number.isFinite(recentShiftSince2020) || selectedYear <= 2020) return '—';
         if (Math.abs(recentShiftSince2020) < 0.75) return 'Steady since 2020';
         const side = recentShiftSince2020 > 0 ? 'R' : 'D';
-        return `${side}+${Math.abs(recentShiftSince2020).toFixed(2)} since 2020`;
+        return `${side}+${Math.abs(recentShiftSince2020).toFixed(2)}% since 2020`;
       })();
 
       const confidence = confidenceForNarrative();
@@ -27992,12 +27992,18 @@ document.addEventListener('DOMContentLoaded', function() {
         ? `<div class="vhr-winner ${winnerToneClass}" style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;"><span>${escapeHtml(winnerDisplayText)}</span><span class="vhr-raw-lead ${winnerToneClass}" style="${voteLeadStyle}">${escapeHtml(`${formatVotehubVotes(Math.abs(rVotes - dVotes))} votes`)}</span></div>`
         : '';
 
+      const normalizeCandidateLabel = (value, fallback) => {
+        const cleaned = typeof fullCandidateLabel === 'function'
+          ? fullCandidateLabel(value, '')
+          : stripRunningMateName((value || '').toString().trim());
+        return cleaned || fallback;
+      };
       const rows = [];
       const candidateRows = [
-        { partyClass: 'rep', label: stripRunningMateName((repName || '').toString().trim()) || 'Republican', votes: rVotes, pct: repPct },
-        { partyClass: 'dem', label: stripRunningMateName((demName || '').toString().trim()) || 'Democratic', votes: dVotes, pct: demPct }
+        { partyClass: 'rep', label: normalizeCandidateLabel(repName, 'Republican'), votes: rVotes, pct: repPct },
+        { partyClass: 'dem', label: normalizeCandidateLabel(demName, 'Democratic'), votes: dVotes, pct: demPct }
       ];
-      if (oVotes > 0) candidateRows.push({ partyClass: 'other', label: stripRunningMateName((otherName || '').toString().trim()) || 'Others', votes: oVotes, pct: otherPct });
+      if (oVotes > 0) candidateRows.push({ partyClass: 'other', label: normalizeCandidateLabel(otherName, 'Others'), votes: oVotes, pct: otherPct });
       candidateRows.sort((a, b) => Number(b.votes || 0) - Number(a.votes || 0));
       candidateRows.forEach(row => {
         rows.push(`<div class="vhr-row ${row.partyClass}"><span class="vhr-dot"></span><span class="vhr-name">${escapeHtml(row.label)}</span><span class="vhr-votes">${escapeHtml(formatVotehubVotes(row.votes))}</span><span class="vhr-pct">${escapeHtml(formatVotehubPct(row.pct, 2))}%</span></div>`);
