@@ -250,6 +250,9 @@
   </style>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script>
+    const SIDEBAR_ENABLED = false;
+    document.documentElement.classList.toggle('sidebar-enabled', SIDEBAR_ENABLED);
+
     // Mobile viewport height fallback for browsers that don't support dvh/svh well (older Android Chrome/WebView).
     // Keeps fixed panels from "jumping" when the URL bar collapses/expands.
     (function () {
@@ -9272,6 +9275,22 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     --mi-blue-2: #17406f;
     --mi-gold: #c89b3c;
     --mi-ink: #0f172a;
+    --state-ribbon: linear-gradient(90deg, var(--mi-blue) 0%, var(--mi-blue-2) 68%, var(--mi-gold) 100%);
+    --state-accent-gradient: linear-gradient(135deg, var(--mi-blue) 0%, var(--mi-blue-2) 62%, var(--mi-gold) 100%);
+    --nc-control-active: linear-gradient(135deg, var(--mi-blue) 0%, var(--mi-blue-2) 100%);
+    --nc-control-active-strong: linear-gradient(135deg, #071a31 0%, var(--mi-blue-2) 100%);
+    --nc-control-idle: linear-gradient(180deg, rgba(23, 64, 111, 0.97) 0%, rgba(11, 37, 69, 0.99) 100%);
+    --nc-control-muted: linear-gradient(180deg, rgba(49, 78, 112, 0.96) 0%, rgba(23, 52, 84, 0.98) 100%);
+    --nc-control-ring: rgba(200, 155, 60, 0.32);
+    --ui-accent: var(--mi-blue-2);
+    --ui-accent-2: var(--mi-blue);
+  }
+
+  body {
+    background:
+      radial-gradient(circle at 16% 10%, rgba(23, 64, 111, 0.17) 0%, rgba(23, 64, 111, 0) 44%),
+      radial-gradient(circle at 86% 9%, rgba(200, 155, 60, 0.14) 0%, rgba(200, 155, 60, 0) 40%),
+      #f3f6fb !important;
   }
 
   .map-topbar {
@@ -9297,6 +9316,12 @@ body.focus-active #hover-tooltip[data-context="preview"] {
 
   .main-controls::before {
     background: linear-gradient(90deg, var(--mi-blue) 0%, var(--mi-blue-2) 56%, var(--mi-gold) 100%) !important;
+  }
+
+  .map-topbar::before,
+  .legend::before,
+  .vote-counter::before {
+    background: var(--state-ribbon) !important;
   }
 
   .control-summary {
@@ -9737,11 +9762,11 @@ document.addEventListener('DOMContentLoaded', function() {
     <button type="button" class="mobile-topbar-toggle" id="mobile-topbar-toggle" aria-controls="map-topbar-details" aria-expanded="false">Show details</button>
     <div class="map-topbar-details" id="map-topbar-details">
       <div class="map-topbar-hints" aria-label="Search examples">
-        <button type="button" class="fly-search-chip" data-search-example="Wayne">Wayne</button>
-        <button type="button" class="fly-search-chip" data-search-example="CD 13">CD 13</button>
-        <button type="button" class="fly-search-chip" data-search-example="HD 10">HD 10</button>
-        <button type="button" class="fly-search-chip" data-search-example="SD 3">SD 3</button>
-        <button type="button" class="fly-search-chip" data-search-example="Wayne 001">Wayne 001</button>
+        <button type="button" class="fly-search-chip" data-search-example="Kalamazoo">Kalamazoo</button>
+        <button type="button" class="fly-search-chip" data-search-example="CD 3">CD 3</button>
+        <button type="button" class="fly-search-chip" data-search-example="HD 95">HD 95</button>
+        <button type="button" class="fly-search-chip" data-search-example="SD 38">SD 38</button>
+        <button type="button" class="fly-search-chip" data-search-example="Grand Traverse 001">Grand Traverse 001</button>
       </div>
       <div class="context-banner" id="context-banner" aria-label="Current map state">
         <div class="context-banner-item">
@@ -9816,11 +9841,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="desktop-fly-helper">Jump to counties, districts, or precincts without changing the selected contest.</div>
                 <div class="desktop-quick-stats" data-viewport-precinct-count>Viewing precincts...</div>
                 <div class="desktop-fly-chip-row" aria-label="Fly-to examples">
-                  <button class="desktop-fly-chip" type="button" data-search-example="Wayne">Wayne</button>
-                  <button class="desktop-fly-chip" type="button" data-search-example="CD 13">CD 13</button>
-                  <button class="desktop-fly-chip" type="button" data-search-example="HD 10">HD 10</button>
-                  <button class="desktop-fly-chip" type="button" data-search-example="SD 3">SD 3</button>
-                  <button class="desktop-fly-chip" type="button" data-search-example="Wayne 001">Wayne 001</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="Kalamazoo">Kalamazoo</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="CD 3">CD 3</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="HD 95">HD 95</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="SD 38">SD 38</button>
+                  <button class="desktop-fly-chip" type="button" data-search-example="Grand Traverse 001">Grand Traverse 001</button>
                 </div>
             </div>
             <div class="control-group control-group-contest control-group-primary">
@@ -9899,12 +9924,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="control-group" style="margin-bottom:12px;">
                 <span class="section-kicker">Quick Jumps</span>
                 <div class="region-jumps" id="region-jumps">
-                  <button type="button" class="region-jump-btn" data-region-jump="metro_detroit">Metro Detroit</button>
-                  <button type="button" class="region-jump-btn" data-region-jump="southeast">Southeast</button>
                   <button type="button" class="region-jump-btn" data-region-jump="west_michigan">West Michigan</button>
                   <button type="button" class="region-jump-btn" data-region-jump="mid_michigan">Mid-Michigan</button>
                   <button type="button" class="region-jump-btn" data-region-jump="northern_lower">Northern Lower</button>
                   <button type="button" class="region-jump-btn" data-region-jump="upper_peninsula">Upper Peninsula</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="southeast">Southeast</button>
                 </div>
             </div>
             <div class="control-group" style="margin-bottom:10px;">
@@ -10306,8 +10330,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-07-23-winner-pill-size';
-    const APP_BUILD_ID = '2026-07-23-winner-pill-size';
+    const DATA_CACHE_BUSTER = '2026-08-03-mi-pop-v2';
+    const APP_BUILD_ID = '2026-08-03-mi-pop-v2';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -10346,6 +10370,7 @@ document.addEventListener('DOMContentLoaded', function() {
         state_house: withBase('./Data/tileset/mi_state_house_2022_lines_tileset.geojson'),
         state_senate: withBase('./Data/tileset/mi_state_senate_2022_lines_tileset.geojson'),
         county_demographics: null, // optional MI DP1 county file not shipped yet
+        county_population_estimates: withBase('./Data/CO-EST2025-POP-26-clean.csv'),
         election: withBase('./Data/mi_elections_aggregated.json'),
         district_election: withBase('./Data/mi_district_results_2022_lines.json'),
         district_contests_dir: withBase('./Data/district_contests'),
@@ -26195,9 +26220,32 @@ document.addEventListener('DOMContentLoaded', function() {
         : 'tie';
       const winnerName = winner === 'R' ? shortCandidateLabel(repCandidate, 'Republican') : (winner === 'D' ? shortCandidateLabel(demCandidate, 'Democratic') : 'Tie');
       const winnerParty = winner === 'R' ? 'rep' : (winner === 'D' ? 'dem' : 'tie');
-      const inner = buildVotehubResultsTooltip({
+      const popChangeHeaderMeta = (() => {
+        if (currentVizMode !== 'population_change') return null;
+        const estimate = countyPopulationEstimatesByNorm?.get(norm) || null;
+        if (!estimate) return null;
+        const p2020 = Number(estimate.population2020 || 0);
+        const p2025 = Number(estimate.population2025 || 0);
+        const pct = Number(estimate.changePct2020To2025);
+        const abs = Number(estimate.change2020To2025);
+        if (!(p2020 > 0) || !(p2025 > 0) || !Number.isFinite(pct) || !Number.isFinite(abs)) return null;
+        const tone = abs > 0 ? 'gain' : (abs < 0 ? 'loss' : 'flat');
+        const signAbs = abs > 0 ? '+' : '';
+        const signPct = pct > 0 ? '+' : '';
+        const statePct = Number(countyPopulationEstimateStatewide?.changePct2020To2025);
+        const pctLine = Number.isFinite(statePct)
+          ? `${signPct}${pct.toFixed(1)}% (${statePct >= 0 ? '+' : ''}${statePct.toFixed(1)}% statewide)`
+          : `${signPct}${pct.toFixed(1)}%`;
+        return {
+          line: `Population change: ${signAbs}${Math.round(abs).toLocaleString()} (${pctLine})`,
+          raw: `${p2020.toLocaleString()} -> ${p2025.toLocaleString()}`,
+          tone,
+          label: tone === 'gain' ? 'Growth' : (tone === 'loss' ? 'Decline' : 'Flat')
+        };
+      })();
+      const defaultVotehubCore = buildVotehubResultsTooltip({
         title: `${countyDisplay} County`,
-        subtitle: 'County',
+        subtitle: currentVizMode === 'population_change' ? 'Population change' : 'County',
         demName: demCandidate,
         repName: repCandidate,
         otherName: 'Other',
@@ -26218,6 +26266,29 @@ document.addEventListener('DOMContentLoaded', function() {
         shiftYearLabel: (vizShiftCache?.prevYear && vizShiftCache?.year) ? `${vizShiftCache.prevYear}→${vizShiftCache.year}` : '',
         showShiftLine: currentVizMode === 'shift' && Number.isFinite(shiftDelta) && !!vizShiftCache?.prevYear
       });
+      const popChangeVotehubCore = popChangeHeaderMeta
+        ? buildPopulationChangeCountyTooltip({
+            title: `${countyDisplay} County`,
+            subtitle: 'Population change',
+            popChangeLine: popChangeHeaderMeta.line,
+            popChangeRaw: popChangeHeaderMeta.raw,
+            popChangeToneLabel: popChangeHeaderMeta.label,
+            popChangeToneClass: popChangeHeaderMeta.tone,
+            demName: demCandidate,
+            repName: repCandidate,
+            otherName: 'Other',
+            demVotes,
+            repVotes,
+            otherVotes,
+            totalVotes,
+            prevSignedMarginPct: prevSignedForFlip,
+            currentSignedMarginPct: signedMarginPct,
+            flipYearLabel: vizPrevCache?.prevYear || null
+          })
+        : '';
+      const inner = currentVizMode === 'population_change' && popChangeVotehubCore
+        ? popChangeVotehubCore
+        : defaultVotehubCore;
       showHoverTooltip(e.point.x, e.point.y, buildTooltipShell('', inner), { force: !!forceTooltip, context: 'votehub-results' });
       wireTooltipButtons();
     }
@@ -31691,6 +31762,16 @@ document.addEventListener('DOMContentLoaded', function() {
           countyNameMap = buildCountyNameMapFromGeoJSON(counties);
         }
         addCountyLayers();
+
+        // Start election requests before precinct-search hydration so the larger
+        // aggregate payload downloads in parallel with search assets.
+        const contestManifestRequest = loadJSON(`${CONFIG.paths.contests_dir}/manifest.json`)
+          .then(manifest => ({ manifest, error: null }))
+          .catch(error => ({ manifest: null, error }));
+        const aggregateElectionRequest = loadJSON(CONFIG.paths.election)
+          .then(json => ({ json, error: null }))
+          .catch(error => ({ json: null, error }));
+
         reinforceMapLabelHalos();
         map.once('idle', () => reinforceMapLabelHalos());
         await setupCountySearch();
@@ -31705,7 +31786,9 @@ document.addEventListener('DOMContentLoaded', function() {
         contestSliceCache = new Map();
         let contestManifestLoaded = false;
 	        try {
-	          const manifest = await loadJSON(`${CONFIG.paths.contests_dir}/manifest.json`);
+	          const manifestLoad = await contestManifestRequest;
+	          if (manifestLoad.error) throw manifestLoad.error;
+	          const manifest = manifestLoad.manifest;
 	          contestManifest = manifest?.files || [];
 	          contestManifestLoaded = true;
 	          // Add CSV-backed presidential elections not present in the precomputed contest slices.
@@ -31715,10 +31798,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	          });
 	          updateContestSelectForCurrentView();
 	          setStatus('Election index loaded');
-	        } catch (manifestErr) {
+        } catch (manifestErr) {
           setStatus('Loading election data...');
           debugLog('Loading election data from:', CONFIG.paths.election);
-          electionDataJSON = await loadJSON(CONFIG.paths.election);
+          const aggregateLoad = await aggregateElectionRequest;
+          if (aggregateLoad.error) throw aggregateLoad.error;
+          electionDataJSON = aggregateLoad.json;
           debugLog('Election JSON loaded:', electionDataJSON);
 
           // Flatten JSON structure for compatibility with existing code
@@ -31737,7 +31822,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!Array.isArray(electionData) || electionData.length === 0) {
           try {
             setStatus('Loading aggregate election data...');
-            electionDataJSON = await loadJSON(CONFIG.paths.election);
+            const aggregateLoad = await aggregateElectionRequest;
+            if (aggregateLoad.error) throw aggregateLoad.error;
+            electionDataJSON = aggregateLoad.json;
             electionData = flattenElectionJSON(electionDataJSON);
             debugLog('Aggregate election data loaded:', Array.isArray(electionData) ? electionData.length : 0, 'records');
             if (contestManifestLoaded) {
@@ -31802,6 +31889,21 @@ document.addEventListener('DOMContentLoaded', function() {
           } catch (err) {
             countyDemographics = null;
             console.warn('County demographics not loaded:', err?.message || err);
+          }
+        }
+
+        // Optional county population estimates (Census Vintage 2025) for Pop Change mode and county tooltips.
+        if (CONFIG.paths.county_population_estimates) {
+          try {
+            const countyPopulationEstimatesCSV = await loadCSV(CONFIG.paths.county_population_estimates);
+            const rows = parseCSV(countyPopulationEstimatesCSV);
+            const idx = buildCountyPopulationEstimateIndex(rows);
+            countyPopulationEstimatesByNorm = idx.byNorm;
+            countyPopulationEstimateStatewide = idx.statewide;
+          } catch (err) {
+            countyPopulationEstimatesByNorm = null;
+            countyPopulationEstimateStatewide = null;
+            console.warn('County population estimates not loaded:', err?.message || err);
           }
         }
 
@@ -32447,7 +32549,15 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (staleCheck()) return;
       // Filter data for this contest and year
-      const contestData = await loadContestSlice(contestType, year);
+      const aggregateContestData = !precinctsEnabled && Array.isArray(electionData)
+        ? electionData.filter(row => (
+            Number(row?.year) === Number(year)
+            && Number(row?.[`${contestType}_total`] || 0) > 0
+          ))
+        : [];
+      const contestData = aggregateContestData.length
+        ? aggregateContestData
+        : await loadContestSlice(contestType, year);
       if (staleCheck()) return;
 
       debugLog(`Applying ${contestType} for ${year}:`, contestData.length, 'counties found');
@@ -32823,6 +32933,47 @@ document.addEventListener('DOMContentLoaded', function() {
       let mode = (currentVizMode || 'margins');
       let prevPrecinctMarginByNorm = null; // Map<string, number>
       let prevCountyTotals = null; // Map countyNorm -> {dem, rep, total}
+
+      if (mode === 'population_change' && currentView === 'counties') {
+        renderLegendForVizMode('population_change');
+        vizShiftCache = null;
+        if (staleCheck()) return;
+
+        const countyExpr = ['case'];
+        if (countyPopulationEstimatesByNorm && typeof countyPopulationEstimatesByNorm.forEach === 'function') {
+          countyPopulationEstimatesByNorm.forEach((estimate, countyNorm) => {
+            const useAbs = String(populationChangeMetric || 'pct') === 'abs';
+            const countyPct = Number(estimate?.changePct2020To2025);
+            const color = useAbs
+              ? colorForPopulationChangeAbsMode(estimate?.change2020To2025)
+              : colorForPopulationChangeMode(countyPct);
+            countyExpr.push([
+              '==',
+              ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]],
+              countyNorm
+            ]);
+            countyExpr.push(color);
+          });
+        }
+        countyExpr.push('#e2e8f0');
+
+        if (map.getLayer('county-fill')) {
+          map.setPaintProperty('county-fill', 'fill-color', countyExpr);
+        }
+        if (map.getLayer('county-stroke')) {
+          try {
+            map.setPaintProperty('county-stroke', 'line-color', '#333');
+            map.setPaintProperty('county-stroke', 'line-width', 1);
+          } catch (_) {}
+        }
+        applyLayerOpacityTuning();
+        if (staleCheck()) return;
+        setStatewideContestTitle(String(populationChangeMetric || 'pct') === 'abs'
+          ? 'County Population Change (2020-2025, absolute)'
+          : 'County Population Change (2020-2025, percent)');
+        setStatus(`Applied county population-change mode (2020-2025, ${String(populationChangeMetric || 'pct') === 'abs' ? 'absolute' : 'percent'}).`);
+        return;
+      }
 
       // Keep previous-cycle county totals loaded for hover flip chips across modes.
       // Precinct-level prior margins remain opt-in for shift/flip mode to keep non-shift
