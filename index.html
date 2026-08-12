@@ -10056,11 +10056,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="legend-segment legend-color" style="background: #cb181d;"></span>
                 <span class="legend-segment legend-color" style="background: #e93a2d;"></span>
                 <span class="legend-segment legend-color" style="background: #f7634b;"></span>
-                <span class="legend-segment legend-color" style="background: #fcae91;"></span>
+                <span class="legend-segment legend-color" style="background: #fca793;"></span>
                 <span class="legend-segment legend-color" style="background: #f4c9c5;"></span>
                 <span class="legend-segment legend-color" style="background: #f7f7f7; border-left: 1px solid rgba(15,23,42,0.12); border-right: 1px solid rgba(15,23,42,0.12);"></span>
                 <span class="legend-segment legend-color" style="background: #c7ddf0;"></span>
-                <span class="legend-segment legend-color" style="background: #c6dbef;"></span>
+                <span class="legend-segment legend-color" style="background: #9ecae1;"></span>
                 <span class="legend-segment legend-color" style="background: #6baed6;"></span>
                 <span class="legend-segment legend-color" style="background: #4795d2;"></span>
                 <span class="legend-segment legend-color" style="background: #2876b5;"></span>
@@ -10330,8 +10330,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-12-margin-legend-fix-v2';
-    const APP_BUILD_ID = '2026-08-12-margin-legend-fix-v2';
+    const DATA_CACHE_BUSTER = '2026-08-12-margin-legend-fix-v3';
+    const APP_BUILD_ID = '2026-08-12-margin-legend-fix-v3';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -21645,37 +21645,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function buildMarginsLegendHTML() {
-      const colors = [
-        '#67000d', '#a50f15', '#cb181d', '#e93a2d', '#f7634b', '#fcae91', '#f4c9c5',
-        '#f7f7f7',
-        '#c7ddf0', '#c6dbef', '#6baed6', '#4795d2', '#2876b5', '#08519c', '#08306b'
+      const tiers = [
+        { label: 'Annihilation', range: '40+', color: colorForMarginMode(40, 'R'), party: 'rep' },
+        { label: 'Dominant', range: '30–39.9', color: colorForMarginMode(30, 'R'), party: 'rep' },
+        { label: 'Stronghold', range: '20–29.9', color: colorForMarginMode(20, 'R'), party: 'rep' },
+        { label: 'Safe', range: '10–19.9', color: colorForMarginMode(10, 'R'), party: 'rep' },
+        { label: 'Likely', range: '5.5–9.9', color: colorForMarginMode(5.5, 'R'), party: 'rep' },
+        { label: 'Lean', range: '1–5.49', color: colorForMarginMode(1, 'R'), party: 'rep' },
+        { label: 'Tilt', range: '0.5–0.99', color: colorForMarginMode(0.5, 'R'), party: 'rep' },
+        { label: 'Tossup', range: '<0.5', color: colorForMarginMode(0, 'R'), party: 'tie' },
+        { label: 'Tilt', range: '0.5–0.99', color: colorForMarginMode(0.5, 'D'), party: 'dem' },
+        { label: 'Lean', range: '1–5.49', color: colorForMarginMode(1, 'D'), party: 'dem' },
+        { label: 'Likely', range: '5.5–9.9', color: colorForMarginMode(5.5, 'D'), party: 'dem' },
+        { label: 'Safe', range: '10–19.9', color: colorForMarginMode(10, 'D'), party: 'dem' },
+        { label: 'Stronghold', range: '20–29.9', color: colorForMarginMode(20, 'D'), party: 'dem' },
+        { label: 'Dominant', range: '30–39.9', color: colorForMarginMode(30, 'D'), party: 'dem' },
+        { label: 'Annihilation', range: '40+', color: colorForMarginMode(40, 'D'), party: 'dem' }
+      ];
+      const spectrum = [
+        colorForMarginMode(40, 'R'), colorForMarginMode(30, 'R'), colorForMarginMode(20, 'R'),
+        colorForMarginMode(10, 'R'), colorForMarginMode(5.5, 'R'), colorForMarginMode(1, 'R'),
+        colorForMarginMode(0.5, 'R'), colorForMarginMode(0, 'R'), colorForMarginMode(0.5, 'D'),
+        colorForMarginMode(1, 'D'), colorForMarginMode(5.5, 'D'), colorForMarginMode(10, 'D'),
+        colorForMarginMode(20, 'D'), colorForMarginMode(30, 'D'), colorForMarginMode(40, 'D')
       ];
       return `
         <div class="legend-scale-shell">
-          ${buildLegendSpectrum(colors, 'margins')}
-          <div class="legend-scale-caption">
-            <span class="rep">Stronger Republican</span>
-            <span>Tossup</span>
-            <span class="dem">Stronger Democratic</span>
-          </div>
-          <div class="legend-axis margins">
-            <span class="rep">R +40</span>
-            <span class="rep">R +10</span>
-            <span class="rep">R +1</span>
-            <span>Tie</span>
-            <span class="dem">D +1</span>
-            <span class="dem">D +10</span>
-            <span class="dem">D +40</span>
-          </div>
-          <div class="legend-chip-row">
-            <span class="legend-chip">Annihilation 40+</span>
-            <span class="legend-chip">Dominant 30+</span>
-            <span class="legend-chip">Stronghold 20+</span>
-            <span class="legend-chip">Safe 10+</span>
-            <span class="legend-chip">Likely 5.5+</span>
-            <span class="legend-chip">Lean 1+</span>
-            <span class="legend-chip">Tilt 0.5+</span>
-            <span class="legend-chip">Tossup &lt;0.5</span>
+          ${buildLegendSpectrum(spectrum, 'margins')}
+          <div class="legend-tier-list" role="list">
+            ${tiers.map(t => `
+              <div class="legend-tier-row" role="listitem">
+                <span class="legend-color" style="background: ${t.color};${t.party === 'tie' ? ' border: 1px solid rgba(15,23,42,0.18);' : ''}"></span>
+                <span class="legend-tier-label ${t.party}">${t.label}</span>
+                <span class="legend-tier-range">${t.range}</span>
+              </div>
+            `).join('')}
           </div>
         </div>
       `;
@@ -32012,7 +32016,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (marginPct >= 5.5) {
         return winner === 'R' ? '#f7634b' : '#6baed6';
       } else if (marginPct >= 1.0) {
-        return winner === 'R' ? '#fcae91' : '#9ecae1';
+        return winner === 'R' ? '#fca793' : '#9ecae1';
       } else if (marginPct >= 0.5) {
         return winner === 'R' ? '#f4c9c5' : '#c7ddf0';
       } else {
