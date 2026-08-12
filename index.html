@@ -10330,8 +10330,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-12-margin-legend-fix-v3';
-    const APP_BUILD_ID = '2026-08-12-margin-legend-fix-v3';
+    const DATA_CACHE_BUSTER = '2026-08-12-margin-legend-fix-v4';
+    const APP_BUILD_ID = '2026-08-12-margin-legend-fix-v4';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -14247,8 +14247,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return { cls: 'tie', text: 'First available result' };
       }
       const shift = (Number(currentSignedPct) || 0) - (Number(prevSignedPct) || 0);
-      if (Math.abs(shift) < 0.01) {
-        return { cls: 'tie', text: `Shift: No shift since ${prevYear}` };
+      if (Math.abs(shift) < TREND_SHIFT_NOISE_PTS) {
+        return { cls: 'tie', text: `No shift since ${prevYear}` };
       }
       return {
         cls: shift > 0 ? 'rep' : 'dem',
@@ -21264,10 +21264,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function marginPctValue(repVotes, demVotes, totalVotes) {
-      const t = Number(totalVotes) || 0;
-      if (t <= 0) return 0;
-      // Compute margin from raw vote shares to avoid 0.01 drift from intermediate rounding.
-      return Math.abs((Number(repVotes || 0) - Number(demVotes || 0)) / t) * 100.0;
+      return window.AtlasDisplay.marginPctValue(repVotes, demVotes, totalVotes);
     }
 
     function preservesTwoDecimalMargin(marginPct) {
@@ -21308,7 +21305,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function focusLeadMarginLabel(repVotes, demVotes, totalVotes) {
       const margin = Number(repVotes || 0) - Number(demVotes || 0);
       if (!margin) return 'Tie';
-      return `${marginPctValue(repVotes, demVotes, totalVotes).toFixed(2)}%`;
+      return `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
     }
 
     function countyMarginDisplayDigits(marginPct) {
