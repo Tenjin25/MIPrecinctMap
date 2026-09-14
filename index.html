@@ -10420,8 +10420,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-14-mi-county-demo-aliases-v7';
-    const APP_BUILD_ID = '2026-09-14-mi-county-demo-aliases-v7';
+    const DATA_CACHE_BUSTER = '2026-09-14-mi-county-demo-mode-v8';
+    const APP_BUILD_ID = '2026-09-14-mi-county-demo-mode-v8';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -13818,6 +13818,10 @@ document.addEventListener('DOMContentLoaded', function() {
       renderLegendForVizMode(mode);
       try { updatePopulationMetricLegendChip(); } catch (_) {}
 
+      if (mode === 'demographics' && currentView === 'counties') {
+        try { applyCountyDemographicsModeToCounties(); } catch (_) {}
+      }
+
       // Reapply current contest with new mode
       const contestSelect = document.getElementById('contestSelect');
       if (contestSelect && contestSelect.value) {
@@ -13825,6 +13829,27 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       updateContextBanner();
       saveUIState();
+    }
+
+    function applyCountyDemographicsModeToCounties() {
+      const countyDemoRows = countyDemographics?.counties || null;
+      if (!countyDemoRows || !map.getLayer('county-fill')) return false;
+      const countyExpr = ['case'];
+      Object.keys(countyDemoRows).forEach(countyNorm => {
+        const demo = countyDemoRows[countyNorm] || {};
+        countyExpr.push(['==', ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'NAMELSAD20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]], countyNorm]);
+        countyExpr.push(colorForDemographicsMode(
+          demo.white_pop_pct, demo.black_pop_pct, demo.hispanic_pop_pct, demo.native_pop_pct,
+          demo.asian_pop_pct, demo.pacific_pop_pct, demo.multiracial_pop_pct
+        ));
+      });
+      map.setPaintProperty('county-fill', 'fill-color', [...countyExpr, '#e2e8f0']);
+      try {
+        map.setPaintProperty('county-stroke', 'line-color', '#333');
+        map.setPaintProperty('county-stroke', 'line-width', 1);
+        applyLayerOpacityTuning();
+      } catch (_) {}
+      return true;
     }
 
     // Vote Counter Functions - VoteHub Style
@@ -19940,17 +19965,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	      function groupLabelForContestType(contestType) {
 	        if (contestType === 'president') return 'US President';
 	        if (contestType === 'us_senate') return 'US Senate';
-	        if (contestType === 'governor') return 'Michigan Governor';
-	        if (contestType === 'lieutenant_governor') return 'Michigan Lieutenant Governor';
-	        if (contestType === 'attorney_general') return 'Michigan Attorney General';
-	        if (contestType === 'secretary_of_state') return 'Michigan Secretary of State';
-	        if (contestType === 'treasurer') return 'Michigan Treasurer';
+	        if (contestType === 'governor') return 'Governor';
+	        if (contestType === 'lieutenant_governor') return 'Lieutenant Governor';
+	        if (contestType === 'attorney_general') return 'Attorney General';
+	        if (contestType === 'secretary_of_state') return 'Secretary of State';
+	        if (contestType === 'treasurer') return 'Treasurer';
 	        if (contestType === 'auditor') return 'Auditor';
 	        if (contestType === 'labor_commissioner') return 'Labor Commissioner';
 	        if (contestType === 'insurance_commissioner') return 'Insurance Commissioner';
 	        if (contestType === 'agriculture_commissioner') return 'Agriculture Commissioner';
 	        if (contestType === 'superintendent') return 'Superintendent of Public Instruction';
-	        if (contestType.startsWith('mi_supreme_court_')) return 'Michigan Supreme Court';
+	        if (contestType.startsWith('mi_supreme_court_')) return 'Supreme Court';
 	        if (contestType.startsWith('mi_court_of_appeals_')) return 'Court of Appeals';
 	        return formatContestName(contestType, '');
 	      }
@@ -19963,17 +19988,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	      const groupOrder = [
 	        'US President',
 	        'US Senate',
-	        'Michigan Governor',
-	        'Michigan Lieutenant Governor',
-	        'Michigan Attorney General',
-	        'Michigan Secretary of State',
-	        'Michigan Treasurer',
+	        'Governor',
+	        'Lieutenant Governor',
+	        'Attorney General',
+	        'Secretary of State',
+	        'Treasurer',
 	        'Auditor',
 	        'Labor Commissioner',
 	        'Insurance Commissioner',
 	        'Agriculture Commissioner',
 	        'Superintendent of Public Instruction',
-	        'Michigan Supreme Court',
+	        'Supreme Court',
 	        'Court of Appeals'
 	      ];
 
@@ -19995,7 +20020,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	      const fragment = document.createDocumentFragment();
 	      orderedLabels.forEach(label => {
 	        const items = (grouped.get(label) || []).slice();
-	        const isJudicial = (label === 'Michigan Supreme Court' || label === 'Court of Appeals');
+	        const isJudicial = (label === 'Supreme Court' || label === 'Court of Appeals');
 	        items.sort((a, b) => {
 	          const y = Number(a.year) - Number(b.year);
 	          if (y !== 0) return y;
@@ -20117,11 +20142,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	      function groupLabelForContestType(contestType) {
 	        if (contestType === 'president') return 'US President';
 	        if (contestType === 'us_senate') return 'US Senate';
-	        if (contestType === 'governor') return 'Michigan Governor';
-	        if (contestType === 'lieutenant_governor') return 'Michigan Lieutenant Governor';
-	        if (contestType === 'attorney_general') return 'Michigan Attorney General';
-	        if (contestType === 'secretary_of_state') return 'Michigan Secretary of State';
-	        if (contestType === 'treasurer') return 'Michigan Treasurer';
+	        if (contestType === 'governor') return 'Governor';
+	        if (contestType === 'lieutenant_governor') return 'Lieutenant Governor';
+	        if (contestType === 'attorney_general') return 'Attorney General';
+	        if (contestType === 'secretary_of_state') return 'Secretary of State';
+	        if (contestType === 'treasurer') return 'Treasurer';
 	        if (contestType === 'auditor') return 'Auditor';
 	        if (contestType === 'labor_commissioner') return 'Labor Commissioner';
 	        if (contestType === 'insurance_commissioner') return 'Insurance Commissioner';
@@ -20133,11 +20158,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	      const groupOrder = [
 	        'US President',
 	        'US Senate',
-	        'Michigan Governor',
-	        'Michigan Lieutenant Governor',
-	        'Michigan Attorney General',
-	        'Michigan Secretary of State',
-	        'Michigan Treasurer',
+	        'Governor',
+	        'Lieutenant Governor',
+	        'Attorney General',
+	        'Secretary of State',
+	        'Treasurer',
 	        'Auditor',
 	        'Labor Commissioner',
 	        'Insurance Commissioner',
@@ -31792,6 +31817,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (CONFIG.paths.county_demographics) {
         try {
           countyDemographics = addCountyDemographicAliases(await loadJSON(CONFIG.paths.county_demographics));
+          if (currentVizMode === 'demographics' && currentView === 'counties') {
+            applyCountyDemographicsModeToCounties();
+          }
         } catch (err) {
           countyDemographics = null;
           console.warn('County demographics not loaded:', err?.message || err);
@@ -32137,6 +32165,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (CONFIG.paths.county_demographics) {
           try {
             countyDemographics = addCountyDemographicAliases(await loadJSON(CONFIG.paths.county_demographics));
+            if (currentVizMode === 'demographics' && currentView === 'counties') {
+              applyCountyDemographicsModeToCounties();
+            }
           } catch (err) {
             countyDemographics = null;
             console.warn('County demographics not loaded:', err?.message || err);
