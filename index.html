@@ -10420,8 +10420,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-14-mi-startup-v9';
-    const APP_BUILD_ID = '2026-09-14-mi-startup-v9';
+    const DATA_CACHE_BUSTER = '2026-09-14-mi-demographic-fill-v10';
+    const APP_BUILD_ID = '2026-09-14-mi-demographic-fill-v10';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -13820,6 +13820,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (mode === 'demographics' && currentView === 'counties') {
         try { applyCountyDemographicsModeToCounties(); } catch (_) {}
+      } else if (mode === 'demographics' && ['districts', 'state_house', 'state_senate'].includes(currentView)) {
+        void applyDistrictDemographicsModeToCurrentView();
       }
 
       // Reapply current contest with new mode
@@ -13849,6 +13851,37 @@ document.addEventListener('DOMContentLoaded', function() {
         map.setPaintProperty('county-stroke', 'line-width', 1);
         applyLayerOpacityTuning();
       } catch (_) {}
+      return true;
+    }
+
+    async function applyDistrictDemographicsModeToCurrentView() {
+      const scope = currentView === 'districts'
+        ? 'congressional'
+        : (currentView === 'state_house' ? 'state_house' : (currentView === 'state_senate' ? 'state_senate' : ''));
+      if (!scope) return false;
+      const y = String(normalizeDistrictLinesYear(currentDistrictLinesYear));
+      try { await ensureCvapDistrictTotalsLoaded(scope, Number(y)); } catch (_) {}
+      const planTag = (scope === 'congressional' && typeof congressionalNeutralMode !== 'undefined' && congressionalNeutralMode) ? 'neutral' : 'enacted';
+      const rows = new Map(cvapDistrictDemographicsByPlan.get(`${scope}|${y}|${planTag}`) || []);
+      const fallback = scope === 'congressional' ? districtsInfo : (scope === 'state_house' ? stateHouseInfo : stateSenateInfo);
+      (fallback || []).forEach(row => {
+        const key = coerceDistrictKey(row?.district);
+        if (key && !rows.has(key)) rows.set(key, row);
+      });
+      const layerName = currentView === 'districts' ? 'district-fill' : (currentView === 'state_house' ? 'state-house-fill' : 'state-senate-fill');
+      if (!rows.size || !map.getLayer(layerName)) return false;
+      const expr = ['case'];
+      rows.forEach((demo, districtKey) => {
+        const districtNum = Number(districtKey);
+        if (!Number.isFinite(districtNum)) return;
+        expr.push(['==', ['to-number', ['coalesce', ['get', 'DISTRICT'], ['get', 'CD118FP'], ['get', 'CD119FP'], ['get', 'SLDLST'], ['get', 'SLDUST'], ['get', 'district_id'], ['get', 'district']]], districtNum]);
+        expr.push(colorForDemographicsMode(
+          demo.white_vap_pct, demo.black_vap_pct, demo.hispanic_vap_pct, demo.native_vap_pct,
+          demo.asian_vap_pct, demo.pacific_vap_pct, demo.multiracial_vap_pct
+        ));
+      });
+      map.setPaintProperty(layerName, 'fill-color', [...expr, '#e2e8f0']);
+      applyLayerOpacityTuning();
       return true;
     }
 
@@ -22099,8 +22132,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (badge) badge.textContent = demographicsHighContrastEnabled ? 'Demographics HC' : 'Demographics';
         if (footer) {
           footer.textContent = demographicsHighContrastEnabled
-            ? 'High-contrast colors enabled. County shares use DP1 total population; district/precinct shares use available VAP race fields.'
-            : 'County shares use DP1 total population; district/precinct shares use available VAP race fields.';
+            ? 'High-contrast colors enabled. County shares use CVAP; district/precinct shares use available VAP race fields.'
+            : 'Darker shades indicate a larger dominant-group share. County shares use CVAP; district/precinct shares use available VAP race fields.';
         }
         content.innerHTML = buildDemographicsLegendHTML();
       } else if (mode === 'population_change') {
@@ -32425,7 +32458,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (dom.key === 'mixed') return '#065f46';
         return '#475569';
       }
-      if (dom.key === 'white') return dom.majority ? '#334155' : '#94a3b8';
+      if (dom.key === 'white') {
+        if (!dom.majority) return '#cbd5e1';
+        if (dom.pct >= 90) return '#334155';
+        if (dom.pct >= 80) return '#64748b';
+        if (dom.pct >= 70) return '#94a3b8';
+        if (dom.pct >= 60) return '#b6c2d1';
+        return '#d6dee8';
+      }
       if (dom.key === 'black') return dom.majority ? '#1d4ed8' : '#93c5fd';
       if (dom.key === 'hispanic') return dom.majority ? '#c2410c' : '#fdba74';
       if (dom.key === 'native') return dom.majority ? '#9333ea' : '#d8b4fe';
@@ -33534,6 +33574,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (districtResults && Object.keys(districtResults).length > 0) {
           let mode = (currentVizMode || 'margins');
+          if (mode === 'demographics') {
+            try { await ensureCvapDistrictTotalsLoaded(districtScope, currentDistrictLinesYear); } catch (_) {}
+          }
           // Previous-year results are only required for shift/flip coloring.
           // Margins/winners paint immediately and warm previous-year cache in the background.
           let prevYear = null;
@@ -33592,6 +33635,12 @@ document.addEventListener('DOMContentLoaded', function() {
               const prevSigned = prevRow ? Number(prevRow.margin_pct || 0) : 0;
               const f = flipInfo(prevSigned, signed);
               color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
+            } else if (mode === 'demographics') {
+              const demo = getDistrictDemographics(districtScope, districtId);
+              color = demo ? colorForDemographicsMode(
+                demo.white_vap_pct, demo.black_vap_pct, demo.hispanic_vap_pct, demo.native_vap_pct,
+                demo.asian_vap_pct, demo.pacific_vap_pct, demo.multiracial_vap_pct
+              ) : '#e2e8f0';
             } else if (mode === 'winners') {
               color = colorForWinnerMode(winner);
             } else if (mode === 'shift' && prevResults && prevYear) {
