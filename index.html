@@ -10420,8 +10420,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-14-mi-demographic-mixed-v11';
-    const APP_BUILD_ID = '2026-09-14-mi-demographic-mixed-v11';
+    const DATA_CACHE_BUSTER = '2026-09-14-mi-demographic-spread-v12';
+    const APP_BUILD_ID = '2026-09-14-mi-demographic-spread-v12';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -22029,7 +22029,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function buildDemographicsLegendHTML() {
       return `
         <div class="legend-swatch-grid">
-          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(60, 20, 20)};"></span><span>White majority</span></div>
+          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(55, 30, 15)};"></span><span>White majority 50–59.9%</span></div>
+          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(65, 20, 15)};"></span><span>White majority 60–69.9%</span></div>
+          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(75, 15, 10)};"></span><span>White majority 70–79.9%</span></div>
+          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(85, 10, 5)};"></span><span>White majority 80–89.9%</span></div>
+          <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(92, 5, 3)};"></span><span>White majority 90%+</span></div>
           <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(40, 30, 30)};"></span><span>White plurality</span></div>
           <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(20, 60, 20)};"></span><span>Black majority</span></div>
           <div class="legend-swatch-card"><span class="legend-color" style="background: ${colorForDemographicsMode(30, 40, 30)};"></span><span>Black plurality</span></div>
