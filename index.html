@@ -10082,6 +10082,19 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="control-group" style="margin-bottom:12px;">
                 <span class="section-kicker">Quick Jumps</span>
                 <div class="region-jumps" id="region-jumps">
+                  <button type="button" class="region-jump-btn" data-region-jump="metro_detroit">Metro Detroit</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="ann_arbor">Ann Arbor</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="lansing">Lansing</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="flint">Flint</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="tri_cities">Tri-Cities</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="grand_rapids">Grand Rapids</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="kalamazoo_battle_creek">Kalamazoo–Battle Creek</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="traverse_bay">Traverse Bay</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="thumb">The Thumb</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="copper_country">Copper Country</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="western_up">Western UP</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="central_up">Central UP</button>
+                  <button type="button" class="region-jump-btn" data-region-jump="eastern_up">Eastern UP</button>
                   <button type="button" class="region-jump-btn" data-region-jump="west_michigan">West Michigan</button>
                   <button type="button" class="region-jump-btn" data-region-jump="mid_michigan">Mid-Michigan</button>
                   <button type="button" class="region-jump-btn" data-region-jump="northern_lower">Northern Lower</button>
@@ -10488,8 +10501,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-16-county-cvap-mobile-v1';
-        const APP_BUILD_ID = '2026-09-14-mi-directional-narrow-majority-v16';
+    const DATA_CACHE_BUSTER = '2026-09-17-mi-quick-jumps-v1';
+    const APP_BUILD_ID = '2026-09-17-mi-quick-jumps-v1';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -10562,25 +10575,73 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // County memberships back the regional quick jumps so they can drive
     // real regional rollups instead of only camera movement.
-    // Definitions used:
-    // - Triangle: Research Triangle Regional Partnership
-    // - Triad: Piedmont Triad Regional Council
-    // - Charlotte: Expanded greater-Charlotte NC footprint
-    //   (Charlotte-Concord-Gastonia NC metro counties plus nearby commuter counties)
-    // - Asheville: Asheville metro-area counties
-    // - Mountains: NC Office of State Archaeology mountain region
-    // - Inner Banks: NC inland coastal plain counties east of I-95
-    // - Coast: NC DEQ CAMA counties
-    // - Sandhills: NCGS 143B-28.1 Sandhills (South Central) region
-    // - Fayetteville: Greater Fayetteville commuting footprint
-    // - Cape Fear: Lower Cape Fear counties
-    // - I-95: Core NC counties along the I-95 corridor
-    // - Foothills: Unifour and adjacent foothills counties
-        const REGION_JUMPS = {
+    // Metro jumps use core counties; broader regional jumps group adjacent
+    // counties so the same definitions can power camera bounds and rollups.
+    const REGION_JUMPS = {
       metro_detroit: {
         label: 'Metro Detroit',
         bounds: [[-84.95, 42.00], [-82.70, 42.95]],
         counties: ['Wayne', 'Oakland', 'Macomb']
+      },
+      ann_arbor: {
+        label: 'Ann Arbor',
+        bounds: [[-84.25, 41.95], [-83.45, 42.55]],
+        counties: ['Washtenaw']
+      },
+      lansing: {
+        label: 'Lansing',
+        bounds: [[-85.20, 42.35], [-83.95, 43.20]],
+        counties: ['Clinton', 'Eaton', 'Ingham']
+      },
+      flint: {
+        label: 'Flint',
+        bounds: [[-84.25, 42.75], [-83.45, 43.40]],
+        counties: ['Genesee']
+      },
+      tri_cities: {
+        label: 'Tri-Cities',
+        bounds: [[-84.65, 43.25], [-83.55, 44.15]],
+        counties: ['Bay', 'Midland', 'Saginaw']
+      },
+      grand_rapids: {
+        label: 'Grand Rapids',
+        bounds: [[-86.20, 42.55], [-85.05, 43.35]],
+        counties: ['Kent', 'Ottawa']
+      },
+      kalamazoo_battle_creek: {
+        label: 'Kalamazoo–Battle Creek',
+        bounds: [[-86.05, 41.85], [-84.80, 42.75]],
+        counties: ['Kalamazoo', 'Calhoun']
+      },
+      traverse_bay: {
+        label: 'Traverse Bay',
+        bounds: [[-86.25, 44.35], [-84.90, 45.30]],
+        counties: ['Antrim', 'Benzie', 'Grand Traverse', 'Leelanau']
+      },
+      thumb: {
+        label: 'The Thumb',
+        bounds: [[-84.05, 42.75], [-82.35, 44.15]],
+        counties: ['Huron', 'Lapeer', 'Sanilac', 'St. Clair', 'Tuscola']
+      },
+      copper_country: {
+        label: 'Copper Country',
+        bounds: [[-89.25, 46.45], [-87.65, 48.35]],
+        counties: ['Baraga', 'Houghton', 'Keweenaw']
+      },
+      western_up: {
+        label: 'Western Upper Peninsula',
+        bounds: [[-90.75, 45.75], [-88.00, 47.55]],
+        counties: ['Gogebic', 'Iron', 'Ontonagon']
+      },
+      central_up: {
+        label: 'Central Upper Peninsula',
+        bounds: [[-88.55, 45.45], [-85.75, 47.15]],
+        counties: ['Alger', 'Delta', 'Dickinson', 'Marquette', 'Menominee', 'Schoolcraft']
+      },
+      eastern_up: {
+        label: 'Eastern Upper Peninsula',
+        bounds: [[-86.55, 45.70], [-83.85, 47.00]],
+        counties: ['Chippewa', 'Luce', 'Mackinac']
       },
       southeast: {
         label: 'Southeast Michigan',
