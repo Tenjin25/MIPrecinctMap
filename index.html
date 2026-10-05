@@ -732,15 +732,6 @@ a:focus-visible {
   transition: opacity 0.15s ease;
 }
 
-.hover-tooltip.district-tooltip {
-  box-sizing: border-box;
-  width: 314px;
-  height: 345px;
-  max-width: calc(100vw - 30px);
-  max-height: calc(100vh - 30px);
-  overflow: auto;
-}
-
 .hover-tooltip .tooltip-vote-line {
   margin: 4px 0;
 }
@@ -10511,7 +10502,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
     const DATA_CACHE_BUSTER = '2026-09-30-margin-tier-rounding-v1';
-    const APP_BUILD_ID = '2026-10-04-district-tooltip-size-v1';
+    const APP_BUILD_ID = '2026-10-04-district-demographic-pill-size-v1';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -26995,8 +26986,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const _demoRow = getDistrictDemographics(scope, districtNum);
       const _demoHTML = buildDemoHTML(_demoRow);
       if (!contestValue) {
+        const compactDemoHTML = _demoHTML ? `<div class="vhr-demographics">${_demoHTML}</div>` : '';
         showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(formattedDistrictLabel,
-          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>'), { force: !!forceTooltip });
+          compactDemoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>'), { force: !!forceTooltip });
         wireTooltipButtons();
         return;
       }
@@ -31127,7 +31119,7 @@ document.addEventListener('DOMContentLoaded', function() {
       hoverTooltipSuppression.until = 0;
     }
 
-    function showHoverTooltip(x, y, content, { force = false, context = '', district = false } = {}) {
+    function showHoverTooltip(x, y, content, { force = false, context = '' } = {}) {
       const tooltip = document.getElementById('hover-tooltip');
       if (!tooltip) return;
       if (isTouchInteractionMode() && !force && !tooltipPinned) return;
@@ -31135,8 +31127,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
       tooltip.innerHTML = content;
       tooltip.style.display = 'block';
-      const districtTooltip = !!district || /\b(?:Congressional|State House|State Senate) District\b|\b[A-Z]{2}-(?:0[1-9]|[1-9]\d*)\b/i.test(String(content || ''));
-      tooltip.classList.toggle('district-tooltip', districtTooltip);
       tooltip.dataset.context = String(context || '');
 
       // Position tooltip near mouse but avoid edges
