@@ -596,13 +596,13 @@
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <meta charset='utf-8'>
-    <title>Mitten Margin Atlas (2008-2024)</title>
+    <title>Mitten Margin Atlas (2008-2026)</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover'>
     <meta name="author" content="Shamar Davis">
     <meta name="copyright" content="© 2026 Shamar Does Elections. All Rights Reserved.">
     <!-- Watermark: SDE Creator Attribution | Created by Shamar Davis | Copyright 2026 Shamar Does Elections -->
-    <meta property="og:title" content="Mitten Margin Atlas (2008-2024)">
-    <meta property="og:description" content="Interactive visualization of Michigan election trends from 2008 to 2024, with county, precinct, and district views.">
+    <meta property="og:title" content="Mitten Margin Atlas (2008-2026)">
+    <meta property="og:description" content="Interactive visualization of Michigan elections from 2008 to 2026, with 2026 county results and earlier precinct and district views.">
     <meta property="og:image" content="preview.png">
     <meta name="twitter:card" content="summary_large_image">
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet'>
@@ -10501,7 +10501,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-10-06-mobile-contest-ready-v4';
+    const DATA_CACHE_BUSTER = '2026-11-22-county-results-v1';
     const APP_BUILD_ID = '2026-10-06-mobile-contest-ready-v4';
 
     function withCacheBuster(path) {
@@ -20234,7 +20234,9 @@ document.addEventListener('DOMContentLoaded', function() {
       let entries = null;
 
       if (currentView === 'counties' || currentView === 'vtds_2000' || !currentView) {
-        entries = contestManifest || [];
+        entries = currentView === 'vtds_2000'
+          ? (contestManifest || []).filter(entry => entry.level !== 'county')
+          : (contestManifest || []);
       } else {
         const scope = currentView === 'districts'
           ? 'congressional'
@@ -29702,9 +29704,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function updatePrecinctVisibility() {
       try { updateMobileModeHint(); } catch (_) {}
       const btn = document.getElementById('precinct-toggle');
+      const selectedContest = String(document.getElementById('contestSelect')?.value || '');
+      const countyOnly = contestManifest.some(entry =>
+        `${entry.contest_type}_${entry.year}` === selectedContest && entry.level === 'county');
       if (btn) {
+        btn.disabled = countyOnly;
+        btn.title = countyOnly ? 'Precinct results are not available for this contest' : 'Enable Precinct Overlay (Zoom 8.5+)';
         if (precinctLoadInFlight) {
           btn.textContent = 'Precincts Loading';
+        } else if (countyOnly) {
+          btn.textContent = 'County Results Only';
         } else {
           btn.textContent = precinctsEnabled ? 'Precincts On' : 'Precincts Off';
         }
@@ -29760,6 +29769,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function togglePrecinctOverlay() {
+      const selectedContest = String(document.getElementById('contestSelect')?.value || '');
+      if (contestManifest.some(entry => `${entry.contest_type}_${entry.year}` === selectedContest && entry.level === 'county')) {
+        setStatus('Precinct results are not available for this contest');
+        return;
+      }
       precinctsEnabled = !precinctsEnabled;
       if (precinctsEnabled) {
         // Always prefer centroids first so statewide zoom is responsive.
@@ -33136,6 +33150,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function applyCountyContest(contestType, year, opts = {}) {
+      if (contestManifest.some(entry => entry.contest_type === contestType && Number(entry.year) === Number(year) && entry.level === 'county')) {
+        precinctsEnabled = false;
+        clearSelectedPrecinctNorm();
+      }
+      updatePrecinctVisibility();
       const selectionSeq = Number(opts?.selectionSeq || 0);
       const staleCheck = typeof opts?.isStaleSelection === 'function' ? opts.isStaleSelection : (() => false);
       function shouldDeferPrecinctDetail() {

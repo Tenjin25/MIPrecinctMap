@@ -1,4 +1,4 @@
-# Mitten Margin Atlas (2008-2024)
+# Mitten Margin Atlas (2008-2026)
 
 Interactive Michigan election map with county, precinct, and district views.
 
@@ -33,7 +33,8 @@ To publish updates, push changes to the branch configured for Pages (currently `
 
 From generated manifests in `Data/`:
 
-- Years covered: `2008, 2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024`
+- Precinct and district years covered: `2008, 2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024`
+- 2026 county results are available for governor, U.S. Senate, secretary of state, and attorney general. Precinct and district results for 2026 are not included.
 - Statewide contest slices (precinct rows): `23` files in `Data/contests/manifest.json`
 - District contest slices: `91` files in `Data/district_contests/manifest.json`
 - Statewide contest types currently available:
@@ -90,6 +91,12 @@ node .\Scripts\convert_mvic_package_to_openelections.mjs .\Data\2024GEN.zip .\Da
 
 ```powershell
 node .\Scripts\build_mi_data.mjs
+```
+
+To refresh 2026 county results alone from `Data/2026STATE_GENERAL_MI_CENR_BY_COUNTY.txt`, run:
+
+```powershell
+node .\Scripts\import_2026_county_results.mjs
 ```
 
 4. Optional: fetch official Michigan precinct geometry (preferred over TIGER fallback):

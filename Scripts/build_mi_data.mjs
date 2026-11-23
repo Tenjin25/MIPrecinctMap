@@ -1079,6 +1079,54 @@ for (const fileName of csvFiles) {
   }
 }
 
+// The 2026 state export is county-level only. Keep its rows out of precinct and
+// district aggregates so the UI never presents inferred precinct results.
+const county2026Path = path.join(dataDir, '2026STATE_GENERAL_MI_CENR_BY_COUNTY.txt');
+if (fs.existsSync(county2026Path)) {
+  const officeTypes = [
+    [/^GOVERNOR AND LIEUTENANT GOVERNOR\b/i, 'governor'],
+    [/^UNITED STATES SENATOR\b/i, 'us_senate'],
+    [/^SECRETARY OF STATE\b/i, 'secretary_of_state'],
+    [/^ATTORNEY GENERAL\b/i, 'attorney_general']
+  ];
+  const rl = readline.createInterface({
+    input: fs.createReadStream(county2026Path, { encoding: 'utf8' }),
+    crlfDelay: Infinity
+  });
+  let headers = null;
+  let records = 0;
+  const countiesByContest = new Map();
+  for await (const rawLine of rl) {
+    const line = rawLine.replace(/\r$/, '').replace(/^\uFEFF/, '');
+    if (line.startsWith('ElectionDate\t')) {
+      headers = line.split('\t');
+      continue;
+    }
+    if (!headers || !line.startsWith('2026-11-03\t')) continue;
+    const values = line.split('\t');
+    if (values.length !== headers.length) throw new Error(`Malformed 2026 county record: ${line.slice(0, 100)}`);
+    records += 1;
+    const row = Object.fromEntries(headers.map((header, i) => [header, values[i]]));
+    const contestType = officeTypes.find(([pattern]) => pattern.test(row.OfficeDescription || ''))?.[1];
+    if (!contestType) continue;
+    const county = canonicalCountyName(row.CountyName).toLowerCase().replace(/\b\w/g, ch => ch.toUpperCase())
+      .replace(/^St (Clair|Joseph)$/, 'St. $1');
+    const votes = Number(row.CandidateVotes);
+    if (!county || !Number.isSafeInteger(votes) || votes < 0) throw new Error('Invalid 2026 county or vote total');
+    const party = /^DEMOCRATIC$/i.test(row.PartyDescription) ? 'DEM'
+      : /^REPUBLICAN$/i.test(row.PartyDescription) ? 'REP' : 'OTHER';
+    const candidate = normalizeCandidateName([row.CandidateFirstName, row.CandidateMiddleName, row.CandidateLastName].filter(Boolean).join(' '));
+    const aggKey = `2026|${contestType}|${county}`;
+    addVotes(ensureAgg(countyContestAgg, aggKey), party, candidate, votes);
+    if (!countiesByContest.has(contestType)) countiesByContest.set(contestType, new Set());
+    countiesByContest.get(contestType).add(county);
+  }
+  if (records === 0 || countiesByContest.size !== officeTypes.length ||
+      [...countiesByContest.values()].some(counties => counties.size !== 83)) {
+    throw new Error('2026 county export is incomplete or has an unexpected record count');
+  }
+}
+
 const contestManifest = [];
 const districtManifest = [];
 const electionResultsByYear = {};
@@ -1111,6 +1159,23 @@ for (const [aggKey, rawNode] of countyContestAgg.entries()) {
     electionResultsByYear[year][contestType].general = { results: {} };
   }
   electionResultsByYear[year][contestType].general.results[county] = finalized;
+}
+
+// County-only contests use the same slice format, explicitly labeled so the
+// precinct overlay can be unavailable for this year.
+for (const [yearStr, contests] of Object.entries(electionResultsByYear)) {
+  if (Number(yearStr) !== 2026) continue;
+  for (const [contestType, payload] of Object.entries(contests)) {
+    const rows = Object.entries(payload.general.results)
+      .map(([county, result]) => ({ county, ...result }))
+      .sort((a, b) => a.county.localeCompare(b.county));
+    const file = `${contestType}_${yearStr}.json`;
+    writeJson(path.join(contestsDir, file), {
+      meta: { year: 2026, contest_type: contestType, rows: rows.length, level: 'county' },
+      rows
+    });
+    contestManifest.push({ year: 2026, contest_type: contestType, file, rows: rows.length, level: 'county' });
+  }
 }
 
 for (const [sliceKey, rows] of precinctSlicesByContest.entries()) {
